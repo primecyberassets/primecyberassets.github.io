@@ -17,7 +17,7 @@
     /* Left column */
     .sidebar {
       width: 30%;
-      background: #0b0c10;
+      background: linear-gradient(to bottom, #0b0c10 0%, #010101 100%);
       padding: 2rem;
       box-sizing: border-box;
       display: flex;
@@ -38,6 +38,7 @@
       list-style: none;
       padding: 0;
       margin: 1rem 0;
+      width: 100%;
     }
 
     .nav-links li, .affiliates li {
@@ -55,7 +56,7 @@
       color: #ff4fd8;
     }
 
-    /* Move affiliates to bottom */
+    /* Move affiliates and logo to bottom */
     .affiliates {
       margin-top: auto;
       width: 100%;
@@ -139,13 +140,13 @@
       <li><a href="#">Buy Apps</a></li>
     </ul>
 
-    <h3>Affiliates</h3>
+    <!-- Affiliates list now only at bottom -->
     <ul class="affiliates">
       <li><a href="#">Partner 2</a></li>
       <li><a href="#">Partner 3</a></li>
     </ul>
 
-    <!-- Fiberman YouTube link at bottom -->
+    <!-- Fiberman YouTube link -->
     <div class="fiberman-link">
       <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" target="_blank">
         <img src="fiberman-logo.png" alt="Fiberman Videos - The Power of Connection">
