@@ -27,11 +27,11 @@
     }
 
     .sidebar img {
-      width: 220px;      
+      width: 220px;
       max-width: 90%;
       height: auto;
       display: block;
-      margin: 0 0 1.5rem 0;  
+      margin: 0 0 1.5rem 0;
     }
 
     .nav-links, .affiliates {
@@ -55,6 +55,34 @@
       color: #ff4fd8;
     }
 
+    /* Move affiliates to bottom */
+    .affiliates {
+      margin-top: auto;
+      width: 100%;
+    }
+
+    /* Fiberman link styling */
+    .fiberman-link {
+      padding-top: 1.5rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .fiberman-link img {
+      width: 150px;
+      height: auto;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 10px #66fcf1);
+      transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    .fiberman-link img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 18px #ff4fd8);
+    }
+
     /* Right column */
     .content {
       width: 70%;
@@ -66,6 +94,11 @@
       color: #66fcf1;
       font-size: 2rem;
       margin-top: 0;
+    }
+
+    .content h2 {
+      color: #ff4fd8;
+      margin-top: 2rem;
     }
 
     .content p {
@@ -105,53 +138,63 @@
       <li><a href="#">Wallpapers</a></li>
       <li><a href="#">Buy Apps</a></li>
     </ul>
+
     <h3>Affiliates</h3>
     <ul class="affiliates">
-      <li><a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" target="_blank">FiberMan Videos</a></li>
+      <li><a href="#">Partner 2</a></li>
+      <li><a href="#">Partner 3</a></li>
     </ul>
+
+    <!-- Fiberman YouTube link at bottom -->
+    <div class="fiberman-link">
+      <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" target="_blank">
+        <img src="fiberman-logo.png" alt="Fiberman Videos - The Power of Connection">
+      </a>
+    </div>
   </div>
 
   <div class="content">
     <h1>About Prime Cyber Assets</h1>
-<p>
-  <strong>Prime Cyber Assets</strong> is a next-generation digital brand built at the intersection of technology, creativity, and design. 
-  Our mission is to create premium digital assets that elevate visual identity, empower creators, and bring futuristic aesthetics to modern screens. 
-  Every product we design—whether it’s an icon, wallpaper, UI pack, or concept visualization—is crafted with precision, color theory, and a deep understanding of the digital experience.
-</p>
+    <p>
+      <strong>Prime Cyber Assets</strong> is a next-generation digital brand built at the intersection of technology, creativity, and design. 
+      Our mission is to create premium digital assets that elevate visual identity, empower creators, and bring futuristic aesthetics to modern screens. 
+      Every product we design—whether it’s an icon, wallpaper, UI pack, or concept visualization—is crafted with precision, color theory, and a deep understanding of the digital experience.
+    </p>
 
-<p>
-  We believe that art and technology are inseparable in today’s creative landscape. 
-  That’s why Prime Cyber Assets focuses on crafting neon-infused, high-definition visuals that merge nostalgia and innovation. 
-  Our designs capture the energy of the 1980s synthwave era while embracing the clean, modern lines of contemporary tech design. 
-  The result: digital products that look at home on a gamer’s setup, a designer’s desktop, or a professional studio display.
-</p>
+    <p>
+      We believe that art and technology are inseparable in today’s creative landscape. 
+      That’s why Prime Cyber Assets focuses on crafting neon-infused, high-definition visuals that merge nostalgia and innovation. 
+      Our designs capture the energy of the 1980s synthwave era while embracing the clean, modern lines of contemporary tech design. 
+      The result: digital products that look at home on a gamer’s setup, a designer’s desktop, or a professional studio display.
+    </p>
 
-<p>
-  Beyond design, we’re building a community. 
-  Prime Cyber Assets partners with digital artists, developers, and content creators to produce original collections, 
-  limited-edition icon sets, and customizable resources. 
-  From sleek productivity tools to immersive desktop visuals, our growing library of content gives every user the power to personalize their digital world with style.
-</p>
+    <p>
+      Beyond design, we’re building a community. 
+      Prime Cyber Assets partners with digital artists, developers, and content creators to produce original collections, 
+      limited-edition icon sets, and customizable resources. 
+      From sleek productivity tools to immersive desktop visuals, our growing library of content gives every user the power to personalize their digital world with style.
+    </p>
 
-<p>
-  Our long-term goal is to expand into dynamic 3D elements, interactive media, and cross-platform customization tools—allowing users to integrate our creations seamlessly across devices, from mobile to desktop and even into VR environments. 
-  Prime Cyber Assets isn’t just a design brand—it’s a movement toward a more beautiful, cohesive, and expressive digital reality.
-</p>
+    <p>
+      Our long-term goal is to expand into dynamic 3D elements, interactive media, and cross-platform customization tools—allowing users to integrate our creations seamlessly across devices, from mobile to desktop and even into VR environments. 
+      Prime Cyber Assets isn’t just a design brand—it’s a movement toward a more beautiful, cohesive, and expressive digital reality.
+    </p>
 
-<h2>Our Philosophy</h2>
-<p>
-  Quality, creativity, and accessibility drive everything we do. 
-  Each piece we produce is designed to be both visually striking and functional, with attention to detail that ensures longevity and adaptability. 
-  Whether you’re a casual user customizing your PC or a professional content creator curating your digital identity, 
-  Prime Cyber Assets provides tools that help your visuals stand out without compromising performance or clarity.
-</p>
+    <h2>Our Philosophy</h2>
+    <p>
+      Quality, creativity, and accessibility drive everything we do. 
+      Each piece we produce is designed to be both visually striking and functional, with attention to detail that ensures longevity and adaptability. 
+      Whether you’re a casual user customizing your PC or a professional content creator curating your digital identity, 
+      Prime Cyber Assets provides tools that help your visuals stand out without compromising performance or clarity.
+    </p>
 
-<h2>Contact</h2>
-<p>
-  We love connecting with creators, collaborators, and anyone passionate about digital art. 
-  Reach out for partnerships, commissions, or inquiries:
-  <br>
-  <strong>Email:</strong> <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a>
-</p>
+    <h2>Contact</h2>
+    <p>
+      We love connecting with creators, collaborators, and anyone passionate about digital art. 
+      Reach out for partnerships, commissions, or inquiries:
+      <br>
+      <strong>Email:</strong> <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a>
+    </p>
+  </div>
 </body>
 </html>
