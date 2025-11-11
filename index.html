@@ -8,16 +8,33 @@
     body { 
       font-family: Arial, sans-serif; 
       margin: 0; 
-      background: #000000; 
+      background-color: #000000;  /* solid black background */
       color: #ffffff;
       text-align: center;
+      min-height: 100vh;
     }
     header {
-      background: #1f2833;
+      background: none; /* remove grey bar so black shows through */
       color: #66fcf1;
-      padding: 2rem 1rem;
+      padding: 1rem 1rem 0; /* smaller padding on top */
     }
-    h1 { margin: 0; font-size: 2rem; }
+    header img {
+      width: 350px;
+      max-width: 90%;
+      margin-top: 0.5rem; /* moves logo closer to top */
+    }
+    .divider {
+      width: 60%;
+      max-width: 500px;
+      margin: 1rem auto;
+      border: none;
+      border-top: 2px solid #45a29e; /* cyan glow style */
+      opacity: 0.8;
+    }
+    h1 { 
+      margin: 0.5rem 0 0; 
+      font-size: 2rem; 
+    }
     main {
       max-width: 800px;
       margin: 2rem auto;
@@ -40,28 +57,12 @@
 </head>
 <body>
   <header>
-  <img src="weblogo.png" alt="Prime Cyber Assets Logo" style="width:350px; max-width:90%; margin-top:2rem;">
-  <h1>Prime Cyber Assets</h1>
-  <p class="tagline">Digital Creations • Assets • Innovation</p>
-</header>
+    <img src="weblogo.png" alt="Prime Cyber Assets Logo">
+    <hr class="divider">
+    <h1>Prime Cyber Assets</h1>
+    <p class="tagline">Digital Creations • Assets • Innovation</p>
+  </header>
 
   <main>
     <h2>About</h2>
-    <p>Prime Cyber Assets is a growing collection of original digital content — icons, wallpapers, and creative projects designed for modern users and creators.</p>
-
-    <h2>Projects</h2>
-    <ul style="list-style:none; padding:0;">
-      <li>🧠 Custom icon sets and digital assets</li>
-      <li>🎨 High-quality wallpapers</li>
-      <li>🤖 Short stories and creative concepts</li>
-    </ul>
-
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a></p>
-  </main>
-
-  <footer>
-    <p>© 2025 Prime Cyber Assets. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+    <p>Prime Cyber Assets is a growing collection of original digital content — icons, wallpapers, and creative projects de
