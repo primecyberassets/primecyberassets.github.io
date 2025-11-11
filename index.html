@@ -5,78 +5,127 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prime Cyber Assets</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      background-color: #000000;  /* solid black background */
-      color: #ffffff;
-      text-align: center;
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
       min-height: 100vh;
     }
-    header {
-      background: none; /* ensure black shows through */
-      color: #66fcf1;
-      padding: 1rem 1rem 0;
+
+    /* Left column */
+    .sidebar {
+      width: 30%;
+      background: #0b0c10;
+      padding: 2rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
     }
-    header img {
-      width: 350px;
+
+    .sidebar img {
+      width: 250px;
       max-width: 90%;
-      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
     }
-    .divider {
-      width: 60%;
-      max-width: 500px;
-      margin: 1rem auto;
-      border: none;
-      border-top: 1px solid #444; /* subtle neutral divider */
-      opacity: 0.6;
+
+    .nav-links, .affiliates {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
     }
-    h1 { 
-      margin: 0.5rem 0 0; 
-      font-size: 2rem; 
+
+    .nav-links li, .affiliates li {
+      margin-bottom: 0.75rem;
     }
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-    }
-    a {
-      color: #45a29e;
+
+    .nav-links a, .affiliates a {
+      color: #66fcf1;
       text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
     }
-    a:hover {
+
+    .nav-links a:hover, .affiliates a:hover {
+      color: #ff4fd8;
+    }
+
+    /* Right column */
+    .content {
+      width: 70%;
+      padding: 3rem 2rem;
+      box-sizing: border-box;
+    }
+
+    .content h1 {
+      color: #66fcf1;
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    .content p {
+      color: #ccc;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      max-width: 800px;
+    }
+
+    .contact {
+      margin-top: 2rem;
+    }
+
+    .contact a {
+      color: #ff4fd8;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .contact a:hover {
       text-decoration: underline;
     }
-    footer {
-      background: #1f2833;
-      padding: 1rem;
-      color: #888;
-      margin-top: 3rem;
+
+    @media (max-width: 900px) {
+      body { flex-direction: column; }
+      .sidebar, .content { width: 100%; }
+      .sidebar { align-items: center; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="weblogo.png" alt="Prime Cyber Assets Logo">
-  </header>
-
-  <main>
-    <h2>About</h2>
-    <p>Prime Cyber Assets is a growing collection of original digital content — icons, wallpapers, and creative projects designed for modern users and creators.</p>
-
-    <h2>Projects</h2>
-    <ul style="list-style:none; padding:0;">
-      <li>🧠 Custom icon sets and digital assets</li>
-      <li>🎨 High-quality wallpapers</li>
-      <li>🤖 Short stories and creative concepts</li>
+  <div class="sidebar">
+    <img src="your-logo.png" alt="Prime Cyber Assets Logo">
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Wallpapers</a></li>
     </ul>
+    <h3>Affiliates</h3>
+    <ul class="affiliates">
+      <li><a href="#">Partner 1</a></li>
+      <li><a href="#">Partner 2</a></li>
+      <li><a href="#">Partner 3</a></li>
+    </ul>
+  </div>
 
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a></p>
-  </main>
-
-  <footer>
-    <p>© 2025 Prime Cyber Assets. All rights reserved.</p>
-  </footer>
+  <div class="content">
+    <h1>About Prime Cyber Assets</h1>
+    <p>
+      Prime Cyber Assets is a digital hub dedicated to creating futuristic, high-quality digital assets.
+      From sleek icons and glowing wallpapers to custom UI designs and creative content,
+      we focus on crafting products that inspire both creators and consumers.
+    </p>
+    <p>
+      Our mission is to blend technology and creativity into digital works that stand out — whether it’s for
+      personal branding, gaming environments, or virtual spaces.
+    </p>
+    <div class="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a></p>
+    </div>
+  </div>
 </body>
 </html>
