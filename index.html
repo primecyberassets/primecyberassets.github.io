@@ -27,11 +27,14 @@
     }
 
     .sidebar img {
-      width: 400px !important;    /* force larger width */
-      height: auto;               /* keeps proportions correct */
+      width: 220px;          /* slightly smaller for a clean top-left fit */
+      max-width: 90%;
+      height: auto;
       display: block;
-      margin: 0 auto 2rem auto;   /* centers and adds spacing */
+      margin: 0 0 1.5rem 0;  /* removes centering and keeps it flush left */
+      filter: drop-shadow(0 0 12px #66fcf1); /* optional neon glow */
     }
+
 
     .nav-links, .affiliates {
       list-style: none;
