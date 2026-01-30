@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Cyber Assets - Apps</title>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Left column */
+    .sidebar {
+      width: 30%;
+      background: linear-gradient(to bottom, #0b0c10 0%, #010101 100%);
+      padding: 2rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .sidebar img {
+      width: 220px;
+      max-width: 90%;
+      height: auto;
+      display: block;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+      width: 100%;
+    }
+
+    .nav-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .nav-links a {
+      color: #66fcf1;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ff4fd8;
+    }
+
+    /* Fiberman link at bottom */
+    .fiberman-link {
+      margin-top: auto;
+      padding-top: 1.5rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .fiberman-link img {
+      width: 150px;
+      height: auto;
+      opacity: 0.9;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .fiberman-link img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Right column */
+    .content {
+      width: 70%;
+      padding: 3rem 2rem;
+      box-sizing: border-box;
+    }
+
+    .content h1 {
+      color: #66fcf1;
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    .content p {
+      color: #ccc;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      max-width: 900px;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 900px;
+      margin-top: 1.5rem;
+    }
+
+    .app-card {
+      background: #0b0c10;
+      border: 1px solid #222;
+      border-radius: 14px;
+      padding: 1.25rem;
+    }
+
+    .app-card h2 {
+      margin: 0 0 0.5rem 0;
+      color: #ff4fd8;
+      font-size: 1.3rem;
+    }
+
+    .app-card p {
+      margin: 0.5rem 0 1rem 0;
+      color: #bbb;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .store-btn {
+      display: inline-block;
+      padding: 0.7rem 1.05rem;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #66fcf1, #ff4fd8);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .store-btn:hover {
+      transform: scale(1.03);
+      opacity: 0.95;
+    }
+
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .small-note {
+      color: #999;
+      font-size: 0.95rem;
+      margin-top: 0.75rem;
+    }
+
+    /* Mobile cleanup */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar,
+      .content {
+        width: 100%;
+      }
+
+      .sidebar {
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem;
+      }
+
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin: 0.5rem 0 1rem 0;
+      }
+
+      .nav-links li {
+        margin-bottom: 0;
+      }
+
+      .content {
+        padding: 2rem 1.25rem;
+      }
+
+      .fiberman-link {
+        margin-top: 1.25rem;
+        padding-top: 0;
+      }
+
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <img src="weblogo.png" alt="Prime Cyber Assets Logo" />
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="apps.html">Buy Apps</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="fiberman-link">
+      <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" target="_blank" rel="noopener">
+        <img src="fiberman-logo.png" alt="Fiberman Videos - The Power of Connection" />
+      </a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Apps</h1>
+    <p>
+      Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
+      When an app goes live, it will link directly to Google Play here.
+    </p>
+
+    <div class="apps-grid">
+      <div class="app-card">
+        <h2>Inventory Checklist</h2>
+        <p>Inventory management for tech workflows with manager oversight.</p>
+        <!-- Replace YOUR_PACKAGE_NAME when live -->
+        <a class="store-btn disabled" href="#">Coming Soon</a>
+        <div class="small-note">Google Play link will be added after release.</div>
+      </div>
+
+      <div class="app-card">
+        <h2>Fiber Counter</h2>
+        <p>Tube & strand reference tool for fiber technicians.</p>
+        <a class="store-btn disabled" href="#">Coming Soon</a>
+        <div class="small-note">Google Play link will be added after release.</div>
+      </div>
+
+      <!-- Add more cards later -->
+    </div>
+  </div>
+</body>
+</html>
