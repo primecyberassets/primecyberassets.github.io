@@ -99,27 +99,163 @@
       color: #ccc;
       line-height: 1.6;
       font-size: 1.1rem;
-      max-width: 800px;
+      max-width: 900px;
     }
 
-    .contact {
-      margin-top: 2rem;
+    /* Projects */
+    .section {
+      margin-top: 2.25rem;
     }
 
-    .contact a {
-      color: #ff4fd8;
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 900px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(102, 252, 241, 0.45);
+    }
+
+    .project-media {
+      width: 100%;
+      height: 160px;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .project-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-body {
+      padding: 1rem;
+    }
+
+    .project-title {
+      margin: 0 0 0.5rem 0;
+      color: #66fcf1;
+      font-size: 1.1rem;
+    }
+
+    .project-desc {
+      margin: 0 0 0.75rem 0;
+      color: #ccc;
+      line-height: 1.5;
+      font-size: 1rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .badge {
+      font-size: 0.85rem;
+      color: #cfcfcf;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
       text-decoration: none;
       font-weight: bold;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    .contact a:hover {
-      text-decoration: underline;
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
     }
 
+    .btn-primary {
+      color: #000;
+      background: #66fcf1;
+      border-color: rgba(102, 252, 241, 0.6);
+    }
+
+    .btn-secondary {
+      color: #ff4fd8;
+      background: rgba(255, 79, 216, 0.08);
+      border-color: rgba(255, 79, 216, 0.35);
+    }
+
+    .btn-ghost {
+      color: #66fcf1;
+      background: rgba(102, 252, 241, 0.06);
+      border-color: rgba(102, 252, 241, 0.25);
+    }
+
+    /* Mobile cleanup */
     @media (max-width: 900px) {
       body { flex-direction: column; }
       .sidebar, .content { width: 100%; }
-      .sidebar { align-items: center; text-align: center; }
+
+      .sidebar {
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem;
+      }
+
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin: 0.5rem 0 1rem 0;
+      }
+
+      .nav-links li {
+        margin-bottom: 0;
+      }
+
+      .content {
+        padding: 2rem 1.25rem;
+      }
+
+      .fiberman-link {
+        margin-top: 1.25rem;
+        padding-top: 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-media {
+        height: 190px;
+      }
     }
   </style>
 </head>
@@ -127,70 +263,149 @@
   <div class="sidebar">
     <img src="weblogo.png" alt="Prime Cyber Assets Logo">
     <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Wallpapers</a></li>
-      <li><a href="#">Buy Apps</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#buy">Buy Apps</a></li>
     </ul>
 
     <!-- Fiberman YouTube link - stays at bottom -->
     <div class="fiberman-link">
-      <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" target="_blank">
+      <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" target="_blank" rel="noopener">
         <img src="fiberman-logo.png" alt="Fiberman Videos - The Power of Connection">
       </a>
     </div>
   </div>
 
-<div class="content">
-  <h1>About Prime Cyber Assets</h1>
-  <p>
-    <strong>Prime Cyber Assets</strong> is an independent technology studio focused on building
-    <strong>practical software, technical training resources, and purpose-built digital tools</strong>
-    for real-world use.
-  </p>
+  <div class="content">
+    <h1 id="home">About Prime Cyber Assets</h1>
+    <p>
+      <strong>Prime Cyber Assets</strong> is an independent technology studio focused on building
+      <strong>practical software, technical training resources, and purpose-built digital tools</strong>
+      for real-world use.
+    </p>
 
-  <p>
-    The studio is driven by hands-on experience in
-    <strong>fiber infrastructure, mobile application development, and digital system design</strong>,
-    with an emphasis on solving problems encountered by technicians, installers, and technical professionals.
-  </p>
+    <p>
+      The studio is driven by hands-on experience in
+      <strong>fiber infrastructure, mobile application development, and digital system design</strong>,
+      with an emphasis on solving problems encountered by technicians, installers, and technical professionals.
+    </p>
 
-  <p>
-    From fiber training utilities and reference tools to production-ready mobile applications,
-    every project is designed with a systems-first mindset — prioritizing accuracy, usability,
-    and long-term maintainability.
-  </p>
+    <p>
+      From fiber training utilities and reference tools to production-ready mobile applications,
+      every project is designed with a systems-first mindset — prioritizing accuracy, usability,
+      and long-term maintainability.
+    </p>
 
-  <h2>What We Do</h2>
-  <p>
-    Prime Cyber Assets develops focused digital solutions designed to improve clarity,
-    efficiency, and consistency in technical workflows.
-  </p>
+    <div class="section" id="projects">
+      <h2>Projects</h2>
+      <p>
+        A selection of tools and apps built for real-world technical workflows — designed for clarity,
+        speed, and reliability.
+      </p>
 
-  <ul>
-    <li>🔌 <strong>Fiber Training & Reference Tools</strong> — practical utilities and educational resources built for real-world field use.</li>
-    <li>📱 <strong>Application Development</strong> — production-ready mobile apps designed to solve specific workflow and utility problems.</li>
-    <li>🧩 <strong>Digital Utilities & Assets</strong> — clean, functional tools and resources built to support technical and professional environments.</li>
-  </ul>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-media">
+            <!-- Replace with a real screenshot file in your repo -->
+            <img src="fiber-counter-preview.png" alt="Fiber Counter App Preview">
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Fiber Counter</h3>
+            <p class="project-desc">
+              A fast, field-friendly reference tool for fiber/tube counting and color workflows — built to reduce mistakes and speed up decisions.
+            </p>
+            <div class="badges">
+              <span class="badge">Kotlin</span>
+              <span class="badge">Jetpack Compose</span>
+              <span class="badge">Utility App</span>
+            </div>
+            <div class="project-actions">
+              <!-- Put your real links here -->
+              <a class="btn btn-primary" href="#" target="_blank" rel="noopener">View App</a>
+              <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
 
-  <h2>Our Approach</h2>
-  <p>
-    We operate with a systems-driven approach focused on solving root problems rather than layering fixes.
-    Every tool is designed to reduce cognitive load, improve accuracy, and remain reliable under real working conditions.
-  </p>
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-media">
+            <img src="inventory-checklist-preview.png" alt="Inventory Checklist App Preview">
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Inventory Checklist</h3>
+            <p class="project-desc">
+              An inventory and workflow tool with role-based access, approvals, and clean tracking — built for teams that need structure without friction.
+            </p>
+            <div class="badges">
+              <span class="badge">Firebase</span>
+              <span class="badge">Auth + Firestore</span>
+              <span class="badge">Team Workflow</span>
+            </div>
+            <div class="project-actions">
+              <!-- Put your real links here -->
+              <a class="btn btn-primary" href="#" target="_blank" rel="noopener">View App</a>
+              <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </div>
 
-  <p>
-    Prime Cyber Assets values clarity over complexity, function over flash,
-    and tools that continue to deliver value long after launch.
-  </p>
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-media">
+            <img src="fiber-training-preview.png" alt="Fiber Training Videos Preview">
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Fiber Training Videos</h3>
+            <p class="project-desc">
+              Practical fiber training content built from field experience — clear visuals, real scenarios, and fast explanations that stick.
+            </p>
+            <div class="badges">
+              <span class="badge">Training</span>
+              <span class="badge">Field Proven</span>
+              <span class="badge">YouTube</span>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" target="_blank" rel="noopener">Watch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <h2>Contact</h2>
-  <p>
-    For partnerships, collaboration, or product inquiries:
-    <br>
-    <strong>Email:</strong> <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a>
-  </p>
-</div>
+    <h2>What We Do</h2>
+    <p>
+      Prime Cyber Assets develops focused digital solutions designed to improve clarity,
+      efficiency, and consistency in technical workflows.
+    </p>
 
+    <ul>
+      <li>🔌 <strong>Fiber Training & Reference Tools</strong> — practical utilities and educational resources built for real-world field use.</li>
+      <li>📱 <strong>Application Development</strong> — production-ready mobile apps designed to solve specific workflow and utility problems.</li>
+      <li>🧩 <strong>Digital Utilities & Assets</strong> — clean, functional tools and resources built to support technical and professional environments.</li>
+    </ul>
+
+    <h2>Our Approach</h2>
+    <p>
+      We operate with a systems-driven approach focused on solving root problems rather than layering fixes.
+      Every tool is designed to reduce cognitive load, improve accuracy, and remain reliable under real working conditions.
+    </p>
+
+    <p>
+      Prime Cyber Assets values clarity over complexity, function over flash,
+      and tools that continue to deliver value long after launch.
+    </p>
+
+    <div id="buy"></div>
+
+    <h2 id="contact">Contact</h2>
+    <p>
+      For partnerships, collaboration, or product inquiries:
+      <br>
+      <strong>Email:</strong> <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a>
+    </p>
+  </div>
 </body>
 </html>
