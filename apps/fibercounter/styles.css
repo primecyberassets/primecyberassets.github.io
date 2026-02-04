@@ -18,6 +18,7 @@ body{
   color: var(--ink);
 }
 
+/* ---------- PAGE ---------- */
 .page{
   width: 100%;
   max-width: 720px;
@@ -36,15 +37,11 @@ body{
   height: auto;
 }
 
-.screen{
-  width: 100%;
-}
-
+.screen{ width:100%; }
 .hidden{ display:none !important; }
 
-.field{
-  margin: 14px 0;
-}
+/* ---------- FORM ---------- */
+.field{ margin: 14px 0; }
 
 .field-label{
   display:inline-block;
@@ -54,9 +51,7 @@ body{
   background: var(--bg);
   color: #3a3a3a;
 }
-.field-label.purple{
-  color: var(--purple);
-}
+.field-label.purple{ color: var(--purple); }
 
 .select-wrap{
   position: relative;
@@ -109,7 +104,7 @@ input{
 .btn-primary{
   width: 100%;
   margin-top: 8px;
-  padding: 18px 18px;
+  padding: 18px;
   border: none;
   border-radius: 18px;
   background: var(--purple);
@@ -118,9 +113,7 @@ input{
   font-size: 30px;
   cursor: pointer;
 }
-.btn-primary:active{
-  background: var(--purple2);
-}
+.btn-primary:active{ background: var(--purple2); }
 
 .error{
   margin-top: 12px;
@@ -132,76 +125,100 @@ input{
   font-size: 20px;
 }
 
+/* ---------- CARDS ---------- */
 .card{
   margin-top: 18px;
-  padding: 18px 18px;
+  padding: 18px;
   border-radius: 20px;
   border: 2px solid #e0e0e0;
   background: #fafafa;
 }
-
 .card h2{
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
   font-size: 34px;
 }
-
 .card p{
   margin: 10px 0;
   font-size: 26px;
   line-height: 1.25;
 }
+.small{ font-size: 24px; }
+.label{ font-weight:700; }
 
-.small{
-  font-size: 24px;
+/* ---------- SMF RESULT LAYOUT ---------- */
+.smf-layout{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+  margin-top: 8px;
 }
 
-.label{
+/* ---------- TUBE ---------- */
+.tube-panel{
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.tube-block{
+  position: relative;
+  width: 100%;
+  height: 680px;
+  border-radius: 28px;
+  border: 4px solid rgba(0,0,0,0.12);
+  background: #00bcd4;
+}
+
+.tube-stripe{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28%;
+  height: 100%;
+  border-radius: 22px;
+  background: #000;
+}
+
+.tube-meta{
+  margin-top: 10px;
+  font-size: 22px;
+  color: #333;
+}
+
+/* ---------- FIBER LIST ---------- */
+.fiber-list{
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fiber-tile{
+  border-radius: 20px;
+  padding: 18px;
+  font-size: 32px;
+  color:#fff;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  border: 3px solid rgba(0,0,0,0.12);
+}
+.fiber-tile.light{ color:#111; }
+
+.fiber-num{
   font-weight: 700;
+  font-size: 38px;
 }
-
-/* SMF RESULT LAYOUT */
-/* --- Phone fit fixes: keep tube + tiles side-by-side and scroll list --- */
-@media (max-width: 640px){
-  .smf-layout{
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 12px;
-  }
-
-  .tube-block{
-    height: 58vh;
-    max-height: 560px;
-    min-height: 320px;
-  }
-
-  .fiber-list{
-    max-height: 58vh;
-    overflow: auto;
-    padding-right: 4px;
-    gap: 10px;
-  }
-
-  .fiber-tile{
-    padding: 14px 14px;
-    border-radius: 18px;
-    font-size: 28px;
-  }
-
-  .fiber-num{ font-size: 34px; }
-  .fiber-name{ font-size: 26px; }
-}
-
-
 .fiber-name{
   font-size: 30px;
   opacity: 0.95;
 }
 
-/* Highlight like your screenshot (rainbow border) */
+/* ---------- HIGHLIGHT ---------- */
 .fiber-tile.highlight{
   border: 5px solid transparent;
   background-clip: padding-box;
   position: relative;
-  box-shadow: 0 0 0 4px rgba(0,0,0,0.08);
 }
 .fiber-tile.highlight::before{
   content:"";
@@ -209,7 +226,15 @@ input{
   inset: -8px;
   border-radius: 26px;
   padding: 8px;
-  background: linear-gradient(90deg, #00e5ff, #ff00ff, #ff0000, #ffff00, #00ff6a, #00e5ff);
+  background: linear-gradient(
+    90deg,
+    #00e5ff,
+    #ff00ff,
+    #ff0000,
+    #ffff00,
+    #00ff6a,
+    #00e5ff
+  );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -217,18 +242,80 @@ input{
           mask-composite: exclude;
   pointer-events:none;
 }
-/* Back to Prime Cyber Assets link */
+
+/* ---------- BACK LINK ---------- */
 .pca-back{
   margin: 6px 0 14px;
   font-size: 18px;
 }
-
 .pca-back a{
-  color: #6b57a6;
+  color: var(--purple);
   text-decoration: none;
   font-weight: 600;
 }
-
 .pca-back a:hover{
   text-decoration: underline;
 }
+
+/* ---------- PHONE FIXES ---------- */
+@media (max-width: 640px){
+
+  .page{
+    padding: 12px;
+  }
+
+  .header img{
+    max-width: 420px;
+  }
+
+  .field{ margin: 10px 0; }
+
+  .field-label{
+    font-size: 16px;
+    transform: translateY(8px);
+  }
+
+  select{ font-size: 22px; }
+  input{ font-size: 24px; }
+
+  .btn-primary{
+    font-size: 24px;
+    padding: 14px;
+  }
+
+  .card h2{ font-size: 26px; }
+  .card p{ font-size: 19px; }
+  .small{ font-size: 18px; }
+
+  /* keep tube + tiles side by side */
+  .smf-layout{
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 10px;
+  }
+
+  .tube-block{
+    height: 52vh;
+    min-height: 300px;
+    max-height: 520px;
+  }
+
+  .tube-stripe{
+    width: 26%;
+  }
+
+  .fiber-list{
+    max-height: 52vh;
+    overflow-y: auto;
+    padding-right: 4px;
+    gap: 10px;
+  }
+
+  .fiber-tile{
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .fiber-num{ font-size: 30px; }
+  .fiber-name{ font-size: 22px; }
+}
+
