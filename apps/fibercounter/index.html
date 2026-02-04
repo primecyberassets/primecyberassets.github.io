@@ -103,7 +103,16 @@
     </main>
 
   </div>
-
+  
+  <script>
+    // bump these numbers when you change files
+    const V = "105";
+    const css = document.querySelector('link[rel="stylesheet"]');
+    if (css && css.getAttribute("href")) {
+      css.setAttribute("href", css.getAttribute("href").split("?")[0] + "?v=" + V);
+    }
+  </script>
+  
   <script src="./app.js?v=7" defer></script>
 
   <!-- Service Worker -->
