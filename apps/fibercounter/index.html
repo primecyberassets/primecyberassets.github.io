@@ -10,12 +10,19 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="theme-color" content="#000000">
   <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
-
 </head>
-<body style="background:#000;color:#fff;font-family:Arial;padding:20px;">
 
+<body style="background:#000;color:#fff;font-family:Arial;padding:20px;">
   <h1>Fiber Counter (Web)</h1>
   <p>This is the web app entry point.</p>
 
+  <script>
+    // Register Service Worker (offline + PWA behavior)
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(console.error);
+      });
+    }
+  </script>
 </body>
 </html>
