@@ -1,5 +1,50 @@
-(() => {
-  // Fiber color sequence (standard 12)
+document.addEventListener("DOMContentLoaded", () => {
+  // ---- Required element IDs (if one is missing, Calculate will never work) ----
+  const REQUIRED_IDS = [
+    "calcType",
+    "ribbonSizeWrap",
+    "ribbonSize",
+    "startFiber",
+    "targetFiber",
+    "btnCalc",
+    "screenForm",
+    "screenSmf",
+    "screenRibbon",
+    "btnBackSmf",
+    "btnBackRibbon",
+    "err",
+    "tubeBlock",
+    "tubeStripe",
+    "tubeMeta",
+    "fiberList",
+    "rbSizeText",
+    "rbNumText",
+    "rbFiberText",
+    "rbRelText"
+  ];
+
+  const el = (id) => document.getElementById(id);
+
+  // If anything is missing, show it on screen (no silent failure).
+  const missing = REQUIRED_IDS.filter(id => !el(id));
+  if (missing.length) {
+    const msg =
+      "APP SETUP ERROR: Missing element(s): " + missing.join(", ") +
+      "\n\nFix: Make sure your index.html contains elements with these exact id values.";
+    console.error(msg);
+
+    // show error on page
+    const errBox = el("err");
+    if (errBox) {
+      errBox.textContent = msg;
+      errBox.classList.remove("hidden");
+    } else {
+      alert(msg);
+    }
+    return; // stop so we don't crash repeatedly
+  }
+
+  // ---- Fiber color sequence (standard 12) ----
   const FIBER_COLORS = [
     { name: "Blue",   hex: "#1e64c8", lightText:false },
     { name: "Orange", hex: "#f57c00", lightText:false },
@@ -15,15 +60,14 @@
     { name: "Aqua",   hex: "#00acc1", lightText:true  }
   ];
 
-  // Stripe groups (based on your instruction text)
-  // 1-144: none, 145-288: black stripe, 289-432: red stripe
+  // Stripe groups from your instruction text:
+  // 145–288 = black stripe, 289–432 = red stripe
   const STRIPE_RULES = [
     { min: 145, max: 288, kind: "black" },
     { min: 289, max: 432, kind: "red" }
   ];
 
-  const el = (id) => document.getElementById(id);
-
+  // ---- Grab elements (now guaranteed to exist) ----
   const calcType = el("calcType");
   const ribbonSizeWrap = el("ribbonSizeWrap");
   const ribbonSize = el("ribbonSize");
@@ -40,13 +84,11 @@
 
   const err = el("err");
 
-  // SMF result elements
   const tubeBlock = el("tubeBlock");
   const tubeStripe = el("tubeStripe");
   const tubeMeta = el("tubeMeta");
   const fiberList = el("fiberList");
 
-  // Ribbon result elements
   const rbSizeText = el("rbSizeText");
   const rbNumText = el("rbNumText");
   const rbFiberText = el("rbFiberText");
@@ -93,24 +135,18 @@
     if (target == null || target < 1) return showError("Enter a valid Target Fiber #");
     if (target < start) return showError("Target Fiber # must be ≥ Start Fiber #");
 
-    // Relative fiber position inside this count (used by some techs)
     const rel = (target - start) + 1;
 
-    // Use ABSOLUTE target fiber to determine tube and tube-range (matches your screenshot 133–144 for target 144)
-    const tubeIndex = Math.ceil(target / 12);                 // 1-based tube number in the full cable
+    // Absolute tube logic (matches your screenshot: target 144 => fibers 133–144)
+    const tubeIndex = Math.ceil(target / 12);
     const tubeStart = (tubeIndex - 1) * 12 + 1;
     const tubeEnd   = tubeIndex * 12;
 
-    // Tube color cycles every 12 tubes
     const tubeColorObj = FIBER_COLORS[(tubeIndex - 1) % 12];
-
-    // Determine stripe kind based on the target fiber range (per your instruction text)
     const stripeKind = stripeKindForFiber(target);
 
-    // Paint tube block
     tubeBlock.style.background = tubeColorObj.hex;
 
-    // Stripe overlay
     if (stripeKind === "black"){
       tubeStripe.style.background = `repeating-linear-gradient(
         135deg,
@@ -133,13 +169,11 @@
       tubeStripe.classList.add("hidden");
     }
 
-    // Meta text (small, not heavy)
     tubeMeta.textContent = `Tube ${tubeIndex} • Fibers ${tubeStart}–${tubeEnd} • Relative fiber in count: ${rel}`;
 
-    // Build the 12 fiber tiles for that tube range
     fiberList.innerHTML = "";
     for (let i = 0; i < 12; i++){
-      const fiberNum = tubeStart + i; // absolute fiber number
+      const fiberNum = tubeStart + i;
       const fiberColorObj = FIBER_COLORS[i];
 
       const tile = document.createElement("div");
@@ -183,7 +217,7 @@
     showScreen(screenRibbon);
   }
 
-  // Events
+  // ---- Wire events (this is what you’re missing right now) ----
   calcType.addEventListener("change", () => {
     updateModeUI();
     clearError();
@@ -201,4 +235,7 @@
   // Init
   updateModeUI();
   showScreen(screenForm);
-})();
+  clearError();
+
+  console.log("Fiber Optic Calculator: JS loaded and ready ✅");
+});
