@@ -3,121 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Fiber Optic Calculator</title>
 
   <!-- PWA -->
   <link rel="manifest" href="./manifest.webmanifest">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#ffffff">
   <link rel="apple-touch-icon" href="./icon/apple-touch-icon.png">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-  <div class="container">
-    <header class="top">
-      <h1>Fiber Optic Calculator</h1>
-      <div class="sub">SMF & Ribbon breakdown • Tubes • Colors</div>
-    </header>
+  <div class="page">
 
-    <div class="card">
-      <div class="row">
-        <div class="field">
-          <label for="totalFibers">Total Fiber Count</label>
-          <input id="totalFibers" type="number" min="1" inputmode="numeric" placeholder="Example: 144" />
-        </div>
-
-        <div class="field">
-          <label>Mode</label>
-          <div class="segmented" role="tablist" aria-label="Mode">
-            <button id="modeSmf" class="seg-btn active" type="button">SMF</button>
-            <button id="modeRibbon" class="seg-btn" type="button">Ribbon</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="smfSettings" class="settings">
-        <div class="row">
-          <div class="field">
-            <label for="fibersPerTube">Fibers per Tube</label>
-            <input id="fibersPerTube" type="number" min="1" inputmode="numeric" value="12" />
-            <div class="hint">Common: 12</div>
-          </div>
-          <div class="field">
-            <label for="showFiberList">Show Fiber Colors</label>
-            <select id="showFiberList">
-              <option value="yes" selected>Yes (recommended)</option>
-              <option value="no">No (summary only)</option>
-            </select>
-            <div class="hint">Lists fiber colors inside each tube.</div>
-          </div>
-        </div>
-      </div>
-
-      <div id="ribbonSettings" class="settings hidden">
-        <div class="row">
-          <div class="field">
-            <label for="fibersPerRibbon">Fibers per Ribbon</label>
-            <input id="fibersPerRibbon" type="number" min="1" inputmode="numeric" value="12" />
-            <div class="hint">Common: 12</div>
-          </div>
-          <div class="field">
-            <label for="ribbonsPerTube">Ribbons per Tube</label>
-            <input id="ribbonsPerTube" type="number" min="1" inputmode="numeric" value="12" />
-            <div class="hint">12 ribbons/tube = 144 fibers/tube</div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label for="showRibbonDetail">Show Ribbon Detail</label>
-            <select id="showRibbonDetail">
-              <option value="yes" selected>Yes (recommended)</option>
-              <option value="no">No (summary only)</option>
-            </select>
-            <div class="hint">Shows ribbons per tube and partial ribbon fibers if needed.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="presets">
-        <div class="preset-title">Quick presets:</div>
-        <div class="preset-buttons">
-          <button type="button" class="preset" data-val="12">12</button>
-          <button type="button" class="preset" data-val="24">24</button>
-          <button type="button" class="preset" data-val="48">48</button>
-          <button type="button" class="preset" data-val="72">72</button>
-          <button type="button" class="preset" data-val="96">96</button>
-          <button type="button" class="preset" data-val="144">144</button>
-          <button type="button" class="preset" data-val="288">288</button>
-          <button type="button" class="preset" data-val="432">432</button>
-          <button type="button" class="preset" data-val="864">864</button>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button id="calcBtn" class="primary" type="button">Calculate</button>
-        <button id="clearBtn" class="ghost" type="button">Clear</button>
-      </div>
-
-      <div id="error" class="error hidden"></div>
+    <!-- Header image -->
+    <div class="header">
+      <img src="./header.png" alt="Fiber Optic Calculator" onerror="this.style.display='none'">
     </div>
 
-    <div class="card">
-      <div class="result-header">
-        <div class="result-title">Result</div>
-        <div id="summary" class="summary"></div>
+    <!-- FORM SCREEN -->
+    <main id="screenForm" class="screen">
+      <div class="field">
+        <div class="field-label">Calculator</div>
+        <div class="select-wrap">
+          <select id="calcType">
+            <option value="SMF" selected>SMF - Loose Tube (Single Fiber)</option>
+            <option value="RIBN">RIBN - Ribbon</option>
+          </select>
+          <div class="chev">▼</div>
+        </div>
       </div>
-      <div id="result" class="result">
-        Enter a fiber count and tap <strong>Calculate</strong>.
-      </div>
-    </div>
 
-    <div class="footer-note">
-      Installable web app • iPhone: Safari → Share → Add to Home Screen
-    </div>
+      <div id="ribbonSizeWrap" class="field hidden">
+        <div class="field-label purple">Ribbon Size</div>
+        <div class="select-wrap purple-outline">
+          <select id="ribbonSize">
+            <option value="12" selected>12F Ribbon</option>
+            <option value="24">24F Ribbon</option>
+          </select>
+          <div class="chev">▼</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="input-wrap">
+          <input id="startFiber" type="number" inputmode="numeric" placeholder="Start Fiber #">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="input-wrap">
+          <input id="targetFiber" type="number" inputmode="numeric" placeholder="Target Fiber #">
+        </div>
+      </div>
+
+      <button id="btnCalc" class="btn-primary">Calculate</button>
+
+      <div id="err" class="error hidden"></div>
+
+      <section class="card">
+        <h2>Instructions</h2>
+        <p>Start Fiber # = the first fiber number in your count.</p>
+        <p>Target Fiber # = the fiber you are splicing.</p>
+        <p>After you calculate: you’ll see the 12 fibers for that tube, with your target highlighted.</p>
+        <p class="small">
+          Tube stripes: fibers 145–288 = black stripe<br>
+          • fibers 289–432 = red stripe.
+        </p>
+      </section>
+    </main>
+
+    <!-- SMF RESULT SCREEN -->
+    <main id="screenSmf" class="screen hidden">
+      <div class="smf-layout">
+        <div class="tube-panel">
+          <div id="tubeBlock" class="tube-block">
+            <div id="tubeStripe" class="tube-stripe hidden"></div>
+          </div>
+          <div id="tubeMeta" class="tube-meta"></div>
+        </div>
+
+        <div class="fiber-list" id="fiberList"></div>
+      </div>
+
+      <button id="btnBackSmf" class="btn-primary">Back</button>
+    </main>
+
+    <!-- RIBBON RESULT SCREEN -->
+    <main id="screenRibbon" class="screen hidden">
+      <section class="card">
+        <h2>Ribbon Result</h2>
+        <p><span class="label">Ribbon Size:</span> <span id="rbSizeText"></span></p>
+        <p><span class="label">Ribbon #:</span> <span id="rbNumText"></span></p>
+        <p><span class="label">Fiber in Ribbon:</span> <span id="rbFiberText"></span></p>
+        <p><span class="label">Relative fiber in count:</span> <span id="rbRelText"></span></p>
+      </section>
+
+      <button id="btnBackRibbon" class="btn-primary">Back</button>
+    </main>
+
   </div>
 
   <script src="./app.js"></script>
