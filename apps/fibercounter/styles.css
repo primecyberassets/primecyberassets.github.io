@@ -217,3 +217,18 @@ input{
           mask-composite: exclude;
   pointer-events:none;
 }
+/* Back to Prime Cyber Assets link */
+.pca-back{
+  margin: 6px 0 14px;
+  font-size: 18px;
+}
+
+.pca-back a{
+  color: #6b57a6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.pca-back a:hover{
+  text-decoration: underline;
+}
