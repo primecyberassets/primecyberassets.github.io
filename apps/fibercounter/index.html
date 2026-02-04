@@ -6,21 +6,50 @@
 
   <title>Fiber Counter Web</title>
 
-  <!-- PWA / Install support -->
+  <!-- PWA -->
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="theme-color" content="#000000">
   <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./styles.css">
 </head>
 
-<body style="background:#000;color:#fff;font-family:Arial;padding:20px;">
-  <h1>Fiber Counter (Web)</h1>
-  <p>This is the web app entry point.</p>
+<body>
+  <div class="container">
+    <h1>Fiber Counter</h1>
 
+    <div class="card">
+      <label for="fiberCount">Total Fiber Count</label>
+      <input
+        id="fiberCount"
+        type="number"
+        min="1"
+        placeholder="Example: 144"
+        inputmode="numeric"
+      />
+      <button id="calculateBtn">Calculate</button>
+    </div>
+
+    <div class="card">
+      <div id="result" class="result">
+        Enter a fiber count and tap Calculate.
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Installable web app • Works on iPhone & Android
+    </div>
+  </div>
+
+  <!-- Logic -->
+  <script src="./app.js"></script>
+
+  <!-- Service Worker -->
   <script>
-    // Register Service Worker (offline + PWA behavior)
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js").catch(console.error);
+        navigator.serviceWorker.register("./sw.js");
       });
     }
   </script>
