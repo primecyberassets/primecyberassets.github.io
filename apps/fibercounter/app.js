@@ -145,25 +145,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const tubeColorObj = FIBER_COLORS[(tubeIndex - 1) % 12];
     const stripeKind = stripeKindForFiber(target);
 
+    // Tube base color
     tubeBlock.style.background = tubeColorObj.hex;
 
-    if (stripeKind === "black"){
-      tubeStripe.style.background = `repeating-linear-gradient(
-        135deg,
-        rgba(0,0,0,0.0) 0px,
-        rgba(0,0,0,0.0) 22px,
-        rgba(0,0,0,0.85) 22px,
-        rgba(0,0,0,0.85) 44px
-      )`;
+    // ✅ SOLID STRIPE (no diagonal lines)
+    if (stripeKind === "black") {
+      tubeStripe.style.background = "#000000";
       tubeStripe.classList.remove("hidden");
-    } else if (stripeKind === "red"){
-      tubeStripe.style.background = `repeating-linear-gradient(
-        135deg,
-        rgba(0,0,0,0.0) 0px,
-        rgba(0,0,0,0.0) 22px,
-        rgba(200,40,40,0.9) 22px,
-        rgba(200,40,40,0.9) 44px
-      )`;
+    } else if (stripeKind === "red") {
+      tubeStripe.style.background = "#c62828";
       tubeStripe.classList.remove("hidden");
     } else {
       tubeStripe.classList.add("hidden");
@@ -217,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showScreen(screenRibbon);
   }
 
-  // ---- Wire events (this is what you’re missing right now) ----
+  // ---- Wire events ----
   calcType.addEventListener("change", () => {
     updateModeUI();
     clearError();
