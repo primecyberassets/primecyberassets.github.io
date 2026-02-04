@@ -1,248 +1,204 @@
 (() => {
-  // Standard 12-color sequence used in fiber/tube/ribbon identification
-  const COLORS_12 = [
-    "Blue", "Orange", "Green", "Brown", "Slate", "White",
-    "Red", "Black", "Yellow", "Violet", "Rose", "Aqua"
+  // Fiber color sequence (standard 12)
+  const FIBER_COLORS = [
+    { name: "Blue",   hex: "#1e64c8", lightText:false },
+    { name: "Orange", hex: "#f57c00", lightText:false },
+    { name: "Green",  hex: "#2e7d32", lightText:false },
+    { name: "Brown",  hex: "#5d4037", lightText:false },
+    { name: "Slate",  hex: "#616161", lightText:false },
+    { name: "White",  hex: "#f1f1f1", lightText:true  },
+    { name: "Red",    hex: "#c62828", lightText:false },
+    { name: "Black",  hex: "#111111", lightText:false },
+    { name: "Yellow", hex: "#fdd835", lightText:true  },
+    { name: "Violet", hex: "#6a1b9a", lightText:false },
+    { name: "Rose",   hex: "#d81b60", lightText:false },
+    { name: "Aqua",   hex: "#00acc1", lightText:true  }
   ];
 
-  // Elements
-  const totalFibersEl = document.getElementById("totalFibers");
-  const modeSmfBtn = document.getElementById("modeSmf");
-  const modeRibbonBtn = document.getElementById("modeRibbon");
+  // Stripe groups (based on your instruction text)
+  // 1-144: none, 145-288: black stripe, 289-432: red stripe
+  const STRIPE_RULES = [
+    { min: 145, max: 288, kind: "black" },
+    { min: 289, max: 432, kind: "red" }
+  ];
 
-  const smfSettings = document.getElementById("smfSettings");
-  const ribbonSettings = document.getElementById("ribbonSettings");
+  const el = (id) => document.getElementById(id);
 
-  const fibersPerTubeEl = document.getElementById("fibersPerTube");
-  const showFiberListEl = document.getElementById("showFiberList");
+  const calcType = el("calcType");
+  const ribbonSizeWrap = el("ribbonSizeWrap");
+  const ribbonSize = el("ribbonSize");
+  const startFiber = el("startFiber");
+  const targetFiber = el("targetFiber");
+  const btnCalc = el("btnCalc");
 
-  const fibersPerRibbonEl = document.getElementById("fibersPerRibbon");
-  const ribbonsPerTubeEl = document.getElementById("ribbonsPerTube");
-  const showRibbonDetailEl = document.getElementById("showRibbonDetail");
+  const screenForm = el("screenForm");
+  const screenSmf = el("screenSmf");
+  const screenRibbon = el("screenRibbon");
 
-  const calcBtn = document.getElementById("calcBtn");
-  const clearBtn = document.getElementById("clearBtn");
-  const resultEl = document.getElementById("result");
-  const summaryEl = document.getElementById("summary");
-  const errorEl = document.getElementById("error");
+  const btnBackSmf = el("btnBackSmf");
+  const btnBackRibbon = el("btnBackRibbon");
 
-  const presetButtons = Array.from(document.querySelectorAll(".preset"));
+  const err = el("err");
 
-  let mode = "SMF"; // "SMF" | "RIBBON"
+  // SMF result elements
+  const tubeBlock = el("tubeBlock");
+  const tubeStripe = el("tubeStripe");
+  const tubeMeta = el("tubeMeta");
+  const fiberList = el("fiberList");
 
-  function setMode(next) {
-    mode = next;
-    if (mode === "SMF") {
-      modeSmfBtn.classList.add("active");
-      modeRibbonBtn.classList.remove("active");
-      smfSettings.classList.remove("hidden");
-      ribbonSettings.classList.add("hidden");
+  // Ribbon result elements
+  const rbSizeText = el("rbSizeText");
+  const rbNumText = el("rbNumText");
+  const rbFiberText = el("rbFiberText");
+  const rbRelText = el("rbRelText");
+
+  function showError(msg){
+    err.textContent = msg;
+    err.classList.remove("hidden");
+  }
+  function clearError(){
+    err.textContent = "";
+    err.classList.add("hidden");
+  }
+
+  function toInt(v){
+    const n = parseInt(String(v).trim(), 10);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function showScreen(which){
+    screenForm.classList.add("hidden");
+    screenSmf.classList.add("hidden");
+    screenRibbon.classList.add("hidden");
+    which.classList.remove("hidden");
+  }
+
+  function updateModeUI(){
+    const isRibbon = calcType.value === "RIBN";
+    ribbonSizeWrap.classList.toggle("hidden", !isRibbon);
+  }
+
+  function stripeKindForFiber(fiberNum){
+    for (const rule of STRIPE_RULES){
+      if (fiberNum >= rule.min && fiberNum <= rule.max) return rule.kind;
+    }
+    return null;
+  }
+
+  function renderSmf(){
+    const start = toInt(startFiber.value);
+    const target = toInt(targetFiber.value);
+
+    if (start == null || start < 1) return showError("Enter a valid Start Fiber #");
+    if (target == null || target < 1) return showError("Enter a valid Target Fiber #");
+    if (target < start) return showError("Target Fiber # must be ≥ Start Fiber #");
+
+    // Relative fiber position inside this count (used by some techs)
+    const rel = (target - start) + 1;
+
+    // Use ABSOLUTE target fiber to determine tube and tube-range (matches your screenshot 133–144 for target 144)
+    const tubeIndex = Math.ceil(target / 12);                 // 1-based tube number in the full cable
+    const tubeStart = (tubeIndex - 1) * 12 + 1;
+    const tubeEnd   = tubeIndex * 12;
+
+    // Tube color cycles every 12 tubes
+    const tubeColorObj = FIBER_COLORS[(tubeIndex - 1) % 12];
+
+    // Determine stripe kind based on the target fiber range (per your instruction text)
+    const stripeKind = stripeKindForFiber(target);
+
+    // Paint tube block
+    tubeBlock.style.background = tubeColorObj.hex;
+
+    // Stripe overlay
+    if (stripeKind === "black"){
+      tubeStripe.style.background = `repeating-linear-gradient(
+        135deg,
+        rgba(0,0,0,0.0) 0px,
+        rgba(0,0,0,0.0) 22px,
+        rgba(0,0,0,0.85) 22px,
+        rgba(0,0,0,0.85) 44px
+      )`;
+      tubeStripe.classList.remove("hidden");
+    } else if (stripeKind === "red"){
+      tubeStripe.style.background = `repeating-linear-gradient(
+        135deg,
+        rgba(0,0,0,0.0) 0px,
+        rgba(0,0,0,0.0) 22px,
+        rgba(200,40,40,0.9) 22px,
+        rgba(200,40,40,0.9) 44px
+      )`;
+      tubeStripe.classList.remove("hidden");
     } else {
-      modeSmfBtn.classList.remove("active");
-      modeRibbonBtn.classList.add("active");
-      smfSettings.classList.add("hidden");
-      ribbonSettings.classList.remove("hidden");
+      tubeStripe.classList.add("hidden");
     }
-    clearError();
-    // Recalc if user already has a number entered
-    const v = parseInt(totalFibersEl.value, 10);
-    if (Number.isFinite(v) && v > 0) calculate();
-  }
 
-  function showError(msg) {
-    errorEl.textContent = msg;
-    errorEl.classList.remove("hidden");
-  }
+    // Meta text (small, not heavy)
+    tubeMeta.textContent = `Tube ${tubeIndex} • Fibers ${tubeStart}–${tubeEnd} • Relative fiber in count: ${rel}`;
 
-  function clearError() {
-    errorEl.textContent = "";
-    errorEl.classList.add("hidden");
-  }
+    // Build the 12 fiber tiles for that tube range
+    fiberList.innerHTML = "";
+    for (let i = 0; i < 12; i++){
+      const fiberNum = tubeStart + i; // absolute fiber number
+      const fiberColorObj = FIBER_COLORS[i];
 
-  function clampInt(val, min = 1) {
-    const n = parseInt(val, 10);
-    if (!Number.isFinite(n)) return null;
-    return Math.max(min, n);
-  }
+      const tile = document.createElement("div");
+      tile.className = "fiber-tile" + (fiberColorObj.lightText ? " light" : "");
+      tile.style.background = fiberColorObj.hex;
 
-  function tubeColor(tubeIndexZeroBased) {
-    return COLORS_12[tubeIndexZeroBased % COLORS_12.length];
-  }
-
-  function fiberColor(fiberIndexOneBased) {
-    return COLORS_12[(fiberIndexOneBased - 1) % COLORS_12.length];
-  }
-
-  function escapeHtml(s) {
-    return String(s)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-
-  function buildSmf(totalFibers, fibersPerTube, showFiberList) {
-    const tubesNeeded = Math.ceil(totalFibers / fibersPerTube);
-    const fullTubes = Math.floor(totalFibers / fibersPerTube);
-    const remainder = totalFibers % fibersPerTube;
-
-    summaryEl.textContent =
-      `Mode: SMF • ${tubesNeeded} tube(s) • ${fibersPerTube} fibers/tube`;
-
-    let html = "";
-
-    for (let t = 0; t < tubesNeeded; t++) {
-      const tubeNum = t + 1;
-      const isLastPartial = (t === tubesNeeded - 1) && (remainder !== 0);
-      const countInTube = isLastPartial ? remainder : fibersPerTube;
-
-      const color = tubeColor(t);
-      html += `<div class="block">`;
-      html += `<h3>Tube ${tubeNum} <span class="badge info">${escapeHtml(color)}</span></h3>`;
-      html += `<div class="mono">Fibers in tube: ${countInTube}/${fibersPerTube}</div>`;
-
-      if (showFiberList) {
-        html += `<ul class="list">`;
-        for (let i = 1; i <= countInTube; i++) {
-          const c = fiberColor(i);
-          html += `<li class="mono">Fiber ${i}: ${escapeHtml(c)}</li>`;
-        }
-        html += `</ul>`;
+      if (fiberNum === target){
+        tile.classList.add("highlight");
       }
 
-      // Badge if full tube
-      if (!isLastPartial) {
-        html += `<div style="margin-top:10px;"><span class="badge ok">FULL</span></div>`;
-      }
+      tile.innerHTML = `
+        <div class="fiber-num">${fiberNum}</div>
+        <div class="fiber-name">${fiberColorObj.name}</div>
+      `;
 
-      html += `</div>`;
+      fiberList.appendChild(tile);
     }
 
-    resultEl.innerHTML = html || "No result.";
+    showScreen(screenSmf);
   }
 
-  function buildRibbon(totalFibers, fibersPerRibbon, ribbonsPerTube, showRibbonDetail) {
-    const fibersPerTube = fibersPerRibbon * ribbonsPerTube;
-    const tubesNeeded = Math.ceil(totalFibers / fibersPerTube);
+  function renderRibbon(){
+    const start = toInt(startFiber.value);
+    const target = toInt(targetFiber.value);
 
-    summaryEl.textContent =
-      `Mode: Ribbon • ${tubesNeeded} tube(s) • ${fibersPerRibbon} fibers/ribbon • ${ribbonsPerTube} ribbons/tube (${fibersPerTube} fibers/tube)`;
+    if (start == null || start < 1) return showError("Enter a valid Start Fiber #");
+    if (target == null || target < 1) return showError("Enter a valid Target Fiber #");
+    if (target < start) return showError("Target Fiber # must be ≥ Start Fiber #");
 
-    let remaining = totalFibers;
-    let html = "";
+    const size = toInt(ribbonSize.value) || 12;
 
-    for (let t = 0; t < tubesNeeded; t++) {
-      const tubeNum = t + 1;
-      const color = tubeColor(t);
-      const inThisTube = Math.min(remaining, fibersPerTube);
+    const rel = (target - start) + 1;
+    const ribbonNum = Math.ceil(rel / size);
+    const fiberInRibbon = ((rel - 1) % size) + 1;
 
-      html += `<div class="block">`;
-      html += `<h3>Tube ${tubeNum} <span class="badge info">${escapeHtml(color)}</span></h3>`;
-      html += `<div class="mono">Fibers in tube: ${inThisTube}/${fibersPerTube}</div>`;
+    rbSizeText.textContent = `${size}F`;
+    rbNumText.textContent = String(ribbonNum);
+    rbFiberText.textContent = String(fiberInRibbon);
+    rbRelText.textContent = String(rel);
 
-      if (showRibbonDetail) {
-        html += `<ul class="list">`;
-
-        let tubeRemaining = inThisTube;
-        for (let r = 0; r < ribbonsPerTube && tubeRemaining > 0; r++) {
-          const ribbonNum = r + 1;
-          const ribbonColor = COLORS_12[r % COLORS_12.length];
-
-          const inThisRibbon = Math.min(tubeRemaining, fibersPerRibbon);
-
-          if (inThisRibbon === fibersPerRibbon) {
-            html += `<li class="mono">Ribbon ${ribbonNum}: ${escapeHtml(ribbonColor)} — ${fibersPerRibbon} fibers</li>`;
-          } else {
-            // Partial ribbon: show fiber colors inside that ribbon
-            html += `<li class="mono">Ribbon ${ribbonNum}: ${escapeHtml(ribbonColor)} — ${inThisRibbon}/${fibersPerRibbon} fibers</li>`;
-            html += `<ul class="list">`;
-            for (let f = 1; f <= inThisRibbon; f++) {
-              const c = fiberColor(f);
-              html += `<li class="mono">Fiber ${f}: ${escapeHtml(c)}</li>`;
-            }
-            html += `</ul>`;
-          }
-
-          tubeRemaining -= inThisRibbon;
-        }
-
-        html += `</ul>`;
-      }
-
-      if (inThisTube === fibersPerTube) {
-        html += `<div style="margin-top:10px;"><span class="badge ok">FULL</span></div>`;
-      }
-
-      html += `</div>`;
-
-      remaining -= inThisTube;
-    }
-
-    resultEl.innerHTML = html || "No result.";
-  }
-
-  function calculate() {
-    clearError();
-
-    const totalFibers = clampInt(totalFibersEl.value, 1);
-    if (!totalFibers || totalFibers < 1) {
-      showError("Enter a valid Total Fiber Count (1 or more).");
-      return;
-    }
-
-    if (mode === "SMF") {
-      const fibersPerTube = clampInt(fibersPerTubeEl.value, 1);
-      if (!fibersPerTube) {
-        showError("Enter a valid Fibers per Tube (1 or more).");
-        return;
-      }
-      const showFiberList = (showFiberListEl.value === "yes");
-      buildSmf(totalFibers, fibersPerTube, showFiberList);
-      return;
-    }
-
-    // Ribbon
-    const fibersPerRibbon = clampInt(fibersPerRibbonEl.value, 1);
-    const ribbonsPerTube = clampInt(ribbonsPerTubeEl.value, 1);
-    if (!fibersPerRibbon || !ribbonsPerTube) {
-      showError("Enter valid Ribbon settings (1 or more).");
-      return;
-    }
-
-    const showRibbonDetail = (showRibbonDetailEl.value === "yes");
-    buildRibbon(totalFibers, fibersPerRibbon, ribbonsPerTube, showRibbonDetail);
-  }
-
-  function clearAll() {
-    clearError();
-    summaryEl.textContent = "";
-    totalFibersEl.value = "";
-    resultEl.innerHTML = `Enter a fiber count and tap <strong>Calculate</strong>.`;
-    totalFibersEl.focus();
+    showScreen(screenRibbon);
   }
 
   // Events
-  modeSmfBtn.addEventListener("click", () => setMode("SMF"));
-  modeRibbonBtn.addEventListener("click", () => setMode("RIBBON"));
-
-  calcBtn.addEventListener("click", calculate);
-  clearBtn.addEventListener("click", clearAll);
-
-  totalFibersEl.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") calculate();
+  calcType.addEventListener("change", () => {
+    updateModeUI();
+    clearError();
   });
 
-  presetButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const v = parseInt(btn.getAttribute("data-val"), 10);
-      if (Number.isFinite(v)) {
-        totalFibersEl.value = String(v);
-        calculate();
-      }
-    });
+  btnCalc.addEventListener("click", () => {
+    clearError();
+    if (calcType.value === "SMF") renderSmf();
+    else renderRibbon();
   });
 
-  // Default
-  setMode("SMF");
+  btnBackSmf.addEventListener("click", () => showScreen(screenForm));
+  btnBackRibbon.addEventListener("click", () => showScreen(screenForm));
+
+  // Init
+  updateModeUI();
+  showScreen(screenForm);
 })();
