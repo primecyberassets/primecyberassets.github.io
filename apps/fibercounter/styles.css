@@ -194,15 +194,15 @@ input{
   left: 50%;
   transform: translateX(-50%);
 
-  /* single stripe down the middle */
-  width: 26%;            /* tweak if you want slightly thinner/thicker */
+  /* straight stripe band */
+  width: 28%;
   height: 100%;
 
-  border-radius: 14px;
-  opacity: 0.95;
+  border-radius: 22px;
+  opacity: 1;
 
-  /* color is set dynamically in JS */
-  background: black;
+  /* color is set by JS (black/red) */
+  background: #000;
 }
 
 .tube-meta{
