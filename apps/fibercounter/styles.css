@@ -189,31 +189,21 @@ input{
 }
 
 .tube-stripe{
-  position:absolute;
+  position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
 
-  /* ✅ stripe only down the middle */
-  width: 32%;          /* adjust: 28%–38% if you want thinner/thicker */
+  /* single stripe down the middle */
+  width: 26%;            /* tweak if you want slightly thinner/thicker */
   height: 100%;
 
-  opacity: 0.9;
-  border-radius: 18px;
+  border-radius: 14px;
+  opacity: 0.95;
 
-  /* keeps the “stripe” look you already set from JS */
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(0,0,0,0.0) 0px,
-    rgba(0,0,0,0.0) 22px,
-    rgba(0,0,0,0.85) 22px,
-    rgba(0,0,0,0.85) 44px
-  );
-
-  /* optional: make it look like a real centered tape stripe */
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.12);
+  /* color is set dynamically in JS */
+  background: black;
 }
-
 
 .tube-meta{
   margin-top: 10px;
