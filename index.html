@@ -102,32 +102,6 @@
       max-width: 900px;
     }
 
-    /* Fiber Counter CTA */
-    .fiber-counter-cta {
-      margin: 2rem 0;
-      padding: 1.25rem;
-      background: #111;
-      border: 1px solid #66fcf1;
-      border-radius: 12px;
-      max-width: 520px;
-    }
-
-    .fiber-counter-cta a {
-      display: inline-block;
-      margin-top: 0.75rem;
-      padding: 12px 20px;
-      background: #66fcf1;
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 10px;
-    }
-
-    .fiber-counter-cta a:hover {
-      background: #ff4fd8;
-      color: #000;
-    }
-
     /* Mobile cleanup */
     @media (max-width: 900px) {
       body {
@@ -175,8 +149,11 @@
     <ul class="nav-links">
       <li><a href="#">Home</a></li>
       <li><a href="#">Projects</a></li>
-      <li><a href="apps.html">Buy Apps</a></li>
-      <li><a href="/apps/fibercounter/">Fiber Counter (Web)</a></li>
+
+      <!-- ✅ CHANGED: Buy Apps -> Apps (links to your full apps list page) -->
+      <li><a href="apps.html">Apps</a></li>
+
+      <!-- ❌ REMOVED: Fiber Counter (Web) link from sidebar -->
     </ul>
 
     <!-- Fiberman YouTube link -->
@@ -202,13 +179,7 @@
       with an emphasis on solving problems encountered by technicians, installers, and technical professionals.
     </p>
 
-    <div class="fiber-counter-cta">
-      <strong>Fiber Counter (Web App)</strong>
-      <p style="margin:0.5rem 0;color:#ccc;">
-        Installable calculator for fiber counts — works on iPhone, Android, and desktop.
-      </p>
-      <a href="/apps/fibercounter/">Open Fiber Counter</a>
-    </div>
+    <!-- ❌ REMOVED: Fiber Counter CTA box and button -->
 
     <h2>What We Do</h2>
     <p>
