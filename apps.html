@@ -98,6 +98,13 @@
       max-width: 900px;
     }
 
+    .section-title {
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #66fcf1;
+      font-size: 1.6rem;
+    }
+
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(260px, 1fr));
@@ -221,9 +228,43 @@
       Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
     </p>
 
-    <div class="apps-grid">
+    <!-- ================= ANDROID SECTION ================= -->
+    <h2 class="section-title">Android Apps (Google Play)</h2>
 
-      <!-- Fiber Optic Calculator (Web / Apple PWA) -->
+    <div class="apps-grid">
+      <!-- Fiber Optic Calculator (Android) -->
+      <div class="app-card">
+        <h2>Fiber Optic Calculator</h2>
+        <p>
+          A field calculator to help get you splicing faster without the math!
+        </p>
+        <a class="store-btn disabled" href="#">Closed Testing</a>
+        <div class="small-note">
+          Currently in closed testing on Google Play.
+        </div>
+      </div>
+
+      <!-- Recipe Book (Android) -->
+      <div class="app-card">
+        <h2>Recipe Book</h2>
+        <p>
+          A simple, practical recipe manager designed for everyday cooking —
+          store, edit, and organize recipes without clutter.
+          Snap a photo, enter manually, or add a web link!
+          Measurement Calculator just added!
+        </p>
+        <a class="store-btn disabled" href="#">Closed Testing</a>
+        <div class="small-note">
+          Currently in closed testing on Google Play.
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= WEB / APPLE SECTION ================= -->
+    <h2 class="section-title">Web & Apple (iOS Installable)</h2>
+
+    <div class="apps-grid">
+      <!-- Fiber Optic Calculator (Web / iOS PWA) -->
       <div class="app-card">
         <h2>Fiber Optic Calculator (Web)</h2>
         <p>
@@ -235,33 +276,8 @@
           iPhone: Open in Safari → Share → Add to Home Screen
         </div>
       </div>
-
-      <!-- Fiber Optic Calculator (Google Play) -->
-      <div class="app-card">
-        <h2>Fiber Optic Calculator</h2>
-        <p>
-          A field calculator to help get you splicing faster without the math!
-        </p>
-        <a class="store-btn disabled" href="#">Closed Testing</a>
-        <div class="small-note">
-          Currently in closed testing on Google Play.
-        </div>
-      </div>
-      
-      <!-- Recipes -->
-      <div class="app-card">
-        <h2>Recipe Book</h2>
-        <p>
-          A simple, practical recipe manager designed for everyday cooking —
-          store, edit, and organize recipes without clutter. Snap a photo, enter manually, or add a web link! Measurment Calculator just added!!
-        </p>
-        <a class="store-btn disabled" href="#">Closed Testing</a>
-        <div class="small-note">
-          Currently in closed testing on Google Play.
-        </div>
-      </div>
-      
     </div>
+
   </div>
 </body>
 </html>
