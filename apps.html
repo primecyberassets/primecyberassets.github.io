@@ -15,7 +15,7 @@
       min-height: 100vh;
     }
 
-    /* Left column */
+    /* ===== Left column (sidebar) ===== */
     .sidebar {
       width: 30%;
       background: linear-gradient(to bottom, #0b0c10 0%, #010101 100%);
@@ -25,6 +25,7 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
+      border-right: 1px solid rgba(255,255,255,0.06);
     }
 
     .sidebar img {
@@ -36,267 +37,281 @@
     }
 
     .nav-links {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 0.5rem;
       width: 100%;
-    }
-
-    .nav-links li {
-      margin-bottom: 0.75rem;
     }
 
     .nav-links a {
-      color: #66fcf1;
+      color: #cfd8ff;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      opacity: 0.9;
+      transition: 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: #ff4fd8;
-    }
-
-    /* Fiberman link at bottom */
-    .fiberman-link {
-      margin-top: auto;
-      padding-top: 1.5rem;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .fiberman-link img {
-      width: 150px;
-      height: auto;
-      opacity: 0.9;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .fiberman-link img:hover {
       opacity: 1;
-      transform: scale(1.05);
+      color: #00eaff;
     }
 
-    /* Right column */
+    .sidebar-footer {
+      margin-top: auto;
+      opacity: 0.9;
+    }
+
+    .sidebar-footer img {
+      width: 200px;
+      max-width: 90%;
+      margin-top: 2rem;
+      filter: drop-shadow(0 0 10px rgba(0,234,255,0.12));
+    }
+
+    /* ===== Right column (content) ===== */
     .content {
       width: 70%;
-      padding: 3rem 2rem;
+      padding: 2.2rem 2.5rem;
       box-sizing: border-box;
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(0,234,255,0.12), transparent 60%),
+                  radial-gradient(900px 600px at 80% 90%, rgba(255,0,190,0.10), transparent 55%),
+                  #07080b;
     }
 
     .content h1 {
-      color: #66fcf1;
-      font-size: 2rem;
-      margin-top: 0;
+      margin: 0 0 0.6rem 0;
+      font-size: 2.2rem;
+      color: #00eaff;
+      text-shadow: 0 0 14px rgba(0,234,255,0.25);
     }
 
     .content p {
-      color: #ccc;
+      margin: 0 0 1.6rem 0;
+      color: rgba(255,255,255,0.85);
       line-height: 1.6;
-      font-size: 1.1rem;
-      max-width: 900px;
     }
 
     .section-title {
-      margin-top: 2.5rem;
+      margin-top: 1.5rem;
       margin-bottom: 1rem;
-      color: #66fcf1;
-      font-size: 1.6rem;
+      font-size: 1.3rem;
+      color: #8ffcff;
+      text-shadow: 0 0 12px rgba(0,234,255,0.18);
     }
 
+    /* ===== Main page layout inside content ===== */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* left = Android, right = Web/Apple */
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ===== Android app grid ===== */
     .apps-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(260px, 1fr));
-      gap: 1.25rem;
-      max-width: 900px;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(2, 1fr); /* Always 2 cards per row */
+      gap: 1.5rem;
     }
 
+    /* ===== Card style ===== */
     .app-card {
-      background: #0b0c10;
-      border: 1px solid #222;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
       border-radius: 14px;
-      padding: 1.25rem;
+      padding: 1.2rem 1.2rem 1rem 1.2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
     }
 
     .app-card h2 {
-      margin: 0 0 0.5rem 0;
+      margin: 0 0 0.6rem 0;
+      font-size: 1.1rem;
+      font-weight: 800;
       color: #ff4fd8;
-      font-size: 1.3rem;
+      text-shadow: 0 0 14px rgba(255,79,216,0.20);
     }
 
     .app-card p {
-      margin: 0.5rem 0 1rem 0;
-      color: #bbb;
-      font-size: 1rem;
-      line-height: 1.5;
+      margin: 0 0 1rem 0;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      line-height: 1.55;
     }
 
+    /* Buttons */
     .store-btn {
       display: inline-block;
-      padding: 0.7rem 1.05rem;
+      padding: 0.55rem 0.9rem;
       border-radius: 10px;
-      background: linear-gradient(90deg, #66fcf1, #ff4fd8);
-      color: #000;
-      font-weight: bold;
+      font-weight: 800;
+      font-size: 0.9rem;
       text-decoration: none;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      color: #0b0c10;
+      background: linear-gradient(90deg, #00eaff, #ff4fd8);
+      box-shadow: 0 0 18px rgba(0,234,255,0.12), 0 0 18px rgba(255,79,216,0.10);
+      transition: 0.2s ease;
     }
 
     .store-btn:hover {
-      transform: scale(1.03);
-      opacity: 0.95;
+      transform: translateY(-1px);
+      filter: brightness(1.05);
     }
 
-    .disabled {
-      opacity: 0.5;
+    .store-btn.disabled {
       pointer-events: none;
+      opacity: 0.85;
     }
 
     .small-note {
-      color: #999;
-      font-size: 0.95rem;
-      margin-top: 0.75rem;
+      margin-top: 0.7rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65);
     }
 
-    /* Mobile cleanup */
+    /* ===== Web / Apple column ===== */
+    .right-col h2.section-title {
+      margin-top: 0;
+    }
+
+    .web-stack {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .sidebar { width: 34%; }
+      .content { width: 66%; }
+      .apps-grid { grid-template-columns: 1fr; } /* Android cards stack sooner */
+    }
+
     @media (max-width: 900px) {
-      body {
-        flex-direction: column;
-      }
-
-      .sidebar,
-      .content {
-        width: 100%;
-      }
-
-      .sidebar {
-        align-items: center;
-        text-align: center;
-        padding: 1.5rem;
-      }
-
-      .nav-links {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin: 0.5rem 0 1rem 0;
-      }
-
-      .nav-links li {
-        margin-bottom: 0;
-      }
-
-      .content {
-        padding: 2rem 1.25rem;
-      }
-
-      .fiberman-link {
-        margin-top: 1.25rem;
-        padding-top: 0;
-      }
-
-      .apps-grid {
-        grid-template-columns: 1fr;
-      }
+      body { flex-direction: column; }
+      .sidebar, .content { width: 100%; }
+      .main-layout { grid-template-columns: 1fr; }
+      .apps-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-  <div class="sidebar">
-    <img src="weblogo.png" alt="Prime Cyber Assets Logo" />
 
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="apps.html">Apps</a></li>
-      <li><a href="products.html">Shop</a></li>
-    </ul>
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar">
+    <!-- Update src paths to your actual files -->
+    <img src="pca_logo.png" alt="Prime Cyber Assets Logo" />
 
-    <div class="fiberman-link">
-      <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" target="_blank" rel="noopener">
-        <img src="fiberman-logo.png" alt="Fiberman Videos - The Power of Connection" />
-      </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="apps.html">Apps</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <!-- Optional footer/logo -->
+      <img src="fiberman_logo.png" alt="Fiberman Videos" />
     </div>
-  </div>
+  </aside>
 
- <div class="content">
-  <h1>Apps</h1>
-  <p>
-    Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
-  </p>
+  <!-- ===== Content ===== -->
+  <main class="content">
+    <h1>Apps</h1>
+    <p>
+      Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
+    </p>
 
-  <!-- ================= ANDROID SECTION ================= -->
-  <h2 class="section-title">Android Apps (Google Play)</h2>
+    <div class="main-layout">
 
-  <div class="apps-grid">
+      <!-- ============ LEFT: ANDROID ============ -->
+      <section class="left-col">
+        <h2 class="section-title">Android Apps (Google Play)</h2>
 
-    <!-- Fiber Optic Calculator (Android) -->
-    <div class="app-card">
-      <h2>Fiber Optic Calculator</h2>
-      <p>
-        A fast, reliable fiber optic calculator built for field technicians.
-        Eliminate manual math and reduce splicing errors on the job.
-        Designed to save time and keep you moving.
-        Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
-      </p>
-      <a class="store-btn disabled" href="#">Closed Testing</a>
-      <div class="small-note">
-        Currently in closed testing on Google Play.
-      </div>
-    </div>
+        <div class="apps-grid">
 
-    <!-- Recipe Book (Android) -->
-    <div class="app-card">
-      <h2>Recipe Book</h2>
-      <p>
-        A simple, practical recipe manager designed for everyday cooking —
-        store, edit, and organize recipes without clutter.
-        Snap a photo, enter manually, or add a web link!
-        Measurement Calculator just added!
-      </p>
-      <a class="store-btn disabled" href="#">Closed Testing</a>
-      <div class="small-note">
-        Currently in closed testing on Google Play.
-      </div>
-    </div>
+          <!-- Fiber Optic Calculator (Android) -->
+          <div class="app-card">
+            <h2>Fiber Optic Calculator</h2>
+            <p>
+              A fast, reliable fiber optic calculator built for field technicians.
+              Eliminate manual math and reduce splicing errors on the job.
+              Designed to save time and keep you moving.
+              Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
+            </p>
+            <a class="store-btn disabled" href="#">Closed Testing</a>
+            <div class="small-note">
+              Currently in closed testing on Google Play.
+            </div>
+          </div>
 
-    <!-- Cabinet Keeper (Android) -->
-    <div class="app-card">
-      <h2>Cabinet Keeper</h2>
-      <p>
-        Cabinet Keeper makes home inventory simple and stress-free.
-        Monitor stock levels, set par limits, and generate grocery lists automatically.
-        Organize by store and shop smarter every time.
-      </p>
-      <a class="store-btn disabled" href="#">Closed Testing</a>
-      <div class="small-note">
-        Currently in closed testing on Google Play.
-      </div>
-    </div>
+          <!-- Recipe Book (Android) -->
+          <div class="app-card">
+            <h2>Recipe Book</h2>
+            <p>
+              A simple, practical recipe manager designed for everyday cooking —
+              store, edit, and organize recipes without clutter.
+              Snap a photo, enter manually, or add a web link!
+              Measurement Calculator just added!
+            </p>
+            <a class="store-btn disabled" href="#">Closed Testing</a>
+            <div class="small-note">
+              Currently in closed testing on Google Play.
+            </div>
+          </div>
 
-  </div>
-</div>
+          <!-- Cabinet Keeper (Android) -->
+          <div class="app-card">
+            <h2>Cabinet Keeper</h2>
+            <p>
+              Cabinet Keeper makes home inventory simple and stress-free.
+              Monitor stock levels, set par limits, and generate grocery lists automatically.
+              Organize by store and shop smarter every time.
+            </p>
+            <a class="store-btn disabled" href="#">Closed Testing</a>
+            <div class="small-note">
+              Currently in closed testing on Google Play.
+            </div>
+          </div>
 
-    <h2 class="section-title">Web & Apple (iOS Installable)</h2>
-
-    <div class="apps-grid">
-      <!-- Fiber Optic Calculator (Web / iOS PWA) -->
-      <div class="app-card">
-        <h2>Fiber Optic Calculator (Web)</h2>
-        <p>
-          Installable web-based fiber optic calculator.
-          Works on iPhone, Android, and desktop.
-        </p>
-        <a class="store-btn" href="./apps/fibercounter/">Open Web App</a>
-        <div class="small-note">
-          iPhone: Open in Safari → Share → Add to Home Screen
         </div>
-      </div>
-    </div>
+      </section>
 
-  </div>
+      <!-- ============ RIGHT: WEB / APPLE ============ -->
+      <aside class="right-col">
+        <h2 class="section-title">Web & Apple (iOS Installable)</h2>
+
+        <div class="web-stack">
+
+          <!-- Fiber Optic Calculator (Web) -->
+          <div class="app-card">
+            <h2>Fiber Optic Calculator (Web)</h2>
+            <p>
+              Installable web-based fiber optic Calculator.
+              Works on iPhone, Android, and desktop.
+            </p>
+            <a class="store-btn" href="https://primecyberassets.github.io/fiber-counter-web/">Open Web App</a>
+            <div class="small-note">
+              iPhone: Open in Safari → Share → Add to Home Screen
+            </div>
+          </div>
+
+          <!-- Add more web cards here if you want -->
+          <!--
+          <div class="app-card">
+            <h2>Another Web App</h2>
+            <p>Short description…</p>
+            <a class="store-btn" href="#">Open Web App</a>
+          </div>
+          -->
+
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
 </body>
 </html>
