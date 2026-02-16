@@ -1,317 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prime Cyber Assets - Apps</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prime Cyber Assets - Apps</title>
 
-  <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      min-height: 100vh;
-    }
+<style>
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:Arial, sans-serif;
+  display:flex;
+  min-height:100vh;
+}
 
-    /* ===== Left column (sidebar) ===== */
-    .sidebar {
-      width: 30%;
-      background: linear-gradient(to bottom, #0b0c10 0%, #010101 100%);
-      padding: 2rem;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      border-right: 1px solid rgba(255,255,255,0.06);
-    }
+/* ===== SIDEBAR ===== */
+.sidebar{
+  width:28%;
+  background:linear-gradient(to bottom,#0b0c10 0%,#010101 100%);
+  padding:2rem;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
 
-    .sidebar img {
-      width: 220px;
-      max-width: 90%;
-      height: auto;
-      display: block;
-      margin: 0 0 1.5rem 0;
-    }
+.sidebar img{
+  width:220px;
+  margin-bottom:1.5rem;
+}
 
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      margin-top: 0.5rem;
-      width: 100%;
-    }
+.nav-links{
+  display:flex;
+  flex-direction:column;
+  gap:.7rem;
+}
 
-    .nav-links a {
-      color: #cfd8ff;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      opacity: 0.9;
-      transition: 0.2s ease;
-    }
+.nav-links a{
+  color:#cfd8ff;
+  text-decoration:none;
+  font-weight:700;
+  transition:.2s;
+}
 
-    .nav-links a:hover {
-      opacity: 1;
-      color: #00eaff;
-    }
+.nav-links a:hover{
+  color:#00eaff;
+}
 
-    .sidebar-footer {
-      margin-top: auto;
-      opacity: 0.9;
-    }
+.sidebar-footer{
+  margin-top:auto;
+}
 
-    .sidebar-footer img {
-      width: 200px;
-      max-width: 90%;
-      margin-top: 2rem;
-      filter: drop-shadow(0 0 10px rgba(0,234,255,0.12));
-    }
+.sidebar-footer img{
+  width:200px;
+  margin-top:2rem;
+}
 
-    /* ===== Right column (content) ===== */
-    .content {
-      width: 70%;
-      padding: 2.2rem 2.5rem;
-      box-sizing: border-box;
-      background: radial-gradient(1200px 700px at 20% 10%, rgba(0,234,255,0.12), transparent 60%),
-                  radial-gradient(900px 600px at 80% 90%, rgba(255,0,190,0.10), transparent 55%),
-                  #07080b;
-    }
+/* ===== CONTENT ===== */
+.content{
+  width:72%;
+  padding:2.5rem;
+  box-sizing:border-box;
+  background:
+  radial-gradient(1200px 700px at 20% 10%, rgba(0,234,255,0.12), transparent 60%),
+  radial-gradient(900px 600px at 80% 90%, rgba(255,0,190,0.10), transparent 55%),
+  #07080b;
+}
 
-    .content h1 {
-      margin: 0 0 0.6rem 0;
-      font-size: 2.2rem;
-      color: #00eaff;
-      text-shadow: 0 0 14px rgba(0,234,255,0.25);
-    }
+.content h1{
+  color:#00eaff;
+  margin-top:0;
+}
 
-    .content p {
-      margin: 0 0 1.6rem 0;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.6;
-    }
+.section-title{
+  color:#8ffcff;
+  margin-top:2rem;
+}
 
-    .section-title {
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-      color: #8ffcff;
-      text-shadow: 0 0 12px rgba(0,234,255,0.18);
-    }
+/* ===== MAIN LAYOUT ===== */
+.main-layout{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:2.5rem;
+}
 
-    /* ===== Main page layout inside content ===== */
-    .main-layout {
-      display: grid;
-      grid-template-columns: 2fr 1fr; /* left = Android, right = Web/Apple */
-      gap: 2rem;
-      align-items: start;
-    }
+/* ===== ANDROID GRID ===== */
+.apps-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:1.5rem;
+}
 
-    /* ===== Android app grid ===== */
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Always 2 cards per row */
-      gap: 1.5rem;
-    }
+/* CENTER ODD CARD */
+.apps-grid .app-card:last-child:nth-child(odd){
+  grid-column:1 / span 2;
+  max-width:500px;
+  justify-self:center;
+}
 
-    /* ===== Card style ===== */
-    .app-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 14px;
-      padding: 1.2rem 1.2rem 1rem 1.2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-      backdrop-filter: blur(6px);
-    }
+/* ===== CARD STYLE ===== */
+.app-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:14px;
+  padding:1.3rem;
+  backdrop-filter:blur(6px);
+}
 
-    .app-card h2 {
-      margin: 0 0 0.6rem 0;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #ff4fd8;
-      text-shadow: 0 0 14px rgba(255,79,216,0.20);
-    }
+.app-card h2{
+  color:#ff4fd8;
+  margin-top:0;
+}
 
-    .app-card p {
-      margin: 0 0 1rem 0;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
+.app-card p{
+  color:rgba(255,255,255,0.85);
+  line-height:1.5;
+}
 
-    /* Buttons */
-    .store-btn {
-      display: inline-block;
-      padding: 0.55rem 0.9rem;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: #0b0c10;
-      background: linear-gradient(90deg, #00eaff, #ff4fd8);
-      box-shadow: 0 0 18px rgba(0,234,255,0.12), 0 0 18px rgba(255,79,216,0.10);
-      transition: 0.2s ease;
-    }
+.store-btn{
+  display:inline-block;
+  padding:.6rem 1rem;
+  border-radius:10px;
+  font-weight:bold;
+  text-decoration:none;
+  background:linear-gradient(90deg,#00eaff,#ff4fd8);
+  color:#000;
+  margin-top:.5rem;
+}
 
-    .store-btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.05);
-    }
+.store-btn.disabled{
+  pointer-events:none;
+  opacity:.8;
+}
 
-    .store-btn.disabled {
-      pointer-events: none;
-      opacity: 0.85;
-    }
+.small-note{
+  font-size:.85rem;
+  opacity:.6;
+  margin-top:.5rem;
+}
 
-    .small-note {
-      margin-top: 0.7rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.65);
-    }
+/* ===== WEB COLUMN ===== */
+.web-stack{
+  display:grid;
+  gap:1.5rem;
+}
 
-    /* ===== Web / Apple column ===== */
-    .right-col h2.section-title {
-      margin-top: 0;
-    }
-
-    .web-stack {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 1100px) {
-      .sidebar { width: 34%; }
-      .content { width: 66%; }
-      .apps-grid { grid-template-columns: 1fr; } /* Android cards stack sooner */
-    }
-
-    @media (max-width: 900px) {
-      body { flex-direction: column; }
-      .sidebar, .content { width: 100%; }
-      .main-layout { grid-template-columns: 1fr; }
-      .apps-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+/* ===== RESPONSIVE ===== */
+@media(max-width:1000px){
+  body{flex-direction:column;}
+  .sidebar,.content{width:100%;}
+  .main-layout{grid-template-columns:1fr;}
+  .apps-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ===== Sidebar ===== -->
-  <aside class="sidebar">
-    <!-- Update src paths to your actual files -->
-    <img src="pca_logo.png" alt="Prime Cyber Assets Logo" />
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <img src="pca_logo.png" alt="Prime Cyber Assets Logo" />
 
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="apps.html">Apps</a>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-    </nav>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="apps.html">Apps</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+  </nav>
 
-    <div class="sidebar-footer">
-      <!-- Optional footer/logo -->
-      <img src="fiberman_logo.png" alt="Fiberman Videos" />
-    </div>
-  </aside>
+  <div class="sidebar-footer">
+    <img src="fiberman_logo.png" alt="Fiberman Videos" />
+  </div>
+</aside>
 
-  <!-- ===== Content ===== -->
-  <main class="content">
-    <h1>Apps</h1>
-    <p>
-      Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
-    </p>
+<!-- CONTENT -->
+<main class="content">
+  <h1>Apps</h1>
+  <p>Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.</p>
 
-    <div class="main-layout">
+  <div class="main-layout">
 
-      <!-- ============ LEFT: ANDROID ============ -->
-      <section class="left-col">
-        <h2 class="section-title">Android Apps (Google Play)</h2>
+    <!-- ANDROID -->
+    <section>
+      <h2 class="section-title">Android Apps (Google Play)</h2>
 
-        <div class="apps-grid">
+      <div class="apps-grid">
 
-          <!-- Fiber Optic Calculator (Android) -->
-          <div class="app-card">
-            <h2>Fiber Optic Calculator</h2>
-            <p>
-              A fast, reliable fiber optic calculator built for field technicians.
-              Eliminate manual math and reduce splicing errors on the job.
-              Designed to save time and keep you moving.
-              Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
-            </p>
-            <a class="store-btn disabled" href="#">Closed Testing</a>
-            <div class="small-note">
-              Currently in closed testing on Google Play.
-            </div>
-          </div>
-
-          <!-- Recipe Book (Android) -->
-          <div class="app-card">
-            <h2>Recipe Book</h2>
-            <p>
-              A simple, practical recipe manager designed for everyday cooking —
-              store, edit, and organize recipes without clutter.
-              Snap a photo, enter manually, or add a web link!
-              Measurement Calculator just added!
-            </p>
-            <a class="store-btn disabled" href="#">Closed Testing</a>
-            <div class="small-note">
-              Currently in closed testing on Google Play.
-            </div>
-          </div>
-
-          <!-- Cabinet Keeper (Android) -->
-          <div class="app-card">
-            <h2>Cabinet Keeper</h2>
-            <p>
-              Cabinet Keeper makes home inventory simple and stress-free.
-              Monitor stock levels, set par limits, and generate grocery lists automatically.
-              Organize by store and shop smarter every time.
-            </p>
-            <a class="store-btn disabled" href="#">Closed Testing</a>
-            <div class="small-note">
-              Currently in closed testing on Google Play.
-            </div>
-          </div>
-
+        <div class="app-card">
+          <h2>Fiber Optic Calculator</h2>
+          <p>
+            A fast, reliable fiber optic calculator built for field technicians.
+            Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
+          </p>
+          <a class="store-btn disabled">Closed Testing</a>
+          <div class="small-note">Currently in closed testing on Google Play.</div>
         </div>
-      </section>
 
-      <!-- ============ RIGHT: WEB / APPLE ============ -->
-      <aside class="right-col">
-        <h2 class="section-title">Web & Apple (iOS Installable)</h2>
-
-        <div class="web-stack">
-
-          <!-- Fiber Optic Calculator (Web) -->
-          <div class="app-card">
-            <h2>Fiber Optic Calculator (Web)</h2>
-            <p>
-              Installable web-based fiber optic Calculator.
-              Works on iPhone, Android, and desktop.
-            </p>
-            <a class="store-btn" href="https://primecyberassets.github.io/fiber-counter-web/">Open Web App</a>
-            <div class="small-note">
-              iPhone: Open in Safari → Share → Add to Home Screen
-            </div>
-          </div>
-
-          <!-- Add more web cards here if you want -->
-          <!--
-          <div class="app-card">
-            <h2>Another Web App</h2>
-            <p>Short description…</p>
-            <a class="store-btn" href="#">Open Web App</a>
-          </div>
-          -->
-
+        <div class="app-card">
+          <h2>Recipe Book</h2>
+          <p>
+            Simple recipe manager. Snap a photo, enter manually, or add a web link.
+            Measurement Calculator just added!
+          </p>
+          <a class="store-btn disabled">Closed Testing</a>
+          <div class="small-note">Currently in closed testing on Google Play.</div>
         </div>
-      </aside>
 
-    </div>
-  </main>
+        <div class="app-card">
+          <h2>Cabinet Keeper</h2>
+          <p>
+            Monitor stock levels, set par limits, and generate grocery lists automatically.
+          </p>
+          <a class="store-btn disabled">Closed Testing</a>
+          <div class="small-note">Currently in closed testing on Google Play.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WEB -->
+    <aside>
+      <h2 class="section-title">Web & Apple (iOS Installable)</h2>
+
+      <div class="web-stack">
+        <div class="app-card">
+          <h2>Fiber Optic Calculator (Web)</h2>
+          <p>Installable web-based fiber optic calculator. Works on iPhone, Android, and desktop.</p>
+          <a class="store-btn" href="https://primecyberassets.github.io/fiber-counter-web/">Open Web App</a>
+          <div class="small-note">iPhone: Safari → Share → Add to Home Screen</div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</main>
 
 </body>
 </html>
