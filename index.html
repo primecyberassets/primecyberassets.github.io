@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prime Cyber Assets</title>
 
+  <!-- Optional favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
   <style>
     body {
       margin: 0;
@@ -15,35 +18,27 @@
       min-height: 100vh;
     }
 
-    /* Left column */
+    /* LEFT COLUMN */
     .sidebar {
       width: 30%;
+      max-width: 340px;
       background: linear-gradient(to bottom, #0b0c10 0%, #010101 100%);
-      padding: 2rem;
+      padding: 2rem 1.75rem;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       justify-content: flex-start;
-    }
-
-    .sidebar img {
-      width: 220px;
-      max-width: 90%;
-      height: auto;
-      display: block;
-      margin: 0 0 1.5rem 0;
     }
 
     .nav-links {
       list-style: none;
       padding: 0;
-      margin: 1rem 0;
+      margin: 0;
       width: 100%;
     }
 
     .nav-links li {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.9rem;
     }
 
     .nav-links a {
@@ -51,49 +46,52 @@
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s ease;
+      font-size: 1.05rem;
     }
 
     .nav-links a:hover {
       color: #ff4fd8;
     }
 
-    /* Right column */
+    /* RIGHT COLUMN */
     .content {
       width: 70%;
-      padding: 3rem 2rem;
+      padding: 2.2rem;
       box-sizing: border-box;
     }
 
-    /* ✅ Header image replaces H1 */
+    .content-inner {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* HEADER IMAGE */
     .page-header {
       width: 100%;
-      max-width: 620px;     /* keeps it from getting huge */
+      max-width: 720px;
       height: auto;
       display: block;
-      margin: 0 0 1.2rem 0; /* same spacing as the old H1 */
+      margin: 0 auto 1.6rem auto;
     }
 
     .content h2 {
       color: #ff4fd8;
       margin-top: 2.2rem;
+      margin-bottom: 0.75rem;
     }
 
     .content h3 {
       color: #66fcf1;
-      margin-top: 1.5rem;
+      margin-top: 1.6rem;
+      margin-bottom: 0.4rem;
     }
 
-    .content p {
-      color: #ccc;
-      line-height: 1.7;
-      font-size: 1.1rem;
-      max-width: 900px;
-    }
-
+    .content p,
     .content ul {
       color: #ccc;
-      line-height: 1.7;
-      font-size: 1.1rem;
+      line-height: 1.75;
+      font-size: 1.08rem;
+      margin: 0.6rem 0 1rem 0;
     }
 
     .content a {
@@ -104,6 +102,7 @@
       color: #ff4fd8;
     }
 
+    /* MOBILE */
     @media (max-width: 900px) {
       body {
         flex-direction: column;
@@ -112,12 +111,13 @@
       .sidebar,
       .content {
         width: 100%;
+        max-width: none;
       }
 
       .sidebar {
         align-items: center;
         text-align: center;
-        padding: 1.5rem;
+        padding: 1.25rem;
       }
 
       .nav-links {
@@ -125,7 +125,6 @@
         justify-content: center;
         gap: 1rem;
         flex-wrap: wrap;
-        margin: 0.5rem 0 1rem 0;
       }
 
       .nav-links li {
@@ -133,13 +132,12 @@
       }
 
       .content {
-        padding: 2rem 1.25rem;
+        padding: 1.75rem 1.25rem;
       }
 
-      /* center header image on mobile */
       .page-header {
-        margin: 0 auto 1.2rem auto;
-        max-width: 520px;
+        max-width: 560px;
+        margin-bottom: 1.25rem;
       }
     }
   </style>
@@ -148,8 +146,6 @@
 <body>
 
   <div class="sidebar">
-    <img src="weblogo.png" alt="Prime Cyber Assets Logo" />
-
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="apps.html">Apps</a></li>
@@ -157,7 +153,7 @@
       <li>
         <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
            target="_blank"
-           rel="noopener">
+           rel="noopener noreferrer">
           YouTube Videos
         </a>
       </li>
@@ -165,68 +161,74 @@
   </div>
 
   <div class="content">
+    <div class="content-inner">
 
-    <!-- ✅ Replaces: <h1>Prime Cyber Assets (PCA)</h1> -->
-    <img class="page-header" src="web_header.png" alt="Prime Cyber Assets" />
+      <!-- Header Logo -->
+      <img
+        class="page-header"
+        src="web_header.png"
+        alt="Prime Cyber Assets"
+        onerror="this.style.display='none'"
+      />
 
-    <p>
-      <strong>Prime Cyber Assets (PCA)</strong> is a digital development studio focused on building
-      high-quality apps, games, and digital assets that blend technology, design, and practical utility.
-    </p>
+      <p>
+        <strong>Prime Cyber Assets (PCA)</strong> is a digital development studio focused on building
+        high-quality apps, games, and digital assets that blend technology, design, and practical utility.
+      </p>
 
-    <p>
-      Founded on a cyber-tech aesthetic and innovation-driven mindset, PCA develops tools and experiences
-      that empower users — from fiber infrastructure reference tools and productivity applications
-      to immersive game systems and premium digital assets.
-    </p>
+      <p>
+        Founded on a cyber-tech aesthetic and innovation-driven mindset, PCA develops tools and experiences
+        that empower users — from fiber infrastructure reference tools and productivity applications
+        to immersive game systems and premium digital assets.
+      </p>
 
-    <h2>What We Do</h2>
+      <h2>What We Do</h2>
 
-    <h3>📱 App Development</h3>
-    <p>
-      We design and build purpose-driven mobile and web applications with clean UI, stable performance,
-      and thoughtful user experience. Our work includes specialty trade tools, workflow utilities,
-      and structured digital systems designed for real-world professionals.
-    </p>
+      <h3>📱 App Development</h3>
+      <p>
+        We design and build purpose-driven mobile and web applications with clean UI, stable performance,
+        and thoughtful user experience.
+      </p>
 
-    <h3>🔌 Fiber Training & Technical Tools</h3>
-    <p>
-      Built from hands-on experience in fiber infrastructure and technical environments,
-      PCA creates tools and reference systems that improve clarity, consistency,
-      and efficiency for technicians and installers.
-    </p>
+      <h3>🔌 Fiber Training & Technical Tools</h3>
+      <p>
+        Built from hands-on fiber infrastructure experience, PCA creates tools and reference systems
+        that improve clarity and efficiency for technicians and installers.
+      </p>
 
-    <h3>🎮 Game Development</h3>
-    <p>
-      PCA develops original interactive gaming experiences with a focus on progression systems,
-      player economy balance, and long-term replay value — combining clean system design
-      with stylized visual identity.
-    </p>
+      <h3>🎮 Game Development</h3>
+      <p>
+        PCA develops original gaming experiences focused on progression systems,
+        balanced economies, and long-term replay value.
+      </p>
 
-    <h3>🎨 Digital Assets & Creative Products</h3>
-    <p>
-      We create and sell premium digital assets including icon packs, logo bundles,
-      and downloadable creative resources for creators, entrepreneurs, and digital builders.
-    </p>
+      <h3>🎨 Digital Assets & Creative Products</h3>
+      <p>
+        We create premium digital assets including icon packs, branding kits,
+        and creative resources for builders and entrepreneurs.
+      </p>
 
-    <h2>Our Approach</h2>
-    <p>
-      We operate with a systems-driven approach focused on solving root problems rather than layering fixes.
-      Every product is built with scalability, ownership, and long-term sustainability in mind.
-    </p>
+      <h2>Our Approach</h2>
+      <p>
+        We solve root problems rather than layering fixes.
+        Every product is built with scalability, ownership, and sustainability in mind.
+      </p>
 
-    <h2>Our Mission</h2>
-    <p>
-      To build profitable, scalable digital products that combine strong branding, clean engineering,
-      and creative independence — while maintaining full ownership and control over distribution.
-    </p>
+      <h2>Our Mission</h2>
+      <p>
+        To build profitable, scalable digital products that combine strong branding,
+        clean engineering, and creative independence.
+      </p>
 
-    <h2 id="contact">Contact</h2>
-    <p>
-      <strong>Email:</strong>
-      <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a>
-    </p>
+      <h2 id="contact">Contact</h2>
+      <p>
+        <strong>Email:</strong>
+        <a href="mailto:primecyberassets@gmail.com">
+          primecyberassets@gmail.com
+        </a>
+      </p>
 
+    </div>
   </div>
 
 </body>
