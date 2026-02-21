@@ -57,26 +57,6 @@
       color: #ff4fd8;
     }
 
-    .fiberman-link {
-      margin-top: auto;
-      padding-top: 1.5rem;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .fiberman-link img {
-      width: 150px;
-      height: auto;
-      opacity: 0.9;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .fiberman-link img:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
     /* Right column */
     .content {
       width: 70%;
@@ -84,10 +64,13 @@
       box-sizing: border-box;
     }
 
-    .content h1 {
-      color: #66fcf1;
-      font-size: 2.2rem;
-      margin-top: 0;
+    /* ✅ Header image replaces H1 */
+    .page-header {
+      width: 100%;
+      max-width: 620px;     /* keeps it from getting huge */
+      height: auto;
+      display: block;
+      margin: 0 0 1.2rem 0; /* same spacing as the old H1 */
     }
 
     .content h2 {
@@ -153,9 +136,10 @@
         padding: 2rem 1.25rem;
       }
 
-      .fiberman-link {
-        margin-top: 1.25rem;
-        padding-top: 0;
+      /* center header image on mobile */
+      .page-header {
+        margin: 0 auto 1.2rem auto;
+        max-width: 520px;
       }
     }
   </style>
@@ -164,34 +148,35 @@
 <body>
 
   <div class="sidebar">
-  <img src="weblogo.png" alt="Prime Cyber Assets Logo" />
+    <img src="weblogo.png" alt="Prime Cyber Assets Logo" />
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="apps.html">Apps</a></li>
-    <li><a href="products.html">Shop</a></li>
-    <li>
-      <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" 
-         target="_blank" 
-         rel="noopener">
-         YouTube Videos
-      </a>
-    </li>
-  </ul>
-</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="apps.html">Apps</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li>
+        <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
+           target="_blank"
+           rel="noopener">
+          YouTube Videos
+        </a>
+      </li>
+    </ul>
+  </div>
 
   <div class="content">
 
-    <h1>Prime Cyber Assets (PCA)</h1>
+    <!-- ✅ Replaces: <h1>Prime Cyber Assets (PCA)</h1> -->
+    <img class="page-header" src="web_header.png" alt="Prime Cyber Assets" />
 
     <p>
-      <strong>Prime Cyber Assets (PCA)</strong> is a digital development studio focused on building 
+      <strong>Prime Cyber Assets (PCA)</strong> is a digital development studio focused on building
       high-quality apps, games, and digital assets that blend technology, design, and practical utility.
     </p>
 
     <p>
-      Founded on a cyber-tech aesthetic and innovation-driven mindset, PCA develops tools and experiences 
-      that empower users — from fiber infrastructure reference tools and productivity applications 
+      Founded on a cyber-tech aesthetic and innovation-driven mindset, PCA develops tools and experiences
+      that empower users — from fiber infrastructure reference tools and productivity applications
       to immersive game systems and premium digital assets.
     </p>
 
@@ -199,40 +184,40 @@
 
     <h3>📱 App Development</h3>
     <p>
-      We design and build purpose-driven mobile and web applications with clean UI, stable performance, 
-      and thoughtful user experience. Our work includes specialty trade tools, workflow utilities, 
+      We design and build purpose-driven mobile and web applications with clean UI, stable performance,
+      and thoughtful user experience. Our work includes specialty trade tools, workflow utilities,
       and structured digital systems designed for real-world professionals.
     </p>
 
     <h3>🔌 Fiber Training & Technical Tools</h3>
     <p>
-      Built from hands-on experience in fiber infrastructure and technical environments, 
-      PCA creates tools and reference systems that improve clarity, consistency, 
+      Built from hands-on experience in fiber infrastructure and technical environments,
+      PCA creates tools and reference systems that improve clarity, consistency,
       and efficiency for technicians and installers.
     </p>
 
     <h3>🎮 Game Development</h3>
     <p>
-      PCA develops original interactive gaming experiences with a focus on progression systems, 
-      player economy balance, and long-term replay value — combining clean system design 
+      PCA develops original interactive gaming experiences with a focus on progression systems,
+      player economy balance, and long-term replay value — combining clean system design
       with stylized visual identity.
     </p>
 
     <h3>🎨 Digital Assets & Creative Products</h3>
     <p>
-      We create and sell premium digital assets including icon packs, logo bundles, 
+      We create and sell premium digital assets including icon packs, logo bundles,
       and downloadable creative resources for creators, entrepreneurs, and digital builders.
     </p>
 
     <h2>Our Approach</h2>
     <p>
-      We operate with a systems-driven approach focused on solving root problems rather than layering fixes. 
+      We operate with a systems-driven approach focused on solving root problems rather than layering fixes.
       Every product is built with scalability, ownership, and long-term sustainability in mind.
     </p>
 
     <h2>Our Mission</h2>
     <p>
-      To build profitable, scalable digital products that combine strong branding, clean engineering, 
+      To build profitable, scalable digital products that combine strong branding, clean engineering,
       and creative independence — while maintaining full ownership and control over distribution.
     </p>
 
