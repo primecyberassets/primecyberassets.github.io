@@ -5,146 +5,250 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prime Cyber Assets - Apps</title>
 
+  <link rel="icon" type="image/png" href="favicon.png" />
+
   <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      color: #fff;
+    :root{
+      --cyan:#66fcf1;
+      --pink:#ff4fd8;
+      --bg:#000;
+      --text:#ccc;
+
+      --shell: rgba(10,10,15,0.62);
+      --shell-border: rgba(255,255,255,0.07);
+
+      --row: rgba(255,255,255,0.04);
+      --row-hover: rgba(255,255,255,0.07);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      min-height:100vh;
       font-family: Arial, sans-serif;
-      display: flex;
-      min-height: 100vh;
+      color:#fff;
+
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
+        radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
+        radial-gradient(circle at 50% 82%, rgba(0,150,255,0.07), transparent 52%),
+        linear-gradient(to bottom, #07080c 0%, #000 55%, #000 100%);
+
+      animation: fadeIn 0.8s ease-out;
+      padding: 0; /* edge-to-edge */
     }
 
-    /* Left column */
-    .sidebar {
-      width: 30%;
-      background: linear-gradient(to bottom, #0b0c10 0%, #010101 100%);
-      padding: 2rem;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
+    @keyframes fadeIn {
+      from { opacity:0; transform: translateY(8px); }
+      to { opacity:1; transform: translateY(0); }
     }
 
-    .sidebar img {
-      width: 220px;
-      max-width: 90%;
-      height: auto;
-      display: block;
-      margin: 0 0 1.5rem 0;
-    }
-
-    .nav-links {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0;
+    /* ✅ FULL-WIDTH MASTER SHELL (matches your Home page look) */
+    .shell{
       width: 100%;
+      min-height: 100vh;
+      display: flex;
+      overflow: hidden;
+      border-radius: 0;
+
+      background: var(--shell);
+      backdrop-filter: blur(10px);
+
+      border-top: 1px solid var(--shell-border);
+      border-bottom: 1px solid var(--shell-border);
+
+      box-shadow:
+        0 10px 50px rgba(0,0,0,0.35),
+        0 0 0 1px rgba(102,252,241,0.03) inset;
     }
 
-    .nav-links li {
-      margin-bottom: 0.75rem;
+    /* ===== SIDEBAR (same style as Home) ===== */
+    .sidebar{
+      width: 260px;
+      min-width: 260px;
+      padding: 22px 16px;
+      display:flex;
+      flex-direction:column;
+      border-right: 1px solid rgba(102,252,241,0.12);
     }
 
-    .nav-links a {
-      color: #66fcf1;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
+    .sidebar-title{
+      font-weight: 800;
+      letter-spacing: 0.9px;
+      font-size: 0.92rem;
+      margin: 6px 8px 14px 8px;
+      color: rgba(255,255,255,0.82);
+      text-transform: uppercase;
     }
 
-    .nav-links a:hover {
-      color: #ff4fd8;
+    .sidebar-title span{ color: var(--cyan); }
+
+    .nav-links{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
 
-    /* Right column */
-    .content {
-      width: 70%;
-      padding: 3rem 2rem;
-      box-sizing: border-box;
+    .nav-links a{
+      display:flex;
+      align-items:center;
+      padding: 12px;
+      border-radius: 12px;
+
+      background: var(--row);
+      border: 1px solid rgba(255,255,255,0.05);
+
+      color: rgba(230,255,255,0.92);
+      text-decoration:none;
+      font-weight:700;
+      font-size:1.02rem;
+
+      transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
     }
 
-    .content h1 {
-      color: #66fcf1;
-      font-size: 2rem;
-      margin-top: 0;
+    .nav-links a:hover{
+      background: var(--row-hover);
+      transform: translateX(2px);
+      color:#fff;
     }
 
-    .content p {
-      color: #ccc;
-      line-height: 1.6;
-      font-size: 1.1rem;
-      max-width: 900px;
+    .nav-links a.active{
+      background: rgba(102,252,241,0.08);
+      border: 1px solid rgba(102,252,241,0.18);
     }
 
-    .apps-grid {
+    /* ===== CONTENT ===== */
+    .content{
+      flex:1;
+      padding: 28px 40px;
+    }
+
+    /* ✅ THIS IS THE KEY FIX: center the entire content column */
+    .content-inner{
+      width: 100%;
+      max-width: 1400px;  /* centers everything so you don't get huge empty right side */
+      margin: 0 auto;
+    }
+
+    /* ✅ Page title */
+    .content h1{
+      color: var(--cyan);
+      font-size: 2.1rem;
+      margin: 12px 0 10px 0;
+      text-align: left;
+    }
+
+    /* ✅ Section titles */
+    .section-title{
+      color: var(--pink);
+      margin-top: 28px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .section-title::after{
+      content:"";
+      display:block;
+      width:64px;
+      height:3px;
+      margin-top:10px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      border-radius: 3px;
+      opacity: 0.95;
+    }
+
+    /* ✅ Paragraph blocks centered (but text stays left-aligned) */
+    .content p{
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 1.08rem;
+
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    /* ✅ Apps grid centered and wider */
+    .apps-grid{
       display: grid;
-      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
       gap: 1.25rem;
-      max-width: 900px;
-      margin-top: 1.5rem;
+
+      max-width: 1100px;
+      margin: 18px auto 0 auto; /* centers the grid */
     }
 
-    .app-card {
-      background: #0b0c10;
-      border: 1px solid #222;
+    .app-card{
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px;
       padding: 1.25rem;
+
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
 
-    .app-card h2 {
+    .app-card h2{
       margin: 0 0 0.5rem 0;
-      color: #ff4fd8;
-      font-size: 1.3rem;
+      color: var(--cyan);
+      font-size: 1.25rem;
     }
 
-    .app-card p {
+    .app-card p{
       margin: 0.5rem 0 1rem 0;
       color: #bbb;
       font-size: 1rem;
-      line-height: 1.5;
+      line-height: 1.55;
+
+      max-width: none;       /* card controls width */
+      text-align: left;
     }
 
-    /* Your original buttons (kept for Closed Testing, Web App, etc.) */
-    .store-btn {
+    /* Buttons */
+    .store-btn{
       display: inline-block;
       padding: 0.7rem 1.05rem;
       border-radius: 10px;
-      background: linear-gradient(90deg, #66fcf1, #ff4fd8);
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
       color: #000;
       font-weight: bold;
       text-decoration: none;
       transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    .store-btn:hover {
+    .store-btn:hover{
       transform: scale(1.03);
       opacity: 0.95;
     }
 
-    .disabled {
+    .disabled{
       opacity: 0.5;
       pointer-events: none;
     }
 
-    .small-note {
+    .small-note{
       color: #999;
       font-size: 0.95rem;
       margin-top: 0.75rem;
     }
 
-    /* ✅ Play Store badge button (small, no border, no padding) */
-    .playstore-btn {
+    /* Play Store badge */
+    .playstore-btn{
       display: inline-block;
       padding: 0;
       border: none;
       background: none;
       border-radius: 0;
-      line-height: 0; /* removes extra whitespace around image */
+      line-height: 0;
     }
 
-    .playstore-badge {
-      height: 38px; /* smaller */
+    .playstore-badge{
+      height: 38px;
       width: auto;
       border: none;
       display: block;
@@ -154,189 +258,178 @@
       transition: opacity 0.2s ease;
     }
 
-    .playstore-badge:hover {
-      opacity: 0.85; /* subtle hover */
+    .playstore-badge:hover{
+      opacity: 0.85;
     }
 
-    /* ✅ Row: Play badge + Privacy Policy link */
-    .button-row {
+    .button-row{
       display: flex;
       align-items: center;
       gap: 14px;
       margin-top: 8px;
     }
 
-    .privacy-link {
+    .privacy-link{
       font-size: 0.9rem;
-      color: #66fcf1;
+      color: var(--cyan);
       text-decoration: none;
       transition: color 0.3s ease;
       white-space: nowrap;
     }
 
-    .privacy-link:hover {
-      color: #ff4fd8;
+    .privacy-link:hover{
+      color: var(--pink);
     }
 
     /* Mobile */
-    @media (max-width: 900px) {
-      body {
-        flex-direction: column;
+    @media (max-width: 900px){
+      .shell{ flex-direction: column; }
+
+      .sidebar{
+        width:100%;
+        min-width: 0;
+        border-right:none;
+        border-bottom: 1px solid rgba(102,252,241,0.12);
       }
 
-      .sidebar,
-      .content {
-        width: 100%;
-      }
-
-      .sidebar {
-        align-items: center;
-        text-align: center;
-        padding: 1.5rem;
-      }
-
-      .nav-links {
-        display: flex;
+      .nav-links{
+        flex-direction: row;
         justify-content: center;
-        gap: 1rem;
         flex-wrap: wrap;
-        margin: 0.5rem 0 1rem 0;
       }
 
-      .nav-links li {
-        margin-bottom: 0;
+      .content{
+        padding: 22px 18px;
       }
 
-      .content {
-        padding: 2rem 1.25rem;
+      .content-inner{
+        max-width: none;
       }
 
-      .apps-grid {
+      .apps-grid{
         grid-template-columns: 1fr;
+        max-width: 720px;
       }
 
-      .button-row {
-        justify-content: center;
+      .button-row{
+        justify-content: flex-start;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="shell">
 
-  <div class="sidebar">
-    <img src="weblogo.png" alt="Prime Cyber Assets Logo" />
+    <div class="sidebar">
+      <div class="sidebar-title"><span>PCA</span> Navigation</div>
 
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="apps.html">Apps</a></li>
-      <li><a href="products.html">Shop</a></li>
-      <li>
-        <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
-           target="_blank"
-           rel="noopener">
-          YouTube Videos
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="content">
-    <h1>Apps</h1>
-    <p>
-      Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
-    </p>
-
-    <!-- ================= ANDROID SECTION ================= -->
-    <h2 class="section-title">Android Apps (Google Play)</h2>
-
-    <div class="apps-grid">
-
-      <!-- Fiber Optic Calculator (Android) -->
-      <div class="app-card">
-        <h2>Fiber Optic Calculator</h2>
-        <p>
-          A fast, reliable fiber optic calculator built for field technicians.
-          Eliminate manual math and reduce splicing errors on the job.
-          Designed to save time and keep you moving.
-          Supports Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
-        </p>
-
-        <!-- ✅ Play Store + Privacy Policy -->
-        <div class="button-row">
-          <a class="playstore-btn"
-             href="https://play.google.com/store/apps/details?id=com.fiberman.fibercounter"
-             target="_blank"
-             rel="noopener">
-            <img
-              class="playstore-badge"
-              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-              alt="Get it on Google Play">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="apps.html">Apps</a></li>
+        <li><a href="products.html">Shop</a></li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
+             target="_blank" rel="noopener noreferrer">
+            YouTube Videos
           </a>
-
-          <a class="privacy-link"
-             href="foc_privacy_policy.html"
-             target="_blank"
-             rel="noopener">
-            Privacy Policy
-          </a>
-        </div>
-
-        <div class="small-note">
-          Available FREE on Google Play.
-        </div>
-      </div>
-
-      <!-- Recipe Book (Android) -->
-      <div class="app-card">
-        <h2>Recipe Book</h2>
-        <p>
-          A simple, practical recipe manager designed for everyday cooking —
-          store, edit, and organize recipes without clutter.
-          Snap a photo, enter manually, or add a web link!
-          Measurement Calculator just added!
-        </p>
-        <a class="store-btn disabled" href="#">Closed Testing</a>
-        <div class="small-note">
-          Currently in closed testing on Google Play.
-        </div>
-      </div>
-
-      <!-- Cabinet Keeper (Android) -->
-      <div class="app-card">
-        <h2>Cabinet Keeper</h2>
-        <p>
-          Cabinet Keeper makes home inventory simple and stress-free.
-          Monitor stock levels, set par limits, and generate grocery lists automatically.
-          Organize by store and shop smarter every time.
-        </p>
-        <a class="store-btn disabled" href="#">Closed Testing</a>
-        <div class="small-note">
-          Currently in closed testing on Google Play.
-        </div>
-      </div>
-
+        </li>
+      </ul>
     </div>
 
-    <!-- ================= WEB / APPLE SECTION ================= -->
-    <h2 class="section-title">Web & Apple (iOS Installable)</h2>
+    <div class="content">
+      <div class="content-inner">
 
-    <div class="apps-grid">
-      <!-- Fiber Optic Calculator (Web / iOS PWA) -->
-      <div class="app-card">
-        <h2>Fiber Optic Calculator (Web)</h2>
+        <h1>Apps</h1>
         <p>
-          Installable web-based fiber optic calculator.
-          Works on iPhone, Android, and desktop.
+          Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
         </p>
-        <a class="store-btn" href="./apps/fibercounter/">Open Web App</a>
-        <div class="small-note">
-          iPhone: Open in Safari → Share → Add to Home Screen
+
+        <h2 class="section-title">Android Apps (Google Play)</h2>
+
+        <div class="apps-grid">
+
+          <div class="app-card">
+            <h2>Fiber Optic Calculator</h2>
+            <p>
+              A fast, reliable fiber optic calculator built for field technicians.
+              Eliminate manual math and reduce splicing errors on the job.
+              Designed to save time and keep you moving.
+              Supports Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
+            </p>
+
+            <div class="button-row">
+              <a class="playstore-btn"
+                 href="https://play.google.com/store/apps/details?id=com.fiberman.fibercounter"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <img
+                  class="playstore-badge"
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                  alt="Get it on Google Play">
+              </a>
+
+              <a class="privacy-link"
+                 href="foc_privacy_policy.html"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Privacy Policy
+              </a>
+            </div>
+
+            <div class="small-note">
+              Available FREE on Google Play.
+            </div>
+          </div>
+
+          <div class="app-card">
+            <h2>Recipe Book</h2>
+            <p>
+              A simple, practical recipe manager designed for everyday cooking —
+              store, edit, and organize recipes without clutter.
+              Snap a photo, enter manually, or add a web link!
+              Measurement Calculator just added!
+            </p>
+            <a class="store-btn disabled" href="#">Closed Testing</a>
+            <div class="small-note">
+              Currently in closed testing on Google Play.
+            </div>
+          </div>
+
+          <div class="app-card">
+            <h2>Cabinet Keeper</h2>
+            <p>
+              Cabinet Keeper makes home inventory simple and stress-free.
+              Monitor stock levels, set par limits, and generate grocery lists automatically.
+              Organize by store and shop smarter every time.
+            </p>
+            <a class="store-btn disabled" href="#">Closed Testing</a>
+            <div class="small-note">
+              Currently in closed testing on Google Play.
+            </div>
+          </div>
+
         </div>
+
+        <h2 class="section-title">Web &amp; Apple (iOS Installable)</h2>
+
+        <div class="apps-grid">
+          <div class="app-card">
+            <h2>Fiber Optic Calculator (Web)</h2>
+            <p>
+              Installable web-based fiber optic calculator.
+              Works on iPhone, Android, and desktop.
+            </p>
+            <a class="store-btn" href="./apps/fibercounter/">Open Web App</a>
+            <div class="small-note">
+              iPhone: Open in Safari → Share → Add to Home Screen
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
   </div>
-
 </body>
 </html>
