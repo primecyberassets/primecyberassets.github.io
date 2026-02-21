@@ -1,3 +1,8 @@
+<!-- ===========================
+     recipe_privacy_policy.html
+     (Recipe Book)
+     PCA branded (NO header image) + FIXED placement + Home button
+     =========================== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,134 +12,93 @@
 
   <style>
     :root{
-      --bg:#000000;
+      --bg:#000;
       --panel:#0b0c10;
-      --border:#222;
-      --text:#cccccc;
-      --muted:#8f8f8f;
-
-      /* PCA fade: cyan -> electric purple -> pink */
-      --c1:#66fcf1;
-      --c2:#8a5cff;
-      --c3:#ff4fd8;
+      --border:#232323;
+      --text:#d0d0d0;
+      --muted:#9a9a9a;
+      --c1:#66fcf1; --c2:#8a5cff; --c3:#ff4fd8;
     }
-
     *{ box-sizing:border-box; }
-
     body{
       margin:0;
-      background: var(--bg);
+      background: radial-gradient(1000px 600px at 20% 0%, rgba(102,252,241,0.08), transparent 55%),
+                  radial-gradient(900px 550px at 80% 10%, rgba(255,79,216,0.07), transparent 55%),
+                  var(--bg);
       color: var(--text);
       font-family: Arial, sans-serif;
     }
+    .wrap{ max-width:980px; margin:0 auto; padding:36px 18px 56px; }
 
-    .wrap{
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 42px 18px 54px;
+    .topbar{
+      width:100%;
+      background: linear-gradient(180deg, rgba(11,12,16,0.95), rgba(7,8,11,0.98));
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:14px;
     }
-
-    .brand{
-      background: linear-gradient(180deg, rgba(11,12,16,0.95), rgba(0,0,0,0.98));
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px 18px;
-      margin-bottom: 14px;
-    }
-
+    .brand{ display:flex; flex-direction:column; gap:6px; min-width:0; }
     .brand .pca{
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: 0.2px;
+      font-size:1.1rem; font-weight:900; letter-spacing:0.2px;
       background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
-
-    .brand .sub{
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    .brand .sub{ color:var(--muted); font-size:0.95rem; }
 
     .home-btn{
-      display: inline-block;
-      margin: 6px 0 18px 0;
-      padding: 8px 14px;
-      font-size: 0.9rem;
-      font-weight: 800;
-      text-decoration: none;
-      border-radius: 10px;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:8px 12px; font-size:0.9rem; font-weight:800;
+      text-decoration:none; border-radius:10px;
+      border:1px solid rgba(255,255,255,0.10);
       background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
-      color: #000;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      color:#000;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+      white-space:nowrap;
     }
-
-    .home-btn:hover{
-      transform: scale(1.04);
-      opacity: 0.92;
-    }
+    .home-btn:hover{ transform: translateY(-1px); opacity:0.92; }
 
     .card{
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 26px 22px;
+      width:100%;
+      background: rgba(11,12,16,0.92);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:26px 22px;
     }
-
-    h1{
-      margin: 0 0 14px 0;
-      color: var(--c1);
-      font-size: 2rem;
-      letter-spacing: 0.2px;
-    }
-
-    h2{
-      margin: 26px 0 10px 0;
-      color: var(--c3);
-      font-size: 1.25rem;
-    }
-
-    p, li{
-      line-height: 1.7;
-      font-size: 1.03rem;
-      color: var(--text);
-    }
-
-    ul{ padding-left: 20px; }
-
-    a{
-      color: var(--c1);
-      text-decoration: none;
-      font-weight: 800;
-    }
-    a:hover{ color: var(--c3); }
-
+    h1{ margin:0 0 10px 0; color:var(--c1); font-size:2rem; }
+    h2{ margin:22px 0 8px 0; color:var(--c3); font-size:1.22rem; }
+    p, li{ line-height:1.7; font-size:1.03rem; }
+    ul{ padding-left:20px; }
+    a{ color:var(--c1); text-decoration:none; font-weight:800; }
+    a:hover{ color:var(--c3); }
     .footer{
-      margin-top: 26px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      color: #7d7d7d;
-      font-size: 0.92rem;
-      text-align: center;
+      margin-top:22px; padding-top:14px;
+      border-top:1px solid var(--border);
+      color:#7e7e7e; font-size:0.92rem; text-align:center;
     }
-
-    @media (max-width: 720px){
-      h1{ font-size: 1.7rem; }
-      .card{ padding: 22px 16px; }
+    @media (max-width:720px){
+      .topbar{ flex-direction:column; align-items:flex-start; }
+      .home-btn{ width:100%; }
+      .card{ padding:22px 16px; }
+      h1{ font-size:1.7rem; }
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-
-    <div class="brand">
-      <div class="pca">Prime Cyber Assets</div>
-      <div class="sub">Privacy Policy</div>
+    <div class="topbar">
+      <div class="brand">
+        <div class="pca">Prime Cyber Assets</div>
+        <div class="sub">Privacy Policy</div>
+      </div>
+      <a class="home-btn" href="index.html">← Back to Home</a>
     </div>
-
-    <a class="home-btn" href="index.html">← Back to Home</a>
 
     <div class="card">
       <h1>Recipe Book</h1>
@@ -171,7 +135,7 @@
       <p>Your recipe data remains under your control and stored locally on your device.</p>
 
       <h2>Children’s Privacy</h2>
-      <p>Recipe Book does not knowingly collect any information from children under the age of 13.</p>
+      <p>Recipe Book does not knowingly collect information from children under the age of 13.</p>
 
       <h2>Changes to This Policy</h2>
       <p>This Privacy Policy may be updated if the app’s functionality changes. Any updates will be reflected on this page.</p>
@@ -180,11 +144,8 @@
       <p>If you have any questions about this Privacy Policy, you may contact the developer:</p>
       <p><a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a></p>
 
-      <div class="footer">
-        Last updated: February 2026
-      </div>
+      <div class="footer">Last updated: February 2026</div>
     </div>
-
   </div>
 </body>
 </html>
