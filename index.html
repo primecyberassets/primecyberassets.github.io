@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,21 +46,16 @@
       from { opacity:0; transform: translateY(8px); }
       to { opacity:1; transform: translateY(0); }
     }
-    
-.intro {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 30px auto;
-}
-    
-.intro strong {
-  color: var(--cyan);
-}
-    
-.intro p {
-  margin-bottom: 14px;
-}
-    
+
+    /* ✅ centered intro block under header */
+    .intro{
+      text-align:center;
+      max-width: 900px;
+      margin: 0 auto 34px auto;
+    }
+    .intro strong{ color: var(--cyan); }
+    .intro p{ margin: 0 0 14px 0; }
+
     /* ✅ FULL-WIDTH MASTER SHELL */
     .shell{
       width: 100%;
@@ -71,7 +68,6 @@
       background: var(--shell);
       backdrop-filter: blur(10px);
 
-      /* top/bottom borders only (no boxed feel) */
       border-top: 1px solid var(--shell-border);
       border-bottom: 1px solid var(--shell-border);
 
@@ -150,28 +146,63 @@
       margin: 0;
     }
 
+    /* ✅ centered header banner */
     .page-header{
-  display: block;
-  width: 100%;
-  max-width: 900px;
-
-  margin: 10px auto 30px auto;   /* ← centers it */
-
-  filter:
-    drop-shadow(0 0 10px rgba(0,255,255,0.28))
-    drop-shadow(0 0 18px rgba(255,0,255,0.18));
-}
+      display:block;
+      width:100%;
+      max-width: 900px;
+      margin: 10px auto 22px auto;
+      filter:
+        drop-shadow(0 0 10px rgba(0,255,255,0.28))
+        drop-shadow(0 0 18px rgba(255,0,255,0.18));
+    }
 
     .content h2{
       color: var(--pink);
       margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .content h2::after{
+      content:"";
+      display:block;
+      width:64px;
+      height:3px;
+      margin-top:10px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      border-radius: 3px;
+      opacity: 0.95;
+    }
+
+    .content h3{
+      color: var(--cyan);
+      margin-top: 1.5rem;
+      margin-bottom: 0.35rem;
     }
 
     .content p{
       color: var(--text);
       line-height: 1.75;
       font-size: 1.08rem;
-      max-width: 1200px; /* optional: keeps paragraphs readable on ultra-wide screens */
+      max-width: 1200px;
+    }
+
+    /* Optional: center ONLY the first "What We Do" heading for nicer flow */
+    .content-inner > h2:first-of-type{
+      text-align: center;
+    }
+    .content-inner > h2:first-of-type::after{
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .content a{
+      color: var(--cyan);
+      transition: color 0.25s ease, text-shadow 0.25s ease;
+    }
+    .content a:hover{
+      color: var(--pink);
+      text-shadow: 0 0 6px rgba(255,0,255,0.55);
     }
 
     /* ===== MOBILE ===== */
@@ -201,7 +232,12 @@
 
       .page-header{
         max-width: 560px;
-        margin: 0 auto 20px auto; /* centered on mobile */
+        margin: 0 auto 18px auto;
+      }
+
+      .intro{
+        max-width: 640px;
+        margin-bottom: 26px;
       }
 
       .content p{
@@ -212,20 +248,19 @@
 </head>
 
 <body>
-
   <div class="shell">
 
     <div class="sidebar">
       <div class="sidebar-title"><span>PCA</span> Navigation</div>
 
       <ul class="nav-links">
+        <!-- ✅ Move "active" to the page you're on -->
         <li><a class="active" href="index.html">Home</a></li>
         <li><a href="apps.html">Apps</a></li>
         <li><a href="products.html">Shop</a></li>
         <li>
           <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
-             target="_blank"
-             rel="noopener noreferrer">
+             target="_blank" rel="noopener noreferrer">
             YouTube Videos
           </a>
         </li>
@@ -235,23 +270,21 @@
     <div class="content">
       <div class="content-inner">
 
-        <img
-          class="page-header"
-          src="web_header.png"
-          alt="Prime Cyber Assets"
-          onerror="this.style.display='none'"
-        />
+        <img class="page-header" src="web_header.png" alt="Prime Cyber Assets" onerror="this.style.display='none'" />
 
-        <p>
-          <strong>Prime Cyber Assets (PCA)</strong> is a digital development studio focused on building
-          high-quality apps, games, and digital assets that blend technology, design, and practical utility.
-        </p>
+        <!-- ✅ centered text under header -->
+        <div class="intro">
+          <p>
+            <strong>Prime Cyber Assets (PCA)</strong> is a digital development studio focused on building
+            high-quality apps, games, and digital assets that blend technology, design, and practical utility.
+          </p>
 
-        <p>
-          Founded on a cyber-tech aesthetic and innovation-driven mindset, PCA develops tools and experiences
-          that empower users — from fiber infrastructure reference tools and productivity applications
-          to immersive game systems and premium digital assets.
-        </p>
+          <p>
+            Founded on a cyber-tech aesthetic and innovation-driven mindset, PCA develops tools and experiences
+            that empower users — from fiber infrastructure reference tools and productivity applications
+            to immersive game systems and premium digital assets.
+          </p>
+        </div>
 
         <h2>What We Do</h2>
 
@@ -304,6 +337,5 @@
     </div>
 
   </div>
-
 </body>
 </html>
