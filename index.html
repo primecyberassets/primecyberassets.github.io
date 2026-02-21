@@ -16,6 +16,8 @@
       --panel: rgba(10,10,15,0.55);
       --panel-border: rgba(255,255,255,0.06);
       --text:#ccc;
+      --row: rgba(255,255,255,0.04);
+      --row-hover: rgba(255,255,255,0.07);
     }
 
     * { box-sizing: border-box; }
@@ -28,7 +30,7 @@
       color: #fff;
 
       background-color: var(--bg);
-      /* ✅ subtle cyber glow depth */
+      /* subtle cyber glow depth */
       background-image:
         radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
         radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
@@ -43,61 +45,121 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Left column */
+    /* ===== SIDEBAR (BEST FIX) ===== */
     .sidebar {
-      width: 30%;
-      max-width: 340px;
-      padding: 2rem 1.75rem;
+      width: 260px;
+      min-width: 260px;
+      padding: 22px 16px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
 
-      background: linear-gradient(to bottom, #0b0c10 0%, #010101 100%);
+      /* glass panel */
+      background: rgba(10,10,15,0.55);
+      backdrop-filter: blur(8px);
 
-      /* ✅ cyber divider + depth */
-      border-right: 1px solid rgba(102,252,241,0.15);
-      box-shadow: 2px 0 20px rgba(0,255,255,0.05);
+      border-right: 1px solid rgba(102,252,241,0.18);
+
+      box-shadow:
+        2px 0 24px rgba(0,255,255,0.06),
+        0 0 0 1px rgba(255,255,255,0.04) inset;
     }
 
-    /* Keep this in case you add a sidebar logo later */
-    .sidebar img { max-width: 100%; height: auto; }
+    .sidebar-title {
+      font-weight: 800;
+      letter-spacing: 0.9px;
+      font-size: 0.92rem;
+      margin: 6px 8px 14px 8px;
+      color: rgba(255,255,255,0.82);
+      text-transform: uppercase;
+    }
+
+    .sidebar-title span {
+      color: var(--cyan);
+    }
 
     .nav-links {
       list-style: none;
       padding: 0;
       margin: 0;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .nav-links li {
-      margin-bottom: 0.9rem;
-    }
+    .nav-links li { margin: 0; }
 
     .nav-links a {
-      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 12px;
+
+      background: var(--row);
+      border: 1px solid rgba(255,255,255,0.05);
+
+      color: rgba(230,255,255,0.92);
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
-      font-size: 1.05rem;
-      display: inline-block;
+      font-weight: 700;
+      font-size: 1.02rem;
+
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* ✅ premium hover glow */
+    /* subtle active indicator bar */
+    .nav-links a::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 3px;
+      border-radius: 3px;
+      background: transparent;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* hover glow */
     .nav-links a:hover {
-      color: var(--pink);
-      text-shadow:
-        0 0 6px rgba(255,0,255,0.80),
-        0 0 14px rgba(255,0,255,0.55);
+      background: var(--row-hover);
       transform: translateX(2px);
+      color: #ffffff;
+      box-shadow:
+        0 0 0 1px rgba(102,252,241,0.12),
+        0 8px 22px rgba(0,255,255,0.06),
+        0 0 18px rgba(255,79,216,0.12);
+    }
+
+    .nav-links a:hover::before {
+      background: linear-gradient(180deg, var(--cyan), var(--pink));
+      box-shadow: 0 0 14px rgba(102,252,241,0.30);
+    }
+
+    /* Active link (set this class on the current page link) */
+    .nav-links a.active {
+      background: rgba(102,252,241,0.08);
+      border: 1px solid rgba(102,252,241,0.20);
+      box-shadow:
+        0 0 0 1px rgba(102,252,241,0.10),
+        0 10px 26px rgba(0,255,255,0.06);
+    }
+
+    .nav-links a.active::before {
+      background: linear-gradient(180deg, var(--cyan), var(--pink));
+      box-shadow: 0 0 16px rgba(255,79,216,0.18);
     }
 
     /* Right column */
     .content {
-      width: 70%;
+      flex: 1;
       padding: 2.2rem;
     }
 
-    /* ✅ glass panel */
+    /* glass panel for content */
     .content-inner {
       max-width: 920px;
       margin: 0 auto;
@@ -114,7 +176,6 @@
         0 0 0 1px rgba(102,252,241,0.03) inset;
     }
 
-    /* ✅ header image */
     .page-header {
       width: 100%;
       max-width: 720px;
@@ -122,7 +183,6 @@
       display: block;
       margin: 10px auto 30px auto;
 
-      /* ✅ neon glow */
       filter:
         drop-shadow(0 0 12px rgba(0,255,255,0.35))
         drop-shadow(0 0 22px rgba(255,0,255,0.25));
@@ -135,7 +195,6 @@
       letter-spacing: 0.2px;
     }
 
-    /* ✅ cyber accent bar under H2 */
     .content h2::after {
       content: "";
       display: block;
@@ -168,43 +227,38 @@
 
     .content a:hover {
       color: var(--pink);
-      text-shadow:
-        0 0 6px rgba(255,0,255,0.55);
-    }
-
-    /* Optional: better spacing for the "What We Do" list feel */
-    .content h3 + p {
-      margin-top: 0.35rem;
+      text-shadow: 0 0 6px rgba(255,0,255,0.55);
     }
 
     /* Mobile */
     @media (max-width: 900px) {
       body { flex-direction: column; }
 
-      .sidebar,
-      .content {
-        width: 100%;
-        max-width: none;
-      }
-
       .sidebar {
-        align-items: center;
-        text-align: center;
-        padding: 1.25rem;
-
+        width: 100%;
+        min-width: 0;
         border-right: none;
-        border-bottom: 1px solid rgba(102,252,241,0.15);
+        border-bottom: 1px solid rgba(102,252,241,0.18);
         box-shadow: 0 2px 18px rgba(0,255,255,0.05);
       }
 
+      .sidebar-title { text-align: center; }
+
       .nav-links {
-        display: flex;
+        flex-direction: row;
         justify-content: center;
-        gap: 1rem;
         flex-wrap: wrap;
+        gap: 10px;
       }
 
-      .nav-links li { margin-bottom: 0; }
+      .nav-links a {
+        width: auto;
+        padding: 10px 12px;
+      }
+
+      .nav-links a:hover {
+        transform: none;
+      }
 
       .content { padding: 1.75rem 1.25rem; }
 
@@ -217,10 +271,6 @@
         max-width: 560px;
         margin: 0 auto 22px auto;
       }
-
-      .nav-links a:hover {
-        transform: none; /* less jumpy on mobile */
-      }
     }
   </style>
 </head>
@@ -228,8 +278,11 @@
 <body>
 
   <div class="sidebar">
+    <div class="sidebar-title"><span>PCA</span> Navigation</div>
+
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
+      <!-- ✅ set .active on the current page -->
+      <li><a class="active" href="index.html">Home</a></li>
       <li><a href="apps.html">Apps</a></li>
       <li><a href="products.html">Shop</a></li>
       <li>
