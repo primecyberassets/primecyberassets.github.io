@@ -1,49 +1,184 @@
+<!-- ===========================
+     foc_privacy_policy.html
+     (Fiber Optic Calculator)
+     =========================== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Privacy Policy - Fiber Optic Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Privacy Policy - Fiber Optic Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root{
+      --bg:#000000;
+      --panel:#0b0c10;
+      --border:#222;
+      --text:#cccccc;
+      --muted:#8f8f8f;
+
+      /* PCA fade: cyan -> electric purple -> pink */
+      --c1:#66fcf1;
+      --c2:#8a5cff;
+      --c3:#ff4fd8;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    .wrap{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 42px 18px 54px;
+    }
+
+    .brand{
+      background: linear-gradient(180deg, rgba(11,12,16,0.95), rgba(0,0,0,0.98));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 18px;
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .brand img{
+      width: 150px;
+      max-width: 42vw;
+      height: auto;
+      display:block;
+    }
+
+    .brand .title{
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand .subtitle{
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px 22px;
+    }
+
+    h1{
+      margin: 0 0 14px 0;
+      color: var(--c1);
+      font-size: 2rem;
+      letter-spacing: 0.2px;
+    }
+
+    h2{
+      margin: 26px 0 10px 0;
+      color: var(--c3);
+      font-size: 1.25rem;
+    }
+
+    p, li{
+      line-height: 1.7;
+      font-size: 1.03rem;
+      color: var(--text);
+    }
+
+    ul{ padding-left: 20px; }
+
+    a{
+      color: var(--c1);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    a:hover{ color: var(--c3); }
+
+    .footer{
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: #7d7d7d;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 720px){
+      .brand{ flex-direction: column; text-align:center; }
+      .brand img{ width: 170px; }
+      h1{ font-size: 1.7rem; }
+      .card{ padding: 22px 16px; }
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; line-height: 1.6;">
 
-<h1>Privacy Policy</h1>
+<body>
+  <div class="wrap">
 
-<p><strong>Fiber Optic Calculator</strong> respects your privacy. This Privacy Policy explains how information is handled when you use the mobile application.</p>
+    <div class="brand">
+      <img src="pca_youtube.png" alt="Prime Cyber Assets Logo">
+      <div>
+        <div class="title">Prime Cyber Assets</div>
+        <div class="subtitle">Privacy Policy</div>
+      </div>
+    </div>
 
-<h2>Information Collection</h2>
-<p>Fiber Optic Calculator does <strong>not collect</strong>, store, share, or transmit any personal information.</p>
+    <div class="card">
+      <h1>Fiber Optic Calculator</h1>
 
-<h2>Personal Data</h2>
-<p>The app does not request or collect names, email addresses, phone numbers, location data, contacts, or any other personally identifiable information.</p>
+      <p><strong>Fiber Optic Calculator</strong> respects your privacy. This Privacy Policy explains how information is handled when you use the mobile application.</p>
 
-<h2>App Data</h2>
-<p>All calculations performed within Fiber Optic Calculator are processed locally on your device.</p>
-<ul>
-    <li>No data is uploaded to external servers.</li>
-    <li>No calculation history is transmitted.</li>
-    <li>No cloud storage is used.</li>
-</ul>
+      <h2>Information Collection</h2>
+      <p>Fiber Optic Calculator does <strong>not collect</strong>, store, share, or transmit any personal information.</p>
 
-<h2>Permissions</h2>
-<p>Fiber Optic Calculator does not require sensitive device permissions. The app operates fully offline using local processing.</p>
+      <h2>Personal Data</h2>
+      <p>The app does not request or collect names, email addresses, phone numbers, location data, contacts, or any other personally identifiable information.</p>
 
-<h2>Third-Party Services</h2>
-<p>Fiber Optic Calculator does not use third-party analytics services, advertising networks, tracking tools, or external SDKs.</p>
+      <h2>App Data</h2>
+      <p>All calculations performed within Fiber Optic Calculator are processed locally on your device.</p>
+      <ul>
+        <li>No data is uploaded to external servers.</li>
+        <li>No data is shared with third parties.</li>
+        <li>No data is stored in cloud databases.</li>
+      </ul>
 
-<h2>Data Security</h2>
-<p>Since no personal data is collected or transmitted, all information remains fully under your control on your device.</p>
+      <h2>Permissions</h2>
+      <p>Fiber Optic Calculator does not request sensitive device permissions. The app operates fully offline using local processing.</p>
 
-<h2>Children’s Privacy</h2>
-<p>Fiber Optic Calculator does not knowingly collect any information from children under the age of 13.</p>
+      <h2>Third-Party Services</h2>
+      <p>Fiber Optic Calculator does not use third-party analytics services, advertising networks, tracking tools, or external SDKs.</p>
 
-<h2>Changes to This Policy</h2>
-<p>This Privacy Policy may be updated if the app’s functionality changes. Any updates will be reflected on this page.</p>
+      <h2>Data Security</h2>
+      <p>Since no personal data is collected or transmitted, your information remains fully under your control on your device.</p>
 
-<h2>Contact</h2>
-<p>If you have any questions about this Privacy Policy, you may contact the developer through the app’s Google Play listing.</p>
+      <h2>Children’s Privacy</h2>
+      <p>Fiber Optic Calculator does not knowingly collect any information from children under the age of 13.</p>
 
-<p><em>Last updated: February 2026</em></p>
+      <h2>Changes to This Policy</h2>
+      <p>This Privacy Policy may be updated if the app’s functionality changes. Any updates will be reflected on this page.</p>
 
+      <h2>Contact</h2>
+      <p>If you have any questions about this Privacy Policy, you may contact the developer:</p>
+      <p><a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a></p>
+
+      <div class="footer">
+        Last updated: February 2026
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
