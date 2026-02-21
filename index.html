@@ -143,9 +143,25 @@
     }
 
     .content-inner{
-      width: 100%;
-    }
+  width: 100%;
+  max-width: 1400px;   /* ✅ centers the whole content area */
+  margin: 0 auto;      /* ✅ pulls everything off the left edge */
+}
 
+    /* ✅ keep body sections from hugging the left edge */
+.content h3,
+.content p{
+  max-width: 1100px;     /* readable line length */
+  margin-left: auto;     /* centers the block */
+  margin-right: auto;    /* centers the block */
+  text-align: left;      /* but text stays left-aligned */
+}
+
+/* ✅ keep headings centered (optional, looks good with your hero) */
+.content h2{
+  text-align: center;
+}
+    
     /* ✅ banner centered with more “hero” top spacing */
     .page-header{
       display:block;
