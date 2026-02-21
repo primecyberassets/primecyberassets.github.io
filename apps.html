@@ -1,8 +1,3 @@
-<!-- =========================
-     apps.html (LEFT-ALIGNED)
-     ========================= -->
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -133,14 +128,15 @@
       padding:28px 40px;
     }
 
-    /* Center the content column on screen, but KEEP TEXT LEFT */
+    /* ✅ FIX: keep the column centered, but everything inside LEFT + same edge */
     .content-inner{
       width:100%;
-      max-width:1400px;
-      margin:0 auto;
+      max-width:1200px;      /* ✅ better readable width */
+      margin:0;              /* ✅ left edge aligns with sidebar divider */
       text-align:left;
     }
 
+    /* ✅ FIX: titles and text all share same left edge */
     .content h1{
       color: var(--cyan);
       font-size: 2.1rem;
@@ -176,14 +172,15 @@
       opacity: 0.95;
     }
 
-    /* Apps grid */
+    /* ✅ FIX: grid uses full available width and stays left */
     .apps-grid{
       display:grid;
-      grid-template-columns: repeat(2, minmax(300px, 1fr));
+      grid-template-columns: repeat(2, minmax(320px, 1fr));
       gap: 1.25rem;
 
-      max-width: 1100px;
-      margin: 16px 0 0 0; /* LEFT aligned with content */
+      width:100%;
+      max-width:1100px;
+      margin: 16px 0 0 0;  /* ✅ no auto-centering */
     }
 
     .app-card{
@@ -192,6 +189,7 @@
       border-radius: 14px;
       padding: 1.25rem;
       box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      text-align:left;
     }
 
     .app-card h2{
@@ -247,6 +245,7 @@
       gap:14px;
       margin-top:8px;
       flex-wrap:wrap;
+      justify-content:flex-start; /* ✅ never center */
     }
 
     .playstore-btn{
@@ -299,6 +298,11 @@
       }
 
       .content{ padding:22px 18px; }
+
+      .content-inner{
+        max-width: 720px;
+        margin: 0; /* ✅ still left */
+      }
 
       .apps-grid{
         grid-template-columns: 1fr;
