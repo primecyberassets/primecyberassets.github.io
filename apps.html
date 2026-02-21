@@ -57,27 +57,6 @@
       color: #ff4fd8;
     }
 
-    /* Fiberman link */
-    .fiberman-link {
-      margin-top: auto;
-      padding-top: 1.5rem;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .fiberman-link img {
-      width: 150px;
-      height: auto;
-      opacity: 0.9;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .fiberman-link img:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
     /* Right column */
     .content {
       width: 70%;
@@ -157,7 +136,6 @@
     /* ✅ Play Store badge button (small, no border, no padding) */
     .playstore-btn {
       display: inline-block;
-      margin-top: 8px;
       padding: 0;
       border: none;
       background: none;
@@ -178,6 +156,26 @@
 
     .playstore-badge:hover {
       opacity: 0.85; /* subtle hover */
+    }
+
+    /* ✅ Row: Play badge + Privacy Policy link */
+    .button-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .privacy-link {
+      font-size: 0.9rem;
+      color: #66fcf1;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .privacy-link:hover {
+      color: #ff4fd8;
     }
 
     /* Mobile */
@@ -216,6 +214,10 @@
       .apps-grid {
         grid-template-columns: 1fr;
       }
+
+      .button-row {
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -223,21 +225,21 @@
 <body>
 
   <div class="sidebar">
-  <img src="weblogo.png" alt="Prime Cyber Assets Logo" />
+    <img src="weblogo.png" alt="Prime Cyber Assets Logo" />
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="apps.html">Apps</a></li>
-    <li><a href="products.html">Shop</a></li>
-    <li>
-      <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg" 
-         target="_blank" 
-         rel="noopener">
-         YouTube Videos
-      </a>
-    </li>
-  </ul>
-</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="apps.html">Apps</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li>
+        <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
+           target="_blank"
+           rel="noopener">
+          YouTube Videos
+        </a>
+      </li>
+    </ul>
+  </div>
 
   <div class="content">
     <h1>Apps</h1>
@@ -260,15 +262,25 @@
           Supports Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
         </p>
 
-        <a class="playstore-btn"
-           href="https://play.google.com/store/apps/details?id=com.fiberman.fibercounter"
-           target="_blank"
-           rel="noopener">
-          <img
-            class="playstore-badge"
-            src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-            alt="Get it on Google Play">
-        </a>
+        <!-- ✅ Play Store + Privacy Policy -->
+        <div class="button-row">
+          <a class="playstore-btn"
+             href="https://play.google.com/store/apps/details?id=com.fiberman.fibercounter"
+             target="_blank"
+             rel="noopener">
+            <img
+              class="playstore-badge"
+              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+              alt="Get it on Google Play">
+          </a>
+
+          <a class="privacy-link"
+             href="foc_privacy_policy.html"
+             target="_blank"
+             rel="noopener">
+            Privacy Policy
+          </a>
+        </div>
 
         <div class="small-note">
           Available FREE on Google Play.
