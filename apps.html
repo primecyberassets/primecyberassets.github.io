@@ -126,6 +126,7 @@
       line-height: 1.5;
     }
 
+    /* Your original buttons (kept for Closed Testing, Web App, etc.) */
     .store-btn {
       display: inline-block;
       padding: 0.7rem 1.05rem;
@@ -151,6 +152,32 @@
       color: #999;
       font-size: 0.95rem;
       margin-top: 0.75rem;
+    }
+
+    /* ✅ Play Store badge button (small, no border, no padding) */
+    .playstore-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 0;
+      border: none;
+      background: none;
+      border-radius: 0;
+      line-height: 0; /* removes extra whitespace around image */
+    }
+
+    .playstore-badge {
+      height: 38px; /* smaller */
+      width: auto;
+      border: none;
+      display: block;
+      background: transparent;
+      box-shadow: none;
+      outline: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .playstore-badge:hover {
+      opacity: 0.85; /* subtle hover */
     }
 
     /* Mobile */
@@ -210,75 +237,75 @@
       </a>
     </div>
   </div>
-  
-<div class="content">
-  <h1>Apps</h1>
-  <p>
-    Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
-  </p>
 
-  <!-- ================= ANDROID SECTION ================= -->
-  <h2 class="section-title">Android Apps (Google Play)</h2>
+  <div class="content">
+    <h1>Apps</h1>
+    <p>
+      Here are the apps published (or in progress) by <strong>Prime Cyber Assets</strong>.
+    </p>
 
-  <div class="apps-grid">
+    <!-- ================= ANDROID SECTION ================= -->
+    <h2 class="section-title">Android Apps (Google Play)</h2>
 
-    <!-- Fiber Optic Calculator (Android) -->
-    <div class="app-card">
-  <h2>Fiber Optic Calculator</h2>
-  <p>
-    A fast, reliable fiber optic calculator built for field technicians.
-    Eliminate manual math and reduce splicing errors on the job.
-    Designed to save time and keep you moving.
-    Supports Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
-  </p>
+    <div class="apps-grid">
 
-  <a class="store-btn playstore-btn" 
-     href="https://play.google.com/store/apps/details?id=com.fiberman.fibercounter" 
-     target="_blank"
-     rel="noopener">
-     
-     <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-          alt="Get it on Google Play"
-          class="playstore-badge">
-  </a>
+      <!-- Fiber Optic Calculator (Android) -->
+      <div class="app-card">
+        <h2>Fiber Optic Calculator</h2>
+        <p>
+          A fast, reliable fiber optic calculator built for field technicians.
+          Eliminate manual math and reduce splicing errors on the job.
+          Designed to save time and keep you moving.
+          Supports Singlemode, Ribbon, and Flex/Rollable Ribbon fiber cables.
+        </p>
 
-  <div class="small-note">
-    Available now on Google Play.
-  </div>
-</div>
+        <a class="playstore-btn"
+           href="https://play.google.com/store/apps/details?id=com.fiberman.fibercounter"
+           target="_blank"
+           rel="noopener">
+          <img
+            class="playstore-badge"
+            src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+            alt="Get it on Google Play">
+        </a>
 
-    <!-- Recipe Book (Android) -->
-    <div class="app-card">
-      <h2>Recipe Book</h2>
-      <p>
-        A simple, practical recipe manager designed for everyday cooking —
-        store, edit, and organize recipes without clutter.
-        Snap a photo, enter manually, or add a web link!
-        Measurement Calculator just added!
-      </p>
-      <a class="store-btn disabled" href="#">Closed Testing</a>
-      <div class="small-note">
-        Currently in closed testing on Google Play.
+        <div class="small-note">
+          Available now on Google Play.
+        </div>
       </div>
+
+      <!-- Recipe Book (Android) -->
+      <div class="app-card">
+        <h2>Recipe Book</h2>
+        <p>
+          A simple, practical recipe manager designed for everyday cooking —
+          store, edit, and organize recipes without clutter.
+          Snap a photo, enter manually, or add a web link!
+          Measurement Calculator just added!
+        </p>
+        <a class="store-btn disabled" href="#">Closed Testing</a>
+        <div class="small-note">
+          Currently in closed testing on Google Play.
+        </div>
+      </div>
+
+      <!-- Cabinet Keeper (Android) -->
+      <div class="app-card">
+        <h2>Cabinet Keeper</h2>
+        <p>
+          Cabinet Keeper makes home inventory simple and stress-free.
+          Monitor stock levels, set par limits, and generate grocery lists automatically.
+          Organize by store and shop smarter every time.
+        </p>
+        <a class="store-btn disabled" href="#">Closed Testing</a>
+        <div class="small-note">
+          Currently in closed testing on Google Play.
+        </div>
+      </div>
+
     </div>
 
-    <!-- Cabinet Keeper (Android) -->
-    <div class="app-card">
-      <h2>Cabinet Keeper</h2>
-      <p>
-        Cabinet Keeper makes home inventory simple and stress-free.
-        Monitor stock levels, set par limits, and generate grocery lists automatically.
-        Organize by store and shop smarter every time.
-      </p>
-      <a class="store-btn disabled" href="#">Closed Testing</a>
-      <div class="small-note">
-        Currently in closed testing on Google Play.
-      </div>
-    </div>
-
-  </div>
-
-   <!-- ================= WEB / APPLE SECTION ================= -->
+    <!-- ================= WEB / APPLE SECTION ================= -->
     <h2 class="section-title">Web & Apple (iOS Installable)</h2>
 
     <div class="apps-grid">
@@ -296,6 +323,7 @@
       </div>
     </div>
 
+  </div>
 
-
-  
+</body>
+</html>
