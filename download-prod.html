@@ -36,8 +36,19 @@ text-align:center;
 max-width:420px;
 box-shadow:0 10px 40px rgba(0,0,0,0.4);
 }
-h1{color:var(--cyan);margin-bottom:10px;}
-p{color:#ccc;margin-bottom:20px;}
+.panel img{
+width:100%;
+border-radius:12px;
+margin-bottom:15px;
+}
+h1{
+color:var(--cyan);
+margin-bottom:10px;
+}
+p{
+color:#ccc;
+margin-bottom:20px;
+}
 .btn{
 background:var(--cyan);
 color:#000;
@@ -62,18 +73,21 @@ color:#777;
 
 <body>
 
-<div class="product-card">
-    <img src="assets/bundle-icon-pro.png" alt="Productivity Icons">
+<div class="panel">
 
-    <h2>Productivity Icon Bundle</h2>
+<img src="assets/bundle-icon-pro.png" alt="Productivity Icons">
 
-    <p>
-        Chrome neon icons built for dashboards, scheduling apps, and task systems.
-    </p>
+<h1>Download Ready</h1>
+<p>Your Productivity Icon Bundle is ready.</p>
 
-    <a href="YOUR_STRIPE_PRODUCTIVITY_LINK" class="buy-btn">
-        Buy Now
-    </a>
+<button class="btn" onclick="downloadFile()">
+Download Now
+</button>
+
+<div class="footer">
+Prime Cyber Assets
+</div>
+
 </div>
 
 <script>
