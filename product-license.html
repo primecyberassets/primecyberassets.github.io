@@ -4,59 +4,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Icon License | Prime Cyber Assets</title>
+<title>License | Prime Cyber Assets</title>
 
 <style>
 
-body{
-    font-family: Arial, sans-serif;
-    background:#f5f7fb;
-    margin:0;
-    padding:40px;
+:root{
+--cyan:#66fcf1;
+--pink:#ff4fd8;
+--bg:#000;
+--panel: rgba(10,10,15,0.65);
+--text:#ccc;
 }
+
+/* BODY */
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+color:#fff;
+
+background:
+radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
+radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
+linear-gradient(to bottom,#07080c,#000);
+
+padding:40px 20px;
+display:flex;
+justify-content:center;
+}
+
+/* PANEL */
 
 .container{
-    max-width:900px;
-    margin:auto;
-    background:white;
-    padding:40px;
-    border-radius:10px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+max-width:900px;
+width:100%;
+background:var(--panel);
+padding:40px;
+border-radius:18px;
+border:1px solid rgba(102,252,241,0.15);
+backdrop-filter:blur(10px);
+
+box-shadow:
+0 10px 40px rgba(0,0,0,0.45),
+0 0 0 1px rgba(102,252,241,0.05) inset;
 }
+
+/* HEADINGS */
 
 h1{
-    margin-top:0;
+margin-top:0;
+color:var(--cyan);
 }
 
-.section{
-    margin-top:30px;
+h2{
+color:var(--pink);
+margin-bottom:10px;
+}
+
+/* TEXT */
+
+p{
+color:var(--text);
+line-height:1.6;
 }
 
 ul{
-    padding-left:20px;
+padding-left:20px;
+color:var(--text);
+line-height:1.7;
 }
 
-footer{
-    margin-top:40px;
-    font-size:14px;
-    color:#666;
-}
-
-/* Back to Shop Button */
+/* BACK BUTTON */
 
 .back-btn{
-    display:inline-block;
-    margin-bottom:25px;
-    text-decoration:none;
-    background:#4a6cf7;
-    color:white;
-    padding:10px 18px;
-    border-radius:6px;
-    font-size:14px;
+display:inline-block;
+margin-bottom:25px;
+text-decoration:none;
+background:var(--cyan);
+color:#000;
+padding:10px 18px;
+border-radius:10px;
+font-size:14px;
+font-weight:bold;
+transition:0.2s;
 }
 
 .back-btn:hover{
-    background:#3955c8;
+transform:translateY(-2px);
+background:#4be0d6;
+}
+
+/* SECTIONS */
+
+.section{
+margin-top:30px;
+padding-top:15px;
+border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* FOOTER */
+
+footer{
+margin-top:40px;
+font-size:13px;
+color:#777;
+text-align:center;
 }
 
 </style>
@@ -68,15 +120,14 @@ footer{
 
 <div class="container">
 
-<h1>Icon License Agreement</h1>
-
 <a class="back-btn" href="/products.html">← Back to Shop</a>
+
+<h1>Icon License Agreement</h1>
 
 <p>
 All icons sold on this website are owned by <strong>Prime Cyber Assets</strong>.
 By purchasing or downloading these icons you agree to the following license terms.
 </p>
-
 
 <div class="section">
 
@@ -93,7 +144,6 @@ By purchasing or downloading these icons you agree to the following license term
 
 </div>
 
-
 <div class="section">
 
 <h2>Not Allowed</h2>
@@ -107,7 +157,6 @@ By purchasing or downloading these icons you agree to the following license term
 
 </div>
 
-
 <div class="section">
 
 <h2>Ownership</h2>
@@ -119,7 +168,6 @@ Purchasing a product grants you a license to use the icons but does not transfer
 
 </div>
 
-
 <div class="section">
 
 <h2>Refund Policy</h2>
@@ -130,7 +178,6 @@ Due to the nature of digital downloads, all sales are final and non-refundable.
 
 </div>
 
-
 <footer>
 © 2026 Prime Cyber Assets
 </footer>
@@ -138,5 +185,4 @@ Due to the nature of digital downloads, all sales are final and non-refundable.
 </div>
 
 </body>
-
 </html>
