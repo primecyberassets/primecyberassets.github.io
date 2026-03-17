@@ -3,13 +3,29 @@
 <body style="background:black;color:white;text-align:center;padding:80px;font-family:Arial;">
 
 <h1>Download Ready</h1>
-
 <p>Your Fitness Icon Bundle is ready.</p>
 
-<a href="/downloads/pca_fitness_J91d.zip" download
-style="background:#66fcf1;color:black;padding:14px 20px;border-radius:8px;text-decoration:none;">
-Download Now
-</a>
+<button onclick="downloadFile()"
+style="background:#66fcf1;color:black;padding:14px 20px;border-radius:8px;border:none;font-weight:bold;">
+Download Fitness Icons
+</button>
+
+<script>
+(function () {
+  var ref = document.referrer || "";
+  if (!ref.includes("stripe.com")) {
+    document.body.innerHTML = `
+      <h1>Access Restricted</h1>
+      <p>Please complete your purchase first.</p>
+      <a href="/products.html" style="color:#66fcf1;">Return to Shop</a>
+    `;
+  }
+})();
+
+function downloadFile(){
+  window.location.href="/downloads/pca_fitness_J91d.zip";
+}
+</script>
 
 </body>
 </html>
