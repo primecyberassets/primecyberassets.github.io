@@ -36,6 +36,11 @@ text-align:center;
 max-width:420px;
 box-shadow:0 10px 40px rgba(0,0,0,0.4);
 }
+.panel img{
+width:100%;
+border-radius:12px;
+margin-bottom:15px;
+}
 h1{color:var(--cyan);margin-bottom:10px;}
 p{color:#ccc;margin-bottom:20px;}
 .btn{
@@ -62,18 +67,21 @@ color:#777;
 
 <body>
 
-<div class="product-card">
-    <img src="assets/bundle-icon-uti.png" alt="Utility Icons">
+<div class="panel">
 
-    <h2>Utility Icon Bundle</h2>
+<img src="assets/bundle-icon-uti.png" alt="Utility Icons">
 
-    <p>
-        System-style icons for apps, settings, notifications, and core features.
-    </p>
+<h1>Download Ready</h1>
+<p>Your Utility Icon Bundle is ready.</p>
 
-    <a href="YOUR_STRIPE_UTILITY_LINK" class="buy-btn">
-        Buy Now
-    </a>
+<button class="btn" onclick="downloadFile()">
+Download Now
+</button>
+
+<div class="footer">
+Prime Cyber Assets
+</div>
+
 </div>
 
 <script>
