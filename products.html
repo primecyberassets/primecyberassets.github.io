@@ -33,8 +33,6 @@ background-image:
 radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
 radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
 linear-gradient(to bottom,#07080c,#000);
-
-padding:0;
 }
 
 .shell{
@@ -74,10 +72,6 @@ text-decoration:none;
 font-weight:bold;
 }
 
-.nav-links a:hover{
-background:var(--row-hover);
-}
-
 .nav-links a.active{
 background:rgba(102,252,241,0.15);
 }
@@ -85,15 +79,6 @@ background:rgba(102,252,241,0.15);
 .content{
 flex:1;
 padding:30px 40px;
-}
-
-.content-inner{
-max-width:1100px;
-}
-
-h1{
-color:var(--cyan);
-margin-bottom:10px;
 }
 
 .grid{
@@ -142,19 +127,8 @@ margin-bottom:6px;
 }
 
 .price{
-color:#fff;
 font-weight:bold;
 margin-bottom:6px;
-}
-
-.card h3{
-color:var(--pink);
-margin:6px 0;
-}
-
-.card p{
-color:#ccc;
-font-size:0.95rem;
 }
 
 .btn-row{
@@ -168,12 +142,11 @@ padding:10px 14px;
 border-radius:8px;
 font-weight:bold;
 text-decoration:none;
-transition:all .2s ease;
+transition:0.2s;
 }
 
 .btn:hover{
 transform:translateY(-2px);
-opacity:.9;
 }
 
 .btn-buy{
@@ -181,182 +154,94 @@ background:#ff90e8;
 color:#000;
 }
 
-.btn-store{
-border:1px solid var(--cyan);
-color:var(--cyan);
-}
-
 .license-link{
 margin-top:6px;
 font-size:0.85rem;
 }
 
-.license-link a{
-color:var(--cyan);
-text-decoration:none;
-}
-
 </style>
 </head>
-
 
 <body>
 
 <div class="shell">
 
 <div class="sidebar">
-
-<div class="sidebar-title"><span>PCA</span> Navigation</div>
+<div class="sidebar-title">PCA Navigation</div>
 
 <ul class="nav-links">
 <li><a href="index.html">Home</a></li>
 <li><a href="apps.html">Apps</a></li>
 <li><a class="active" href="products.html">Shop</a></li>
 <li><a href="product-license.html">License</a></li>
-<li>
-<a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
-target="_blank" rel="noopener noreferrer">
-YouTube Videos
-</a>
-</li>
 </ul>
-
 </div>
-
 
 <div class="content">
 
-<div class="content-inner">
-
-<h1>Shop Digital Products</h1>
-<p>Quick, practical downloads. Commercial use included with every icon bundle.</p>
+<h1 style="color:#66fcf1;">Shop Digital Products</h1>
 
 <div class="grid">
 
-<!-- PRODUCT 1 -->
+<!-- FINANCE -->
 
 <div class="card">
-
 <div class="thumb">
-<img src="./assets/bundle-icon-fit.png" alt="Fitness App Icon Bundle">
+<img src="./assets/bundle-icon-fin.png" alt="Finance Icons">
 </div>
 
 <div class="badge">Commercial Use Included</div>
-<div class="price">$6.00</div>
+<div class="price">$9</div>
 
-<h3>Premium Fitness App Icon Bundle</h3>
+<h3 style="color:#ff4fd8;">Premium Finance App Icons</h3>
 
-<p>
-High-quality fitness icons including dumbbells, workout symbols,
-and activity trackers perfect for apps and branding.
-</p>
+<p>Finance icons for fintech dashboards and apps.</p>
 
 <div class="btn-row">
-
 <a class="btn btn-buy"
-href="https://buy.stripe.com/test_3cIdR267j1pC2C14B47kc00"
+href="https://buy.stripe.com/cNibIV5kl2iF6kLeO4aIM03"
 target="_blank"
 rel="noopener noreferrer">
 Buy Now
 </a>
-
 </div>
 
 <div class="license-link">
 <a href="product-license.html">License Details</a>
 </div>
-
 </div>
 
-
-<!-- PRODUCT 2 -->
+<!-- FITNESS -->
 
 <div class="card">
-
 <div class="thumb">
-<img src="./assets/bundle-icon-fin.png" alt="Finance App Icons">
+<img src="./assets/bundle-icon-fit.png" alt="Fitness Icons">
 </div>
 
 <div class="badge">Commercial Use Included</div>
+<div class="price">$9</div>
 
-<h3>Premium Finance App Icons</h3>
+<h3 style="color:#ff4fd8;">Premium Fitness App Icon Bundle</h3>
 
-<p>
-Finance icons for fintech dashboards, investment apps,
-banking interfaces, and crypto-inspired platforms.
-</p>
+<p>High-quality fitness icons for apps and branding.</p>
 
 <div class="btn-row">
-
 <a class="btn btn-buy"
-href="https://pcassets.gumroad.com/l/pf3dip15?layout=profile"
+href="https://buy.stripe.com/dRm6oBdQRcXj8sTdK0aIM04"
 target="_blank"
 rel="noopener noreferrer">
-Buy on Gumroad
+Buy Now
 </a>
-
-<a class="btn btn-store"
-href="https://pcassets.gumroad.com"
-target="_blank"
-rel="noopener noreferrer">
-Full Store
-</a>
-
 </div>
 
 <div class="license-link">
 <a href="product-license.html">License Details</a>
 </div>
-
-</div>
-
-
-<!-- PRODUCT 3 -->
-
-<div class="card">
-
-<div class="thumb">
-<img src="./assets/bundle-icon-uti.png" alt="Utility App Icon Bundle">
-</div>
-
-<div class="badge">Commercial Use Included</div>
-
-<h3>Premium Utility App Icon Bundle</h3>
-
-<p>
-A 10-icon premium modern utility pack designed for
-SaaS products, startups, and professional mobile interfaces.
-</p>
-
-<div class="btn-row">
-
-<a class="btn btn-buy"
-href="https://pcassets.gumroad.com/l/utibun?layout=profile"
-target="_blank"
-rel="noopener noreferrer">
-Buy on Gumroad
-</a>
-
-<a class="btn btn-store"
-href="https://pcassets.gumroad.com"
-target="_blank"
-rel="noopener noreferrer">
-Full Store
-</a>
-
-</div>
-
-<div class="license-link">
-<a href="product-license.html">License Details</a>
 </div>
 
 </div>
 
 </div>
-
-</div>
-</div>
-
 </div>
 
 </body>
