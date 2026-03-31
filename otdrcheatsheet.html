@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIAVI OTDR Cheat Sheet</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: rgba(18, 28, 48, 0.88);
+      --panel-2: rgba(25, 38, 63, 0.92);
+      --text: #eaf2ff;
+      --muted: #b5c5e6;
+      --line: rgba(140, 175, 255, 0.22);
+      --accent: #71b7ff;
+      --accent-2: #86ffd6;
+      --warn: #ffd27a;
+      --good: #9cffab;
+      --bad: #ff9c9c;
+      --shadow: 0 20px 45px rgba(0,0,0,0.35);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(113,183,255,0.12), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(134,255,214,0.10), transparent 25%),
+        linear-gradient(180deg, #08101d, #10192b 55%, #0b1220);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      width: min(1200px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 60px;
+    }
+
+    .hero {
+      background: linear-gradient(145deg, rgba(20,33,56,0.95), rgba(9,18,34,0.95));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(113,183,255,0.20), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      background: rgba(134,255,214,0.10);
+      border: 1px solid rgba(134,255,214,0.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3 { margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.05; }
+    h2 { font-size: clamp(1.15rem, 2vw, 1.7rem); }
+    h3 { font-size: 1rem; color: var(--accent-2); }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 820px;
+      font-size: 1.02rem;
+      margin-bottom: 18px;
+    }
+
+    .top-grid,
+    .grid,
+    .mini-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .top-grid { grid-template-columns: repeat(12, 1fr); margin-top: 22px; }
+    .grid { grid-template-columns: repeat(12, 1fr); margin-top: 22px; }
+    .mini-grid { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-7 { grid-column: span 7; }
+    .span-6 { grid-column: span 6; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      font-size: 0.92rem;
+    }
+
+    .term {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 12px;
+      margin-top: 12px;
+    }
+
+    .term:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .label {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    li + li { margin-top: 8px; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 520px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--accent-2);
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .callout {
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      background: rgba(113,183,255,0.08);
+      border-radius: 14px;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    .note-good { border-left-color: var(--good); background: rgba(156,255,171,0.08); }
+    .note-warn { border-left-color: var(--warn); background: rgba(255,210,122,0.09); }
+    .note-bad { border-left-color: var(--bad); background: rgba(255,156,156,0.08); }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .span-8, .span-7, .span-6, .span-5, .span-4 { grid-column: span 12; }
+      .hero { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Field Cheat Sheet</div>
+      <h1>VIAVI OTDR Quick Reference</h1>
+      <p class="subtitle">
+        A clean, unlisted-style cheat sheet for reading OTDR traces, recognizing common event icons,
+        checking typical loss and reflection values, and remembering the definitions that matter when the screen starts talking in fiber hieroglyphics.
+      </p>
+      <div class="chips">
+        <div class="chip">Singlemode: 1310 / 1550 nm</div>
+        <div class="chip">Trace = distance + loss + reflections</div>
+        <div class="chip">Use launch cable</div>
+        <div class="chip">Receive cable helps read far-end connector</div>
+        <div class="chip">Bends show worse at 1550 nm</div>
+      </div>
+    </section>
+
+    <section class="top-grid">
+      <div class="card span-7">
+        <h2>What an OTDR is actually doing</h2>
+        <p>
+          An OTDR sends a pulse of light into the fiber and listens for backscatter and reflections coming back.
+          That lets it estimate distance to events, event loss, reflectance, total loss, and the general attenuation slope of the fiber.
+        </p>
+        <div class="callout">
+          Think of the trace like a canyon echo map: flat-ish slope means normal fiber loss, a step down means loss,
+          a spike means reflection, and a cliff at the end usually means you found the fiber end or a break.
+        </div>
+      </div>
+
+      <div class="card span-5">
+        <h2>Fast screen-reading order</h2>
+        <ul>
+          <li>Check wavelength being used</li>
+          <li>Find launch cable end before judging first connector</li>
+          <li>Look for spikes = reflective events</li>
+          <li>Look for steps = loss events</li>
+          <li>Compare 1310 and 1550 if a bend is suspected</li>
+          <li>Confirm whether the far end is real or a ghost</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span-6">
+        <h2>VIAVI Smart Event Icons</h2>
+        <div class="term"><span class="label">Front Connector / Test Port</span><div>The OTDR's own front-end connection.</div></div>
+        <div class="term"><span class="label">Launch Cable</span><div>Reference fiber between the OTDR and the fiber under test. Helps get past the dead zone and measure the first connection.</div></div>
+        <div class="term"><span class="label">Splice</span><div>Usually a non-reflective loss event. Fusion splices should be small and clean.</div></div>
+        <div class="term"><span class="label">Connector</span><div>Reflective event. Usually shows a spike plus some loss.</div></div>
+        <div class="term"><span class="label">Bend</span><div>Macrobend or stress point. Often worse at 1550 nm than at 1310 nm.</div></div>
+        <div class="term"><span class="label">Bend on Connector</span><div>Loss behavior associated with a connector area plus bend characteristics.</div></div>
+        <div class="term"><span class="label">Splitter / 2x Splitter / X Splitter</span><div>Large non-reflective loss event used in PON networks.</div></div>
+        <div class="term"><span class="label">MUX / DMUX</span><div>WDM component causing insertion loss, often with low reflection if APC connected.</div></div>
+        <div class="term"><span class="label">Fiber End</span><div>End of the tested fiber or an open end. Often a strong reflection if open.</div></div>
+        <div class="term"><span class="label">Ghost</span><div>A false event caused by strong reflections bouncing around. Sneaky trace mirage.</div></div>
+      </div>
+
+      <div class="card span-6">
+        <h2>Core Definitions</h2>
+        <div class="term"><span class="label">Event</span><div>Any measurable feature on the OTDR trace, such as a splice, connector, bend, splitter, break, or fiber end.</div></div>
+        <div class="term"><span class="label">Attenuation</span><div>Normal signal loss along the fiber, usually shown as the slope of the trace in dB/km.</div></div>
+        <div class="term"><span class="label">Event Loss</span><div>The dB drop caused by one event, like a splice or connector.</div></div>
+        <div class="term"><span class="label">Reflectance</span><div>How much light is reflected back from one event. More negative dB values are better.</div></div>
+        <div class="term"><span class="label">ORL</span><div>Optical Return Loss. Total reflected light coming back from the whole link. It is commonly shown as a positive number. Higher is better.</div></div>
+        <div class="term"><span class="label">Dead Zone</span><div>The blinded section after a strong reflection or at the OTDR front end where nearby events cannot be separated clearly.</div></div>
+        <div class="term"><span class="label">Launch Cable</span><div>Also called a pulse suppressor. Lets the OTDR recover from the launch pulse before the first real event.</div></div>
+        <div class="term"><span class="label">Receive Cable</span><div>Fiber placed at the far end so the last connector can be measured properly.</div></div>
+        <div class="term"><span class="label">Bidirectional Test</span><div>Testing from both ends and averaging results to improve accuracy, especially across dissimilar fibers or suspicious splice readings.</div></div>
+        <div class="term"><span class="label">Gainer</span><div>An event that appears to have negative loss because of backscatter coefficient differences between two fibers. It can fool a one-way test.</div></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span-6">
+        <h2>Typical Attenuation / Loss Values</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Item</th><th>Typical Value</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Singlemode fiber at 1550 nm</td><td>~0.2 dB/km</td><td>Lower attenuation than 1310 nm</td></tr>
+              <tr><td>Singlemode fiber at 1310 nm</td><td>~0.35 dB/km</td><td>Good comparison wavelength for bends</td></tr>
+              <tr><td>Multimode fiber at 1300 nm</td><td>~1 dB/km</td><td>Typical legacy reference</td></tr>
+              <tr><td>Multimode fiber at 850 nm</td><td>~3 dB/km</td><td>Higher attenuation</td></tr>
+              <tr><td>Fusion splice</td><td>~0.07 dB</td><td>Older or standards-based ranges may run ~0.1 to 0.3 dB</td></tr>
+              <tr><td>Mechanical splice</td><td>~0.15 to 0.5 dB</td><td>Usually reflective compared with fusion splice</td></tr>
+              <tr><td>Connector pair</td><td>~0.15 to 0.5 dB</td><td>Cleanliness matters a lot</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card span-6">
+        <h2>Typical Reflection / Reflectance Values</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Item</th><th>Typical Value</th><th>Reading Hint</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>UPC connector, clean and mated</td><td>~ -50 to -59 dB</td><td>Lower reflection than open end</td></tr>
+              <tr><td>APC connector, clean and mated</td><td>~ -65 to -77 dB</td><td>Very low reflection</td></tr>
+              <tr><td>Mechanical splice, clean</td><td>~ -40 to -50 dB</td><td>More reflective than fusion splice</td></tr>
+              <tr><td>UPC connector open to air</td><td>~ -14 to -20 dB</td><td>Strong reflection</td></tr>
+              <tr><td>APC connector open to air</td><td>~ -35 to -45 dB</td><td>Still reflective, but lower than UPC</td></tr>
+              <tr><td>Fiber break / cut</td><td>~ -30 to -48 dB</td><td>Often around -42 dB</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span-7">
+        <h2>Typical Splitter and Component Loss</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Component</th><th>Typical Loss</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1 x 2 splitter</td><td>3 to 5 dB</td></tr>
+              <tr><td>1 x 4 splitter</td><td>6 to 8 dB</td></tr>
+              <tr><td>1 x 8 splitter</td><td>9 to 11 dB</td></tr>
+              <tr><td>1 x 16 splitter</td><td>12 to 14 dB</td></tr>
+              <tr><td>1 x 32 splitter</td><td>15 to 17 dB</td></tr>
+              <tr><td>1 x 64 splitter</td><td>18 to 20 dB</td></tr>
+              <tr><td>CWDM mux / demux</td><td>1 to 4 dB</td></tr>
+              <tr><td>DWDM mux / demux</td><td>1 to 5 dB</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout note-warn">
+          Splitters usually create a big non-reflective drop. On newer APC-connected splitter systems, reflection may be so low that the OTDR treats the event more like a splice.
+        </div>
+      </div>
+
+      <div class="card span-5">
+        <h2>Bend clues</h2>
+        <ul>
+          <li>If a bend is suspected, test at both 1310 nm and 1550 nm.</li>
+          <li>Average bend loss may be several times greater at 1550 nm.</li>
+          <li>A large bend or kink can look like the end of fiber if the loss is extreme.</li>
+        </ul>
+        <div class="callout note-good">
+          Fusion splices and normal bends are generally expected to show little to no reflection.
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span-4">
+        <h2>Dead Zone Basics</h2>
+        <ul>
+          <li><strong>Event dead zone:</strong> how close two events can be before the OTDR can no longer separate them.</li>
+          <li><strong>Attenuation dead zone:</strong> how long it takes after a reflective event before accurate loss measurement can resume.</li>
+          <li>Shorter pulse widths improve resolution but reduce test range.</li>
+        </ul>
+      </div>
+
+      <div class="card span-4">
+        <h2>Launch / Receive Cable Rules</h2>
+        <ul>
+          <li>Always use a launch cable to measure the first connector properly.</li>
+          <li>Use a receive cable if you need to measure the last connector at the far end.</li>
+          <li>Keep these cables clean and known-good or they become part of the problem parade.</li>
+        </ul>
+      </div>
+
+      <div class="card span-4">
+        <h2>Cursor / Table Readout</h2>
+        <ul>
+          <li><strong>Distance:</strong> where the event is</li>
+          <li><strong>Loss:</strong> dB added by the event</li>
+          <li><strong>Reflect:</strong> reflectance of the event</li>
+          <li><strong>Slope:</strong> dB/km before the event</li>
+          <li><strong>Total loss:</strong> accumulated link attenuation</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span-8">
+        <h2>Troubleshooting quick guide</h2>
+        <div class="mini-grid">
+          <div>
+            <h3>Big spike</h3>
+            <p>Usually a connector, open end, or break. Check whether it is real or a ghost created by a previous strong reflection.</p>
+          </div>
+          <div>
+            <h3>Step down with no spike</h3>
+            <p>Usually splice loss, splitter loss, or a non-reflective stress point.</p>
+          </div>
+          <div>
+            <h3>Worse at 1550 nm</h3>
+            <p>Strong bend suspect. Compare with 1310 nm before calling it a cut.</p>
+          </div>
+          <div>
+            <h3>Negative loss or strange gain</h3>
+            <p>Possible gainer effect from backscatter mismatch. Bidirectional testing can reveal the truth.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card span-4">
+        <h2>Remember this</h2>
+        <ul>
+          <li>Higher ORL is better</li>
+          <li>More negative reflectance is better</li>
+          <li>Short pulse = more detail</li>
+          <li>Long pulse = more distance</li>
+          <li>Dirty connectors create fake drama</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span-12">
+        <h2>Notes section</h2>
+        <p style="min-height:120px; color: var(--muted); border: 1px dashed rgba(255,255,255,0.18); border-radius: 16px; padding: 16px; margin: 0;">
+          Add your own field notes here: preferred pulse widths, common splitter locations, customer standards, house limits, favorite launch cable lengths, or those weird sites where ghosts pop up like fiber poltergeists.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      Built as an unlisted-style quick reference page for a VIAVI OTDR workflow.
+    </div>
+  </div>
+</body>
+</html>
