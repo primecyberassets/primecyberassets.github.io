@@ -23,6 +23,8 @@
 
     * { box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Inter, Arial, Helvetica, sans-serif;
@@ -32,7 +34,6 @@
         linear-gradient(180deg, #08101d, #10192b 55%, #0b1220);
       color: var(--text);
       line-height: 1.55;
-      scroll-behavior: smooth;
     }
 
     .app-shell {
@@ -83,8 +84,6 @@
       font-size: 0.92rem;
     }
 
-    .nav-group + .nav-group { margin-top: 18px; }
-
     .nav-title {
       color: var(--accent-2);
       font-size: 0.78rem;
@@ -131,16 +130,6 @@
       display: block;
       font-size: 0.84rem;
       color: var(--muted);
-    }
-
-    .status-pill {
-      margin-top: 18px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: rgba(255,210,122,0.09);
-      border: 1px solid rgba(255,210,122,0.18);
-      color: var(--warn);
-      font-size: 0.88rem;
     }
 
     .main-content { min-width: 0; }
@@ -223,6 +212,7 @@
     .panel, .result-card { padding: 18px; }
 
     .field { margin-bottom: 16px; }
+
     .field-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -358,7 +348,6 @@
       text-align: center;
     }
 
-
     .back-to-top {
       position: fixed;
       right: 22px;
@@ -391,18 +380,26 @@
 
     @media (max-width: 980px) {
       .app-shell { grid-template-columns: 1fr; }
+
       .sidebar {
         position: relative;
         height: auto;
         border-right: 0;
         border-bottom: 1px solid var(--line);
       }
+
       .side-nav {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       }
+
       .field-row,
-      .actions { grid-template-columns: 1fr; }
-      .span-8, .span-7, .span-6, .span-5, .span-4 { grid-column: span 12; }
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .span-8, .span-7, .span-6, .span-5, .span-4 {
+        grid-column: span 12;
+      }
     }
   </style>
 </head>
@@ -412,38 +409,38 @@
       <div class="brand">
         <small>Prime Cyber Assets</small>
         <strong>Fiber Tool Kit</strong>
-        <span>A growing field hub for fiber reference pages, calculators, and quick helpers.</span>
+        <span>Quick access to field-ready fiber tools, references, and wiring patterns.</span>
       </div>
 
       <div class="nav-group">
-  <div class="nav-title">Main</div>
-  <nav class="side-nav">
-    <a class="nav-link" href="fiber_toolkit.html">
-      <strong>Home</strong>
-      <span>Overview of all tools offered</span>
-    </a>
-    <a class="nav-link" href="otdrcheatsheet.html">
-      <strong>OTDR Cheat Sheet</strong>
-      <span>Definitions, events, and field reference</span>
-    </a>
-    <a class="nav-link active" href="fiber_calculator.html">
-      <strong>Fiber Calculator</strong>
-      <span>Loose tube, ribbon, and flex ribbon math</span>
-    </a>
-    <a class="nav-link" href="fiber_loss.html">
-      <strong>Fiber Loss Calculator</strong>
-      <span>Estimated end-to-end link loss</span>
-    </a>
-    <a class="nav-link" href="fiber_color_code.html">
-      <strong>Fiber Color Code</strong>
-      <span>12-color order and quick lookup</span>
-    </a>
-    <a class="nav-link" href="cat_power_pattern.html">
-      <strong>CAT5 & Power Patterns</strong>
-      <span>RJ45 and 7-conductor reference</span>
-    </a>
-  </nav>
-</div>
+        <div class="nav-title">Main</div>
+        <nav class="side-nav">
+          <a class="nav-link" href="fiber_toolkit.html">
+            <strong>Home</strong>
+            <span>Overview of all tools offered</span>
+          </a>
+          <a class="nav-link" href="otdrcheatsheet.html">
+            <strong>OTDR Cheat Sheet</strong>
+            <span>Definitions, events, and field reference</span>
+          </a>
+          <a class="nav-link" href="fiber_calculator.html">
+            <strong>Fiber Calculator</strong>
+            <span>Loose tube, ribbon, and flex ribbon math</span>
+          </a>
+          <a class="nav-link active" href="fiber_loss.html">
+            <strong>Fiber Loss Calculator</strong>
+            <span>Estimated end-to-end link loss</span>
+          </a>
+          <a class="nav-link" href="fiber_color_code.html">
+            <strong>Fiber Color Code</strong>
+            <span>12-color order and quick lookup</span>
+          </a>
+          <a class="nav-link" href="cat_power_pattern.html">
+            <strong>CAT5 & Power Patterns</strong>
+            <span>RJ45 and 7-conductor reference</span>
+          </a>
+        </nav>
+      </div>
     </aside>
 
     <main class="main-content">
@@ -538,18 +535,18 @@
             <div class="field">
               <label class="field-label">Quick Presets</label>
               <div class="preset-grid">
-                <button class="preset-btn" data-preset="smf1310">SMF 1310</button>
-                <button class="preset-btn" data-preset="smf1550">SMF 1550</button>
-                <button class="preset-btn" data-preset="mmf850">MMF 850</button>
-                <button class="preset-btn" data-preset="mmf1300">MMF 1300</button>
-                <button class="preset-btn" data-preset="pon32">1x32 PON</button>
-                <button class="preset-btn" data-preset="clean">Clear Extras</button>
+                <button class="preset-btn" data-preset="smf1310" type="button">SMF 1310</button>
+                <button class="preset-btn" data-preset="smf1550" type="button">SMF 1550</button>
+                <button class="preset-btn" data-preset="mmf850" type="button">MMF 850</button>
+                <button class="preset-btn" data-preset="mmf1300" type="button">MMF 1300</button>
+                <button class="preset-btn" data-preset="pon32" type="button">1x32 PON</button>
+                <button class="preset-btn" data-preset="clean" type="button">Clear Extras</button>
               </div>
             </div>
 
             <div class="actions">
-              <button id="btnCalc" class="btn-primary">Calculate Loss</button>
-              <button id="btnReset" class="btn-secondary">Reset</button>
+              <button id="btnCalc" class="btn-primary" type="button">Calculate Loss</button>
+              <button id="btnReset" class="btn-secondary" type="button">Reset</button>
             </div>
           </section>
 
@@ -584,7 +581,7 @@
     </main>
   </div>
 
-  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑ Top</button>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top" type="button">↑ Top</button>
 
   <script>
     const fiberType = document.getElementById('fiberType');
@@ -603,6 +600,7 @@
     const breakdownList = document.getElementById('breakdownList');
     const btnCalc = document.getElementById('btnCalc');
     const btnReset = document.getElementById('btnReset');
+    const backToTop = document.getElementById('backToTop');
 
     function toNumber(value) {
       const num = parseFloat(value);
@@ -716,12 +714,17 @@
     btnCalc.addEventListener('click', calculateLoss);
     btnReset.addEventListener('click', resetForm);
 
-    [lengthInput, lengthUnit, attenuationInput, spliceCountInput, spliceLossInput, connectorCountInput, connectorLossInput, splitterLossInput, extraLossInput]
-      .forEach(el => el.addEventListener('input', calculateLoss));
-
-    calculateLoss();
-
-    const backToTop = document.getElementById('backToTop');
+    [
+      lengthInput,
+      lengthUnit,
+      attenuationInput,
+      spliceCountInput,
+      spliceLossInput,
+      connectorCountInput,
+      connectorLossInput,
+      splitterLossInput,
+      extraLossInput
+    ].forEach(el => el.addEventListener('input', calculateLoss));
 
     function toggleBackToTop() {
       if (window.scrollY > 260) backToTop.classList.add('show');
@@ -733,8 +736,9 @@
     });
 
     window.addEventListener('scroll', toggleBackToTop);
-    toggleBackToTop();
 
+    calculateLoss();
+    toggleBackToTop();
   </script>
 </body>
 </html>
