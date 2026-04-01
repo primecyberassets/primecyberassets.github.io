@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiber Color Code Cheat Sheet</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: rgba(18, 28, 48, 0.88);
+      --panel-2: rgba(25, 38, 63, 0.92);
+      --text: #eaf2ff;
+      --muted: #b5c5e6;
+      --line: rgba(140, 175, 255, 0.22);
+      --accent: #71b7ff;
+      --accent-2: #86ffd6;
+      --warn: #ffd27a;
+      --shadow: 0 20px 45px rgba(0,0,0,0.35);
+      --radius: 22px;
+
+      --blue: #1565C0;
+      --orange: #F57C00;
+      --green: #2E7D32;
+      --brown: #5D4037;
+      --slate: #616161;
+      --white: #F5F5F5;
+      --red: #C62828;
+      --black: #111111;
+      --yellow: #FDD835;
+      --violet: #6A1B9A;
+      --rose: #D81B60;
+      --aqua: #00ACC1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(113,183,255,0.12), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(134,255,214,0.10), transparent 25%),
+        linear-gradient(180deg, #08101d, #10192b 55%, #0b1220);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      padding: 22px 16px;
+      border-right: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(8,16,29,0.98), rgba(14,24,41,0.96));
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      font-size: 0.78rem;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 0.92rem;
+    }
+
+    .nav-group + .nav-group { margin-top: 18px; }
+
+    .nav-title {
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0 10px 8px;
+    }
+
+    .side-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(255,255,255,0.03);
+      transition: 0.2s ease;
+    }
+
+    .nav-link:hover {
+      border-color: var(--line);
+      background: rgba(113,183,255,0.10);
+      transform: translateX(2px);
+    }
+
+    .nav-link.active {
+      border-color: rgba(113,183,255,0.35);
+      background: linear-gradient(145deg, rgba(113,183,255,0.18), rgba(134,255,214,0.08));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .nav-link strong {
+      display: block;
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+
+    .nav-link span {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .status-pill {
+      margin-top: 18px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,210,122,0.09);
+      border: 1px solid rgba(255,210,122,0.18);
+      color: var(--warn);
+      font-size: 0.88rem;
+    }
+
+    .main-content { min-width: 0; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 60px;
+    }
+
+    .hero,
+    .card,
+    .color-card,
+    .lookup-row,
+    .tip-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 30px;
+      background: linear-gradient(145deg, rgba(20,33,56,0.95), rgba(9,18,34,0.95));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -70px -70px auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(113,183,255,0.20), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      background: rgba(134,255,214,0.10);
+      border: 1px solid rgba(134,255,214,0.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3 { margin: 0 0 10px; }
+    h1 { font-size: clamp(2.1rem, 4vw, 3.5rem); line-height: 1.05; }
+    h2 { font-size: clamp(1.15rem, 2vw, 1.7rem); }
+    h3 { font-size: 1rem; color: var(--accent-2); }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 860px;
+      font-size: 1.03rem;
+      margin-bottom: 0;
+    }
+
+    .grid,
+    .color-grid,
+    .lookup-grid,
+    .tip-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .color-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .lookup-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .tip-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card,
+    .color-card,
+    .tip-card {
+      padding: 18px;
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+
+    .swatch {
+      height: 74px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swatch::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.16), transparent 45%);
+      pointer-events: none;
+    }
+
+    .color-card p,
+    .card p,
+    .card li,
+    .tip-card li {
+      color: var(--muted);
+    }
+
+    .color-meta {
+      display: grid;
+      gap: 6px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      font-size: 0.78rem;
+      color: var(--accent-2);
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lookup-row {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .lookup-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.3);
+      flex: 0 0 auto;
+    }
+
+    .lookup-name {
+      font-weight: 800;
+    }
+
+    .lookup-code {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .lookup-right {
+      color: var(--text);
+      font-weight: 800;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .term {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 12px;
+      margin-top: 12px;
+    }
+
+    .term:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .label {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    li + li { margin-top: 8px; }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .side-nav {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .span-8, .span-6, .span-4, .span-12 { grid-column: span 12; }
+      .hero { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <small>Prime Cyber Assets</small>
+        <strong>Fiber Tool Kit</strong>
+        <span>Quick access to your fiber pages with room to grow later.</span>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Main</div>
+        <nav class="side-nav">
+          <a class="nav-link" href="fiber_toolkit.html">
+            <strong>Home</strong>
+            <span>Main toolkit page</span>
+          </a>
+          <a class="nav-link" href="otdrcheatsheet.html">
+            <strong>OTDR Cheat Sheet</strong>
+            <span>Trace help and reference</span>
+          </a>
+          <a class="nav-link" href="fiber_calculator.html">
+            <strong>Fiber Calculator</strong>
+            <span>Fiber count and ribbon math</span>
+          </a>
+          <a class="nav-link" href="fiber_loss.html">
+            <strong>Fiber Loss Calculator</strong>
+            <span>Estimated link loss</span>
+          </a>
+          <a class="nav-link active" href="fiber_color_code.html">
+            <strong>Fiber Color Code</strong>
+            <span>Standard color order cheat sheet</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Future Projects</div>
+        <nav class="side-nav">
+          <a class="nav-link" href="fiber_toolkit.html#future-projects">
+            <strong>Ideas List</strong>
+            <span>Planned pages for later</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="status-pill">
+        Quick lookup for the standard 12-color sequence used across loose tube, ribbon, and fiber count work.
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="wrap">
+        <section class="hero">
+          <div class="eyebrow">Quick Reference</div>
+          <h1>Fiber Color Code Cheat Sheet</h1>
+          <p class="subtitle">
+            A fast visual guide for the standard 12-fiber color order. Good for counting tubes, ribbons, and individual fibers without turning your brain into a spaghetti splice tray.
+          </p>
+        </section>
+
+        <section class="card" style="margin-top:22px;">
+          <h2>Standard 12-Color Order</h2>
+          <div class="color-grid">
+            <article class="color-card">
+              <div class="swatch" style="background: var(--blue);"></div>
+              <div class="color-meta"><h3>1. Blue</h3><span class="tag">Fiber 1</span><p>Starting point of the standard 12-color sequence.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--orange);"></div>
+              <div class="color-meta"><h3>2. Orange</h3><span class="tag">Fiber 2</span><p>Second color in the normal fiber count order.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--green);"></div>
+              <div class="color-meta"><h3>3. Green</h3><span class="tag">Fiber 3</span><p>Common early-count color in tubes and ribbons.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--brown);"></div>
+              <div class="color-meta"><h3>4. Brown</h3><span class="tag">Fiber 4</span><p>Fourth in the base sequence.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--slate);"></div>
+              <div class="color-meta"><h3>5. Slate</h3><span class="tag">Fiber 5</span><p>Often called slate instead of gray in fiber work.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--white);"></div>
+              <div class="color-meta"><h3>6. White</h3><span class="tag">Fiber 6</span><p>Bright midpoint marker in the sequence.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--red);"></div>
+              <div class="color-meta"><h3>7. Red</h3><span class="tag">Fiber 7</span><p>Starts the back half of the 12-color run.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--black);"></div>
+              <div class="color-meta"><h3>8. Black</h3><span class="tag">Fiber 8</span><p>Easy to spot, unless the tray is plotting against you.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--yellow);"></div>
+              <div class="color-meta"><h3>9. Yellow</h3><span class="tag">Fiber 9</span><p>Bright high-visibility count point.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--violet);"></div>
+              <div class="color-meta"><h3>10. Violet</h3><span class="tag">Fiber 10</span><p>Sometimes called purple in casual talk.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--rose);"></div>
+              <div class="color-meta"><h3>11. Rose</h3><span class="tag">Fiber 11</span><p>Often treated like pink in the field.</p></div>
+            </article>
+            <article class="color-card">
+              <div class="swatch" style="background: var(--aqua);"></div>
+              <div class="color-meta"><h3>12. Aqua</h3><span class="tag">Fiber 12</span><p>Closes out the standard 12-color cycle.</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="grid">
+          <div class="card span-8">
+            <h2>Fast Lookup</h2>
+            <div class="lookup-grid">
+              <div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--blue)"></span><div><div class="lookup-name">Blue</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">1</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--orange)"></span><div><div class="lookup-name">Orange</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">2</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--green)"></span><div><div class="lookup-name">Green</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">3</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--brown)"></span><div><div class="lookup-name">Brown</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">4</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--slate)"></span><div><div class="lookup-name">Slate</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">5</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--white)"></span><div><div class="lookup-name">White</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">6</div></div>
+              </div>
+              <div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--red)"></span><div><div class="lookup-name">Red</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">7</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--black)"></span><div><div class="lookup-name">Black</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">8</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--yellow)"></span><div><div class="lookup-name">Yellow</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">9</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--violet)"></span><div><div class="lookup-name">Violet</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">10</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--rose)"></span><div><div class="lookup-name">Rose</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">11</div></div>
+                <div class="lookup-row"><div class="lookup-left"><span class="dot" style="background:var(--aqua)"></span><div><div class="lookup-name">Aqua</div><div class="lookup-code">Position</div></div></div><div class="lookup-right">12</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card span-4">
+            <h2>Remember It Fast</h2>
+            <div class="term"><span class="label">1 to 6</span><div>Blue, Orange, Green, Brown, Slate, White</div></div>
+            <div class="term"><span class="label">7 to 12</span><div>Red, Black, Yellow, Violet, Rose, Aqua</div></div>
+            <div class="term"><span class="label">Field shorthand</span><div>Slate often means gray. Rose often means pink. Violet often gets called purple.</div></div>
+          </div>
+        </section>
+
+        <section class="grid">
+          <div class="card span-6">
+            <h2>How It Repeats</h2>
+            <p>The same 12-color order is reused again and again in fiber work. That means:</p>
+            <ul>
+              <li>Loose tube counts often repeat the standard 12-color sequence.</li>
+              <li>Ribbon fiber positions usually follow the same 12-color order.</li>
+              <li>Higher counts build from the same base pattern instead of inventing a new rainbow every time.</li>
+            </ul>
+          </div>
+
+          <div class="card span-6">
+            <h2>Common Uses</h2>
+            <ul>
+              <li>Identifying fiber position inside a 12-fiber tube</li>
+              <li>Checking ribbon fiber order during splicing</li>
+              <li>Verifying counts when moving between trays and panels</li>
+              <li>Cross-checking tube, ribbon, and fiber math with your calculator page</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:22px;">
+          <h2>Helpful Add-Ons Later</h2>
+          <div class="tip-grid">
+            <div class="tip-card">
+              <h3>Tube Color Chart</h3>
+              <p>Add a separate section for tube colors and stripe rules for higher-count cables.</p>
+            </div>
+            <div class="tip-card">
+              <h3>Ribbon Naming</h3>
+              <p>Add D-, DD-, and repeated ribbon color naming if you want a deeper ribbon reference page later.</p>
+            </div>
+            <div class="tip-card">
+              <h3>Interactive Lookup</h3>
+              <p>Add a small input box later where entering a number instantly highlights the matching color.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="footer">
+          Fiber color code cheat sheet for the Fiber Tool Kit.
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
