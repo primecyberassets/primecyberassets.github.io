@@ -135,6 +135,7 @@ margin-bottom:6px;
 display:flex;
 gap:10px;
 margin-top:10px;
+flex-wrap:wrap;
 }
 
 .btn{
@@ -143,6 +144,7 @@ border-radius:8px;
 font-weight:bold;
 text-decoration:none;
 transition:0.2s;
+display:inline-block;
 }
 
 .btn:hover{
@@ -154,9 +156,45 @@ background:#ff90e8;
 color:#000;
 }
 
+.btn-preview{
+background:rgba(102,252,241,0.15);
+border:1px solid rgba(102,252,241,0.4);
+color:#66fcf1;
+}
+
+.btn-disabled{
+background:rgba(255,255,255,0.10);
+border:1px solid rgba(255,255,255,0.15);
+color:#aaa;
+cursor:not-allowed;
+pointer-events:none;
+}
+
 .license-link{
 margin-top:6px;
 font-size:0.85rem;
+}
+
+.note{
+margin-top:6px;
+font-size:0.82rem;
+color:#9fb0c7;
+}
+
+@media (max-width: 900px){
+.shell{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+border-right:none;
+border-bottom:1px solid rgba(102,252,241,0.15);
+}
+
+.content{
+padding:24px 18px;
+}
 }
 
 </style>
@@ -181,6 +219,30 @@ font-size:0.85rem;
 <h1 style="color:#66fcf1;">Shop Digital Products</h1>
 
 <div class="grid">
+
+<!-- FIBER TOOL KIT -->
+<div class="card">
+<div class="thumb">
+<img src="assets/fiber_toolkit_image.png" alt="Fiber Tool Kit">
+</div>
+
+<div class="badge">Field Toolkit Access</div>
+<div class="price">Price Coming Soon</div>
+
+<h3 style="color:#ff4fd8;">Premium Fiber Tool Kit</h3>
+<p>Field-ready fiber references, calculators, CAT5 patterns, power pinouts, and mobile-friendly toolkit access.</p>
+
+<div class="btn-row">
+<a class="btn btn-disabled" href="#">
+Buy Link Coming Soon
+</a>
+<a class="btn btn-preview" href="fiber_toolkit.html">
+Preview Toolkit
+</a>
+</div>
+
+<div class="note">Stripe checkout link will be added when the product is ready.</div>
+</div>
 
 <!-- FINANCE -->
 <div class="card">
