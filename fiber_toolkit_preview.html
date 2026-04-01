@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiber Tool Kit Preview - Prime Cyber Assets</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <style>
+    :root{
+      --cyan:#66fcf1;
+      --pink:#ff4fd8;
+      --bg:#000;
+      --text:#f2f6ff;
+      --muted:#b8c7dd;
+      --line:rgba(102,252,241,0.18);
+      --shell:rgba(10,10,15,0.62);
+      --card:rgba(255,255,255,0.04);
+      --card-2:rgba(255,255,255,0.06);
+      --shadow:0 20px 45px rgba(0,0,0,0.35);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background-color:var(--bg);
+      background-image:
+        radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
+        radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
+        linear-gradient(to bottom,#07080c,#000);
+    }
+
+    .shell{
+      display:flex;
+      min-height:100vh;
+      background:var(--shell);
+      backdrop-filter:blur(10px);
+    }
+
+    .sidebar{
+      width:260px;
+      padding:22px 16px;
+      border-right:1px solid rgba(102,252,241,0.15);
+    }
+
+    .sidebar-title{
+      font-weight:800;
+      margin-bottom:16px;
+      color:var(--cyan);
+    }
+
+    .nav-links{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .nav-links a{
+      display:block;
+      padding:12px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.04);
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.2s;
+    }
+
+    .nav-links a:hover{
+      background:rgba(102,252,241,0.10);
+    }
+
+    .nav-links a.active{
+      background:rgba(102,252,241,0.15);
+      border:1px solid rgba(102,252,241,0.22);
+    }
+
+    .content{
+      flex:1;
+      padding:30px 40px 50px;
+    }
+
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:24px;
+      align-items:center;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:0.78rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--cyan);
+      background:rgba(102,252,241,0.10);
+      border:1px solid rgba(102,252,241,0.24);
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:12px;
+    }
+
+    h1,h2,h3{
+      margin:0 0 10px;
+    }
+
+    h1{
+      font-size:clamp(2rem,4vw,3.5rem);
+      line-height:1.04;
+    }
+
+    h2{
+      font-size:1.5rem;
+      color:var(--cyan);
+    }
+
+    h3{
+      font-size:1.05rem;
+      color:var(--pink);
+    }
+
+    .hero p,
+    .card p,
+    .feature-list li,
+    .faq-item p{
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .hero-image{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(102,252,241,0.14);
+      border-radius:18px;
+      padding:14px;
+    }
+
+    .hero-image img{
+      width:100%;
+      display:block;
+      border-radius:14px;
+      object-fit:cover;
+      aspect-ratio:1/1;
+    }
+
+    .badge-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:16px 0 18px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(102,252,241,0.22);
+      background:rgba(255,255,255,0.04);
+      font-size:0.85rem;
+      color:#fff;
+    }
+
+    .button-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:20px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 16px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:800;
+      transition:0.2s;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-buy{
+      background:#ff90e8;
+      color:#000;
+    }
+
+    .btn-secondary{
+      background:rgba(102,252,241,0.12);
+      border:1px solid rgba(102,252,241,0.35);
+      color:var(--cyan);
+    }
+
+    .btn-dark{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.14);
+      color:#fff;
+    }
+
+    .section{
+      margin-top:24px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .feature-list{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .feature-list li + li{
+      margin-top:8px;
+    }
+
+    .pricing{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .price-box{
+      background:linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border:1px solid rgba(102,252,241,0.20);
+      border-radius:16px;
+      padding:20px;
+    }
+
+    .price{
+      font-size:2rem;
+      font-weight:900;
+      color:var(--cyan);
+      margin:10px 0;
+    }
+
+    .small-note{
+      font-size:0.9rem;
+      color:#9fb0c7;
+      margin-top:10px;
+    }
+
+    .faq{
+      display:grid;
+      gap:14px;
+    }
+
+    .faq-item{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:16px;
+    }
+
+    .footer-note{
+      margin-top:28px;
+      text-align:center;
+      color:#8ea3c1;
+      font-size:0.9rem;
+    }
+
+    @media (max-width: 950px){
+      .shell{
+        flex-direction:column;
+      }
+
+      .sidebar{
+        width:100%;
+        border-right:none;
+        border-bottom:1px solid rgba(102,252,241,0.15);
+      }
+
+      .content{
+        padding:24px 18px 40px;
+      }
+
+      .hero{
+        grid-template-columns:1fr;
+      }
+
+      .pricing{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="sidebar-title">PCA Navigation</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="products.html" class="active">Shop</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <div class="wrap">
+
+        <section class="hero">
+          <div>
+            <span class="eyebrow">Premium Product Preview</span>
+            <h1>Premium Fiber Tool Kit</h1>
+            <p>
+              A mobile-friendly field toolkit built for quick lookups, cleaner planning, and less second-guessing on the job.
+              It brings your fiber references, calculators, CAT5 patterns, and power pinouts into one practical place.
+            </p>
+
+            <div class="badge-row">
+              <span class="badge">Field Ready</span>
+              <span class="badge">Mobile Friendly</span>
+              <span class="badge">Fiber + Copper Reference</span>
+              <span class="badge">Calculator Tools Included</span>
+            </div>
+
+            <div class="button-row">
+              <a class="btn btn-buy" href="#">Buy Link Coming Soon</a>
+              <a class="btn btn-secondary" href="products.html">Back to Shop</a>
+              <a class="btn btn-dark" href="fiber_toolkit.html">View Live Preview</a>
+            </div>
+
+            <div class="small-note">
+              Your Stripe checkout link can be dropped into the Buy button when ready.
+            </div>
+          </div>
+
+          <div class="hero-image">
+            <img src="assets/fiber_toolkit_image.png" alt="Fiber Tool Kit Preview Image">
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="grid">
+            <div class="card">
+              <h2>What’s Included</h2>
+              <ul class="feature-list">
+                <li>VIAVI OTDR cheat sheet</li>
+                <li>Fiber calculator for tube, ribbon, and flex ribbon math</li>
+                <li>Fiber loss calculator for estimated planning loss</li>
+                <li>Fiber color code quick reference</li>
+                <li>CAT5 and power pattern reference page</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h2>Why It Helps</h2>
+              <ul class="feature-list">
+                <li>Faster lookups in the field</li>
+                <li>Less time counting and recounting fibers</li>
+                <li>Cleaner planning before testing or splicing</li>
+                <li>Useful on a phone without feeling cramped</li>
+                <li>Keeps commonly used references in one place</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h2>Built For</h2>
+              <ul class="feature-list">
+                <li>Fiber technicians</li>
+                <li>Field installers</li>
+                <li>Troubleshooting work</li>
+                <li>Quick reference in trucks and on sites</li>
+                <li>Anyone tired of hunting through notes and screenshots</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="grid">
+            <div class="card">
+              <h2>Preview of Toolkit Sections</h2>
+              <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-top:14px;">
+                <div class="card" style="padding:14px; background:var(--card-2);">
+                  <h3>OTDR Reference</h3>
+                  <p>Definitions, common events, splitter values, dead zones, and troubleshooting reminders.</p>
+                </div>
+                <div class="card" style="padding:14px; background:var(--card-2);">
+                  <h3>Fiber Calculator</h3>
+                  <p>Start fiber to target fiber math for loose tube, ribbon, and flex ribbon jobs.</p>
+                </div>
+                <div class="card" style="padding:14px; background:var(--card-2);">
+                  <h3>Loss Calculator</h3>
+                  <p>Estimate loss from fiber length, splices, connectors, splitters, and extra margin.</p>
+                </div>
+                <div class="card" style="padding:14px; background:var(--card-2);">
+                  <h3>Color Code</h3>
+                  <p>Fast 12-color reference for field use without digging through old notes.</p>
+                </div>
+                <div class="card" style="padding:14px; background:var(--card-2);">
+                  <h3>CAT5 & Power</h3>
+                  <p>T568A, T568B, RJ45 notes, and 7-conductor equipment layout direction.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section pricing">
+          <div class="price-box">
+            <h2>Pricing</h2>
+            <div class="price">Coming Soon</div>
+            <p>
+              Set this up as a one-time purchase or paid access product once your Stripe link is ready.
+            </p>
+            <div class="button-row">
+              <a class="btn btn-buy" href="#">Buy Link Coming Soon</a>
+            </div>
+            <div class="small-note">
+              Promo codes for testers can be handled later through Stripe checkout.
+            </div>
+          </div>
+
+          <div class="price-box">
+            <h2>Tester / Preview Access</h2>
+            <p>
+              Want selected people to try it first? You can hand out promo codes later or keep this preview page public
+              while the full paid flow is being finished.
+            </p>
+            <div class="button-row">
+              <a class="btn btn-secondary" href="fiber_toolkit.html">View Live Preview</a>
+              <a class="btn btn-dark" href="products.html">Back to Shop</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 style="margin-bottom:14px;">FAQ</h2>
+          <div class="faq">
+            <div class="faq-item">
+              <h3>Does this page show the full toolkit?</h3>
+              <p>No. This page is meant to preview the product and explain what it offers without being the actual sales delivery page.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I change the price later?</h3>
+              <p>Yes. Once your Stripe product is ready, just update the price text and replace the placeholder buy button link.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I use promo codes for testers?</h3>
+              <p>Yes. This page is a good front-end preview while you decide how you want to handle tester access and paid checkout.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="footer-note">
+          Fiber Tool Kit preview page for Prime Cyber Assets.
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
