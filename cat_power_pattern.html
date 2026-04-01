@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAT5 & Power Pattern Reference</title>
+  <style>
+    :root{
+      --bg:#071120;
+      --bg2:#0d1b31;
+      --panel:rgba(255,255,255,.08);
+      --panel-strong:rgba(255,255,255,.12);
+      --line:rgba(255,255,255,.14);
+      --text:#eaf2ff;
+      --muted:#a9bdd8;
+      --accent:#52b6ff;
+      --accent2:#7cf7d4;
+      --good:#7dffb3;
+      --warn:#ffd166;
+      --danger:#ff7b7b;
+      --shadow:0 18px 40px rgba(0,0,0,.35);
+      --radius:22px;
+      --sidebar:290px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(82,182,255,.18), transparent 26%),
+        radial-gradient(circle at top right, rgba(124,247,212,.12), transparent 24%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      min-height:100vh;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .layout{
+      display:grid;
+      grid-template-columns:var(--sidebar) 1fr;
+      min-height:100vh;
+    }
+
+    .sidebar{
+      position:sticky;
+      top:0;
+      height:100vh;
+      padding:24px 18px;
+      border-right:1px solid var(--line);
+      background:rgba(4,10,20,.72);
+      backdrop-filter:blur(14px);
+    }
+
+    .brand{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+
+    .brand h1{
+      font-size:1.25rem;
+      margin:0 0 8px;
+      color:#fff;
+    }
+
+    .brand p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:.95rem;
+    }
+
+    .nav-group{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:14px;
+      box-shadow:var(--shadow);
+    }
+
+    .nav-title{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--accent2);
+      margin:4px 8px 10px;
+    }
+
+    .side-nav{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .nav-link{
+      display:block;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid transparent;
+      background:rgba(255,255,255,.04);
+      transition:.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active{
+      background:rgba(82,182,255,.12);
+      border-color:rgba(82,182,255,.28);
+      transform:translateY(-1px);
+    }
+
+    .nav-link strong{
+      display:block;
+      font-size:.96rem;
+      color:#fff;
+      margin-bottom:3px;
+    }
+
+    .nav-link span{
+      display:block;
+      font-size:.82rem;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    .content{
+      padding:28px;
+    }
+
+    .hero,
+    .panel,
+    .card,
+    .pattern-box,
+    .pin-grid,
+    .equipment-box {
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .hero{
+      padding:26px;
+      margin-bottom:18px;
+    }
+
+    .hero h2{
+      margin:0 0 10px;
+      font-size:2rem;
+      color:#fff;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:980px;
+    }
+
+    .jump-bar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      padding:16px 18px;
+      margin-bottom:18px;
+    }
+
+    .jump-title{
+      font-size:.82rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--accent2);
+      margin-right:6px;
+    }
+
+    .jump-link{
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.9rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--text);
+      transition:.2s ease;
+    }
+
+    .jump-link:hover{
+      background:rgba(82,182,255,.14);
+      border-color:rgba(82,182,255,.35);
+    }
+
+    .section{
+      margin-bottom:18px;
+    }
+
+    .panel{
+      padding:22px;
+    }
+
+    .section h3{
+      margin:0 0 10px;
+      font-size:1.35rem;
+      color:#fff;
+    }
+
+    .section p{
+      margin:0 0 12px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .callout{
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      margin-top:12px;
+      color:var(--text);
+      line-height:1.65;
+    }
+
+    .callout strong{
+      color:#fff;
+    }
+
+    .callout.primary{
+      border-color:rgba(82,182,255,.35);
+      background:rgba(82,182,255,.1);
+    }
+
+    .callout.warn{
+      border-color:rgba(255,209,102,.35);
+      background:rgba(255,209,102,.08);
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .card{
+      padding:18px;
+    }
+
+    .card h4{
+      margin:0 0 10px;
+      font-size:1.05rem;
+      color:#fff;
+    }
+
+    .badge-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:12px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.82rem;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+    }
+
+    .badge.accent{background:rgba(82,182,255,.12); border-color:rgba(82,182,255,.28)}
+    .badge.good{background:rgba(125,255,179,.10); border-color:rgba(125,255,179,.25)}
+    .badge.warn{background:rgba(255,209,102,.10); border-color:rgba(255,209,102,.25)}
+
+    .pattern-box{
+      padding:16px;
+      margin-top:12px;
+    }
+
+    .pattern-title{
+      font-size:.88rem;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      color:var(--accent2);
+      margin-bottom:10px;
+    }
+
+    .pattern-strip{
+      display:grid;
+      grid-template-columns:repeat(8, minmax(0, 1fr));
+      gap:8px;
+      margin-bottom:10px;
+    }
+
+    .pattern-strip.seven{
+      grid-template-columns:repeat(7, minmax(0, 1fr));
+    }
+
+    .pin{
+      text-align:center;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+
+    .pin-num{
+      font-size:.82rem;
+      padding:8px 6px;
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-weight:bold;
+      border-bottom:1px solid var(--line);
+    }
+
+    .pin-color{
+      padding:14px 8px;
+      font-size:.86rem;
+      font-weight:bold;
+      color:#0b111b;
+      min-height:48px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .pin-note{
+      font-size:.78rem;
+      color:var(--muted);
+      text-align:center;
+      margin-top:8px;
+      line-height:1.5;
+    }
+
+    .white{background:#f4f4f4}
+    .orange{background:#ff9f1c}
+    .green{background:#52b788}
+    .blue{background:#4ea8de}
+    .brown{background:#8d6e63; color:#fff}
+    .slateblue{background:#7b8cff}
+    .white-orange{background:linear-gradient(180deg,#f4f4f4 0 45%, #ff9f1c 45% 100%)}
+    .white-green{background:linear-gradient(180deg,#f4f4f4 0 45%, #52b788 45% 100%)}
+    .white-blue{background:linear-gradient(180deg,#f4f4f4 0 45%, #4ea8de 45% 100%)}
+    .white-brown{background:linear-gradient(180deg,#f4f4f4 0 45%, #8d6e63 45% 100%)}
+
+    .red{background:#ef476f}
+    .black{background:#1b1b1b; color:#fff}
+    .gray{background:#9aa3ad}
+    .yellow{background:#ffd166}
+    .orange-solid{background:#f77f00}
+    .green-solid{background:#43aa8b}
+    .blue-solid{background:#4895ef}
+    .brown-solid{background:#7f5539; color:#fff}
+
+    .pin-grid{
+      padding:16px;
+      margin-top:12px;
+    }
+
+    .pin-row{
+      display:grid;
+      grid-template-columns:90px 180px 1fr;
+      gap:12px;
+      padding:10px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      align-items:center;
+    }
+
+    .pin-row:last-child{border-bottom:none}
+
+    .pin-row .left{
+      color:#fff;
+      font-weight:bold;
+    }
+
+    .pin-row .mid{
+      font-weight:bold;
+    }
+
+    .pin-row .right{
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .equipment-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+      margin-top:14px;
+    }
+
+    .equipment-box{
+      padding:18px;
+    }
+
+    .equipment-box h4{
+      margin:0 0 10px;
+      color:#fff;
+      font-size:1.02rem;
+    }
+
+    .equipment-box p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .sequence{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+
+    .seq{
+      min-width:42px;
+      text-align:center;
+      padding:10px 0;
+      border-radius:12px;
+      font-weight:bold;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+    }
+
+    .footer-note{
+      margin-top:18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:.94rem;
+    }
+
+    .back-to-top{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:1000;
+      border:none;
+      border-radius:999px;
+      padding:13px 16px;
+      background:rgba(82,182,255,.18);
+      color:#fff;
+      border:1px solid rgba(82,182,255,.35);
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow);
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .back-to-top:hover{
+      background:rgba(82,182,255,.28);
+    }
+
+    @media (max-width: 1080px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:relative;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid var(--line);
+      }
+
+      .content{
+        padding:18px;
+      }
+
+      .grid-2,
+      .equipment-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px){
+      .hero h2{
+        font-size:1.55rem;
+      }
+
+      .hero,
+      .panel,
+      .card,
+      .pattern-box,
+      .pin-grid,
+      .equipment-box,
+      .jump-bar{
+        border-radius:18px;
+      }
+
+      .pattern-strip,
+      .pattern-strip.seven{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+
+      .pin-row{
+        grid-template-columns:1fr;
+        gap:6px;
+      }
+
+      .jump-bar{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .jump-link{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Fiber Toolkit</h1>
+        <p>Field-ready quick references, calculators, and wiring patterns for daily use.</p>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Pages</div>
+        <nav class="side-nav">
+          <a class="nav-link" href="fiber_toolkit.html">
+            <strong>Toolkit Home</strong>
+            <span>Main landing page</span>
+          </a>
+
+          <a class="nav-link" href="otdrcheatsheet.html">
+            <strong>VIAVI OTDR Cheat Sheet</strong>
+            <span>Quick reference and loss values</span>
+          </a>
+
+          <a class="nav-link" href="fiber_calculator.html">
+            <strong>Fiber Calculator</strong>
+            <span>Fiber number and ribbon helper</span>
+          </a>
+
+          <a class="nav-link" href="fiber_loss.html">
+            <strong>Fiber Loss Calculator</strong>
+            <span>Estimated link loss</span>
+          </a>
+
+          <a class="nav-link" href="fiber_color_code.html">
+            <strong>Fiber Color Code</strong>
+            <span>12-color quick reference</span>
+          </a>
+
+          <a class="nav-link active" href="cat_power_pattern.html">
+            <strong>CAT5 & Power Patterns</strong>
+            <span>RJ45 and 7-conductor reference</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="hero">
+        <h2>CAT5 & Power Pattern Reference</h2>
+        <p>
+          Fast field reference for CAT5 terminations and 7-conductor power cable layouts. This page keeps
+          both RJ45 standards on hand, marks T568B as the primary working pattern, and shows how the same
+          7-conductor pinout can appear reversed depending on the equipment face and terminal numbering.
+        </p>
+      </section>
+
+      <nav class="jump-bar" aria-label="Jump to sections">
+        <div class="jump-title">Jump to</div>
+        <a class="jump-link" href="#cat5">CAT5 Overview</a>
+        <a class="jump-link" href="#t568b">T568B</a>
+        <a class="jump-link" href="#t568a">T568A</a>
+        <a class="jump-link" href="#female-jack">Female Jack</a>
+        <a class="jump-link" href="#power7">7-Conductor</a>
+        <a class="jump-link" href="#equipment-layout">Equipment Layout</a>
+      </nav>
+
+      <section class="section" id="cat5">
+        <div class="panel">
+          <h3>CAT5 / RJ45 Overview</h3>
+          <p>
+            Use <strong>T568B</strong> as the main field pattern here, but keep <strong>T568A</strong> on the page for reference.
+            Male plug terminations and female keystone/jack terminations use the same pair scheme and pin numbers,
+            but the physical termination method looks different.
+          </p>
+
+          <div class="callout primary">
+            <strong>Primary standard used here:</strong> T568B
+          </div>
+
+          <div class="callout warn">
+            <strong>Field reminder:</strong> Pick one standard and stay consistent end to end unless you intentionally
+            need a crossover-style result.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="t568b">
+        <div class="grid-2">
+          <div class="card">
+            <h4>T568B Male Plug</h4>
+            <div class="badge-row">
+              <span class="badge accent">Primary</span>
+              <span class="badge">Pin 1 on left when clip faces away and contacts face up</span>
+            </div>
+
+            <div class="pattern-box">
+              <div class="pattern-title">Pins 1 to 8</div>
+              <div class="pattern-strip">
+                <div class="pin"><div class="pin-num">1</div><div class="pin-color white-orange">W/Orange</div></div>
+                <div class="pin"><div class="pin-num">2</div><div class="pin-color orange">Orange</div></div>
+                <div class="pin"><div class="pin-num">3</div><div class="pin-color white-green">W/Green</div></div>
+                <div class="pin"><div class="pin-num">4</div><div class="pin-color blue">Blue</div></div>
+                <div class="pin"><div class="pin-num">5</div><div class="pin-color white-blue">W/Blue</div></div>
+                <div class="pin"><div class="pin-num">6</div><div class="pin-color green">Green</div></div>
+                <div class="pin"><div class="pin-num">7</div><div class="pin-color white-brown">W/Brown</div></div>
+                <div class="pin"><div class="pin-num">8</div><div class="pin-color brown">Brown</div></div>
+              </div>
+              <div class="pin-note">T568B order: White/Orange, Orange, White/Green, Blue, White/Blue, Green, White/Brown, Brown</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>T568B Pair Notes</h4>
+            <div class="pin-grid">
+              <div class="pin-row">
+                <div class="left">Pair 2</div>
+                <div class="mid">Pins 1 & 2</div>
+                <div class="right">White/Orange and Orange</div>
+              </div>
+              <div class="pin-row">
+                <div class="left">Pair 3</div>
+                <div class="mid">Pins 3 & 6</div>
+                <div class="right">White/Green and Green</div>
+              </div>
+              <div class="pin-row">
+                <div class="left">Pair 1</div>
+                <div class="mid">Pins 4 & 5</div>
+                <div class="right">Blue and White/Blue</div>
+              </div>
+              <div class="pin-row">
+                <div class="left">Pair 4</div>
+                <div class="mid">Pins 7 & 8</div>
+                <div class="right">White/Brown and Brown</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="t568a">
+        <div class="grid-2">
+          <div class="card">
+            <h4>T568A Male Plug</h4>
+            <div class="badge-row">
+              <span class="badge">Reference</span>
+              <span class="badge">Same pin positions, green and orange pairs swap</span>
+            </div>
+
+            <div class="pattern-box">
+              <div class="pattern-title">Pins 1 to 8</div>
+              <div class="pattern-strip">
+                <div class="pin"><div class="pin-num">1</div><div class="pin-color white-green">W/Green</div></div>
+                <div class="pin"><div class="pin-num">2</div><div class="pin-color green">Green</div></div>
+                <div class="pin"><div class="pin-num">3</div><div class="pin-color white-orange">W/Orange</div></div>
+                <div class="pin"><div class="pin-num">4</div><div class="pin-color blue">Blue</div></div>
+                <div class="pin"><div class="pin-num">5</div><div class="pin-color white-blue">W/Blue</div></div>
+                <div class="pin"><div class="pin-num">6</div><div class="pin-color orange">Orange</div></div>
+                <div class="pin"><div class="pin-num">7</div><div class="pin-color white-brown">W/Brown</div></div>
+                <div class="pin"><div class="pin-num">8</div><div class="pin-color brown">Brown</div></div>
+              </div>
+              <div class="pin-note">T568A order: White/Green, Green, White/Orange, Blue, White/Blue, Orange, White/Brown, Brown</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>T568A Pair Notes</h4>
+            <div class="pin-grid">
+              <div class="pin-row">
+                <div class="left">Pair 3</div>
+                <div class="mid">Pins 1 & 2</div>
+                <div class="right">White/Green and Green</div>
+              </div>
+              <div class="pin-row">
+                <div class="left">Pair 2</div>
+                <div class="mid">Pins 3 & 6</div>
+                <div class="right">White/Orange and Orange</div>
+              </div>
+              <div class="pin-row">
+                <div class="left">Pair 1</div>
+                <div class="mid">Pins 4 & 5</div>
+                <div class="right">Blue and White/Blue</div>
+              </div>
+              <div class="pin-row">
+                <div class="left">Pair 4</div>
+                <div class="mid">Pins 7 & 8</div>
+                <div class="right">White/Brown and Brown</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="female-jack">
+        <div class="panel">
+          <h3>Female Jack / Keystone</h3>
+          <p>
+            Female jacks still follow T568A or T568B, but the wires are punched down onto the jack instead of inserted
+            into a plug. Always follow the color legend printed on the jack body and match the same standard on both ends.
+          </p>
+
+          <div class="grid-2">
+            <div class="card">
+              <h4>Female Jack Using T568B</h4>
+              <div class="callout primary">
+                White/Orange, Orange, White/Green, Blue, White/Blue, Green, White/Brown, Brown
+              </div>
+            </div>
+
+            <div class="card">
+              <h4>Female Jack Using T568A</h4>
+              <div class="callout">
+                White/Green, Green, White/Orange, Blue, White/Blue, Orange, White/Brown, Brown
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-note">
+            Most keystones print both A and B patterns on the jack. The trick is simple: choose the right side of the legend and stay consistent.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="power7">
+        <div class="panel">
+          <h3>7-Conductor Power Cable Reference</h3>
+          <p>
+            The 7-conductor cable keeps the same pin functions, but some equipment shows the terminals in the opposite
+            physical direction. The color mapping does not change. The visible number order on the equipment face is what changes.
+          </p>
+
+          <div class="grid-2">
+            <div class="card">
+              <h4>Type I Power Cord</h4>
+              <div class="pattern-box">
+                <div class="pattern-title">Pins 1 to 7</div>
+                <div class="pattern-strip seven">
+                  <div class="pin"><div class="pin-num">1</div><div class="pin-color brown-solid">Brown</div></div>
+                  <div class="pin"><div class="pin-num">2</div><div class="pin-color blue-solid">Blue</div></div>
+                  <div class="pin"><div class="pin-num">3</div><div class="pin-color black">Black</div></div>
+                  <div class="pin"><div class="pin-num">4</div><div class="pin-color green-solid">Green</div></div>
+                  <div class="pin"><div class="pin-num">5</div><div class="pin-color red">Red</div></div>
+                  <div class="pin"><div class="pin-num">6</div><div class="pin-color yellow">Yellow</div></div>
+                  <div class="pin"><div class="pin-num">7</div><div class="pin-color orange-solid">Orange</div></div>
+                </div>
+              </div>
+
+              <div class="pin-grid">
+                <div class="pin-row">
+                  <div class="left">Pin 1</div>
+                  <div class="mid">Brown</div>
+                  <div class="right">Power Input (+)</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 2</div>
+                  <div class="mid">Blue</div>
+                  <div class="right">Power Input Return (Ground)</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 3</div>
+                  <div class="mid">Black</div>
+                  <div class="right">Signal Return (Ground)</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 4</div>
+                  <div class="mid">Green</div>
+                  <div class="right">On Battery</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 5</div>
+                  <div class="mid">Red</div>
+                  <div class="right">Replace Battery</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 6</div>
+                  <div class="mid">Yellow</div>
+                  <div class="right">Missing Battery</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 7</div>
+                  <div class="mid">Orange</div>
+                  <div class="right">Low Battery</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h4>Type II Power Cord</h4>
+              <div class="pattern-box">
+                <div class="pattern-title">Pins 1 to 7</div>
+                <div class="pattern-strip seven">
+                  <div class="pin"><div class="pin-num">1</div><div class="pin-color red">Red</div></div>
+                  <div class="pin"><div class="pin-num">2</div><div class="pin-color black">Black</div></div>
+                  <div class="pin"><div class="pin-num">3</div><div class="pin-color green-solid">Green</div></div>
+                  <div class="pin"><div class="pin-num">4</div><div class="pin-color gray">Gray</div></div>
+                  <div class="pin"><div class="pin-num">5</div><div class="pin-color brown-solid">Brown</div></div>
+                  <div class="pin"><div class="pin-num">6</div><div class="pin-color blue-solid">Blue</div></div>
+                  <div class="pin"><div class="pin-num">7</div><div class="pin-color orange-solid">Orange</div></div>
+                </div>
+              </div>
+
+              <div class="pin-grid">
+                <div class="pin-row">
+                  <div class="left">Pin 1</div>
+                  <div class="mid">Red</div>
+                  <div class="right">Power Input (+)</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 2</div>
+                  <div class="mid">Black</div>
+                  <div class="right">Power Input Return (Ground)</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 3</div>
+                  <div class="mid">Green</div>
+                  <div class="right">Signal Return (Ground)</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 4</div>
+                  <div class="mid">Gray</div>
+                  <div class="right">On Battery</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 5</div>
+                  <div class="mid">Brown</div>
+                  <div class="right">Replace Battery</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 6</div>
+                  <div class="mid">Blue</div>
+                  <div class="right">Missing Battery</div>
+                </div>
+                <div class="pin-row">
+                  <div class="left">Pin 7</div>
+                  <div class="mid">Orange</div>
+                  <div class="right">Low Battery</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="equipment-layout">
+        <div class="panel">
+          <h3>Equipment Layout Direction</h3>
+          <p>
+            This is the part that can trip people in the field. The pin functions stay the same, but the equipment face
+            may show the numbers in opposite physical order.
+          </p>
+
+          <div class="equipment-grid">
+            <div class="equipment-box">
+              <h4>Calix 716 / 717 ONT Cards</h4>
+              <p>
+                These are physically read <strong>right to left</strong>. The face appears as <strong>7, 6, 5, 4, 3, 2, 1</strong>.
+                Even though the visible direction is reversed, the pin functions still follow the same 1 through 7 mapping listed above.
+              </p>
+              <div class="sequence">
+                <div class="seq">7</div>
+                <div class="seq">6</div>
+                <div class="seq">5</div>
+                <div class="seq">4</div>
+                <div class="seq">3</div>
+                <div class="seq">2</div>
+                <div class="seq">1</div>
+              </div>
+            </div>
+
+            <div class="equipment-box">
+              <h4>Calix 762 / Precision Power UPS 48v / Outdoor ESPI TITAN</h4>
+              <p>
+                These are physically read <strong>left to right</strong>. The face appears as <strong>1, 2, 3, 4, 5, 6, 7</strong>.
+                Use the same pin functions in normal left-to-right order.
+              </p>
+              <div class="sequence">
+                <div class="seq">1</div>
+                <div class="seq">2</div>
+                <div class="seq">3</div>
+                <div class="seq">4</div>
+                <div class="seq">5</div>
+                <div class="seq">6</div>
+                <div class="seq">7</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout warn" style="margin-top:16px;">
+            <strong>Quick field reminder:</strong> if the equipment face shows 7 to 1, do not change the pin functions.
+            Only change how you read the physical terminal order.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+    ↑ Top
+  </button>
+</body>
+</html>
