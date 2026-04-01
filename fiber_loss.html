@@ -32,6 +32,7 @@
         linear-gradient(180deg, #08101d, #10192b 55%, #0b1220);
       color: var(--text);
       line-height: 1.55;
+      scroll-behavior: smooth;
     }
 
     .app-shell {
@@ -357,6 +358,37 @@
       text-align: center;
     }
 
+
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 1000;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(25,38,63,0.96), rgba(16,25,43,0.96));
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: rgba(113,183,255,0.12);
+    }
+
     @media (max-width: 980px) {
       .app-shell { grid-template-columns: 1fr; }
       .sidebar {
@@ -374,7 +406,7 @@
     }
   </style>
 </head>
-<body>
+<body id="top">
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
@@ -388,7 +420,7 @@
         <nav class="side-nav">
           <a class="nav-link" href="fiber_toolkit.html">
             <strong>Home</strong>
-            <span>Overview of tools and future pages</span>
+            <span>Overview of current fiber tools</span>
           </a>
           <a class="nav-link" href="otdrcheatsheet.html">
             <strong>OTDR Cheat Sheet</strong>
@@ -402,21 +434,15 @@
             <strong>Fiber Loss Calculator</strong>
             <span>Estimated end-to-end link loss</span>
           </a>
-        </nav>
-      </div>
-
-      <div class="nav-group">
-        <div class="nav-title">Future Tools</div>
-        <nav class="side-nav">
-          <a class="nav-link" href="fiber_toolkit.html#future-tools">
-            <strong>More Coming</strong>
-            <span>Room for future fiber pages and helpers</span>
+          <a class="nav-link" href="fiber_color_code.html">
+            <strong>Fiber Color Code</strong>
+            <span>12-color order and quick lookup</span>
           </a>
         </nav>
       </div>
 
       <div class="status-pill">
-        Built for quick planning. Enter the link details and this page adds up the total loss before the job turns into a surprise boss fight.
+        Built for quick planning. Enter the link details and this page adds up the total estimated loss before the job turns into a surprise.
       </div>
     </aside>
 
@@ -558,6 +584,8 @@
     </main>
   </div>
 
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑ Top</button>
+
   <script>
     const fiberType = document.getElementById('fiberType');
     const wavelength = document.getElementById('wavelength');
@@ -692,6 +720,21 @@
       .forEach(el => el.addEventListener('input', calculateLoss));
 
     calculateLoss();
+
+    const backToTop = document.getElementById('backToTop');
+
+    function toggleBackToTop() {
+      if (window.scrollY > 260) backToTop.classList.add('show');
+      else backToTop.classList.remove('show');
+    }
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', toggleBackToTop);
+    toggleBackToTop();
+
   </script>
 </body>
 </html>
