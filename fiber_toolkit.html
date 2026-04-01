@@ -7,7 +7,6 @@
   <style>
     :root {
       --bg: #0b1220;
-      --bg-2: #10192b;
       --panel: rgba(18, 28, 48, 0.88);
       --panel-2: rgba(25, 38, 63, 0.92);
       --text: #eaf2ff;
@@ -16,13 +15,11 @@
       --accent: #71b7ff;
       --accent-2: #86ffd6;
       --warn: #ffd27a;
-      --good: #9cffab;
       --shadow: 0 20px 45px rgba(0,0,0,0.35);
       --radius: 22px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -148,17 +145,24 @@
     }
 
     .wrap {
-      width: min(1240px, calc(100% - 28px));
+      width: min(1180px, calc(100% - 28px));
       margin: 0 auto;
       padding: 28px 0 60px;
     }
 
-    .hero {
-      background: linear-gradient(145deg, rgba(20,33,56,0.95), rgba(9,18,34,0.95));
+    .hero,
+    .card,
+    .tool-card {
+      background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 30px;
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 30px;
+      background: linear-gradient(145deg, rgba(20,33,56,0.95), rgba(9,18,34,0.95));
       position: relative;
       overflow: hidden;
     }
@@ -195,70 +199,28 @@
       color: var(--muted);
       max-width: 860px;
       font-size: 1.03rem;
-      margin-bottom: 18px;
+      margin-bottom: 0;
     }
 
-    .chips,
     .grid,
-    .tool-grid,
-    .mini-grid {
+    .tool-grid {
       display: grid;
       gap: 18px;
-    }
-
-    .chips {
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       margin-top: 22px;
     }
 
     .grid {
       grid-template-columns: repeat(12, 1fr);
-      margin-top: 22px;
     }
 
     .tool-grid {
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      margin-top: 18px;
-    }
-
-    .mini-grid {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    .card,
-    .chip,
-    .tool-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
     }
 
     .card,
     .tool-card {
       padding: 18px;
     }
-
-    .chip {
-      padding: 14px 16px;
-      color: var(--text);
-      background: rgba(255,255,255,0.04);
-      font-size: 0.95rem;
-    }
-
-    .chip strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--accent-2);
-    }
-
-    .span-12 { grid-column: span 12; }
-    .span-8 { grid-column: span 8; }
-    .span-7 { grid-column: span 7; }
-    .span-6 { grid-column: span 6; }
-    .span-5 { grid-column: span 5; }
-    .span-4 { grid-column: span 4; }
 
     .tool-card {
       position: relative;
@@ -288,7 +250,6 @@
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
       padding: 6px 10px;
       border-radius: 999px;
       border: 1px solid var(--line);
@@ -350,14 +311,7 @@
 
     li + li { margin-top: 8px; }
 
-    .callout {
-      border-left: 4px solid var(--accent);
-      padding: 12px 14px;
-      background: rgba(113,183,255,0.08);
-      border-radius: 14px;
-      margin-top: 12px;
-      color: var(--muted);
-    }
+    .span-12 { grid-column: span 12; }
 
     .footer {
       margin-top: 24px;
@@ -382,8 +336,8 @@
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       }
 
-      .span-8, .span-7, .span-6, .span-5, .span-4 { grid-column: span 12; }
       .hero { padding: 24px; }
+      .span-12 { grid-column: span 12; }
     }
   </style>
 </head>
@@ -393,7 +347,7 @@
       <div class="brand">
         <small>Prime Cyber Assets</small>
         <strong>Fiber Tool Kit</strong>
-        <span>A growing field hub for fiber reference pages, calculators, and quick helpers.</span>
+        <span>Quick access to your fiber pages with room to grow later.</span>
       </div>
 
       <div class="nav-group">
@@ -401,162 +355,87 @@
         <nav class="side-nav">
           <a class="nav-link active" href="fiber_toolkit.html">
             <strong>Home</strong>
-            <span>Overview of tools and future pages</span>
+            <span>Main toolkit page</span>
           </a>
           <a class="nav-link" href="otdrcheatsheet.html">
             <strong>OTDR Cheat Sheet</strong>
-            <span>Definitions, events, and field reference</span>
+            <span>Trace help and reference</span>
           </a>
           <a class="nav-link" href="fiber_calculator.html">
             <strong>Fiber Calculator</strong>
-            <span>Lengths, conversions, and utility math</span>
+            <span>Fiber count and ribbon math</span>
           </a>
-          <a class="nav-link" href="fiber_loss_calculator.html">
+          <a class="nav-link" href="fiber_loss.html">
             <strong>Fiber Loss Calculator</strong>
-            <span>Estimated end-to-end link loss</span>
+            <span>Estimated link loss</span>
           </a>
         </nav>
       </div>
 
       <div class="nav-group">
-        <div class="nav-title">Future Tools</div>
+        <div class="nav-title">Future Projects</div>
         <nav class="side-nav">
-          <a class="nav-link" href="#future-tools">
-            <strong>More Coming</strong>
-            <span>Room for future fiber pages and helpers</span>
+          <a class="nav-link" href="#future-projects">
+            <strong>Ideas List</strong>
+            <span>Planned pages for later</span>
           </a>
         </nav>
       </div>
 
       <div class="status-pill">
-        This page is the toolkit homepage. Add new pages here later so the whole site stays easy to navigate.
+        Clean home page with current tools and a short list of future project ideas.
       </div>
     </aside>
 
     <main class="main-content">
       <div class="wrap">
         <section class="hero">
-          <div class="eyebrow">Field Hub</div>
+          <div class="eyebrow">Fiber Tool Kit</div>
           <h1>Fiber Tool Kit</h1>
           <p class="subtitle">
-            A single home base for fiber tools, cheat sheets, and quick calculators. This page tells users what the toolkit offers, where to find each feature, and leaves clean runway for future additions without turning the site into a cable nest.
+            Your main home page for fiber tools and references. Pick a page from below or use the sidebar to move around the toolkit.
           </p>
-
-          <div class="chips">
-            <div class="chip">
-              <strong>OTDR Reference</strong>
-              Quick help for trace reading, event meanings, and common fiber terms.
-            </div>
-            <div class="chip">
-              <strong>Calculator Pages</strong>
-              Utility tools for estimating values fast in the field.
-            </div>
-            <div class="chip">
-              <strong>Future Ready</strong>
-              Structured to grow with more pages later.
-            </div>
-            <div class="chip">
-              <strong>Easy Navigation</strong>
-              Sidebar keeps everything one click away.
-            </div>
-          </div>
-        </section>
-
-        <section class="grid">
-          <div class="card span-7">
-            <h2>What this web app offers</h2>
-            <p>
-              Fiber Tool Kit is built as a central landing page for practical fiber work resources. Instead of scattering tools across random files, this homepage acts like the junction box. From here, users can jump into reference material, calculation tools, and future add-ons as the toolkit grows.
-            </p>
-            <div class="callout">
-              The goal is simple: fast access, clean layout, and room to expand without rebuilding the whole site every time a new tool gets added.
-            </div>
-          </div>
-
-          <div class="card span-5">
-            <h2>Use it for</h2>
-            <ul>
-              <li>Quick OTDR reminders in the field</li>
-              <li>Basic fiber math and estimates</li>
-              <li>Loss planning before or during a job</li>
-              <li>A central place for future fiber helper pages</li>
-            </ul>
-          </div>
         </section>
 
         <section class="card" style="margin-top: 22px;">
-          <h2>Current Tool Pages</h2>
+          <h2>Current Pages</h2>
           <div class="tool-grid">
             <article class="tool-card">
               <div class="tool-top">
                 <h3>OTDR Cheat Sheet</h3>
                 <span class="badge">Ready</span>
               </div>
-              <p>
-                A quick reference page for reading traces, understanding event types, checking common terms, and using OTDR info without digging through manuals.
-              </p>
-              <ul>
-                <li>Event meanings</li>
-                <li>Common fiber wording</li>
-                <li>Useful field reminders</li>
-              </ul>
+              <p>Quick reference for OTDR events, definitions, and common field reminders.</p>
               <a class="tool-link" href="otdrcheatsheet.html">Open OTDR Cheat Sheet</a>
             </article>
 
             <article class="tool-card">
               <div class="tool-top">
                 <h3>Fiber Calculator</h3>
-                <span class="badge">Coming Soon</span>
+                <span class="badge">Ready</span>
               </div>
-              <p>
-                A utility page for quick fiber-related math. This can grow into distance helpers, slack estimates, unit conversions, or whatever field math you want handy.
-              </p>
-              <ul>
-                <li>Conversion helpers</li>
-                <li>Length math</li>
-                <li>General utility functions</li>
-              </ul>
+              <p>Loose tube, ribbon, and flex ribbon calculations based on your calculator workflow.</p>
               <a class="tool-link" href="fiber_calculator.html">Open Fiber Calculator</a>
             </article>
 
             <article class="tool-card">
               <div class="tool-top">
                 <h3>Fiber Loss Calculator</h3>
-                <span class="badge">Coming Soon</span>
+                <span class="badge">Ready</span>
               </div>
-              <p>
-                A calculator for estimating total link loss based on length, splice count, connectors, splitters, and other common components.
-              </p>
-              <ul>
-                <li>Total estimated loss</li>
-                <li>Connector and splice inputs</li>
-                <li>Useful planning before testing</li>
-              </ul>
-              <a class="tool-link" href="fiber_loss_calculator.html">Open Fiber Loss Calculator</a>
+              <p>Estimate total link loss using fiber length, connectors, splices, splitters, and margin.</p>
+              <a class="tool-link" href="fiber_loss.html">Open Fiber Loss Calculator</a>
             </article>
           </div>
         </section>
 
-        <section class="grid" id="future-tools">
-          <div class="card span-6">
-            <h2>Future page ideas</h2>
-            <div class="term"><span class="label">Connector Cleaning Guide</span><div>A quick visual guide for cleaning and inspecting connectors before testing.</div></div>
-            <div class="term"><span class="label">Color Code Reference</span><div>Fiber color sequences, buffer tube references, and quick lookup charts.</div></div>
-            <div class="term"><span class="label">PON / Splitter Planner</span><div>A helper page for splitter architecture and expected loss budgeting.</div></div>
-            <div class="term"><span class="label">Test Setup Guide</span><div>Launch cable, receive cable, wavelength reminders, and best-practice setups.</div></div>
-          </div>
-
-          <div class="card span-6">
-            <h2>How the site is organized</h2>
-            <ul>
-              <li><strong>Homepage:</strong> explains the toolkit and links to every available tool</li>
-              <li><strong>Sidebar:</strong> stays consistent so users can hop between pages quickly</li>
-              <li><strong>Standalone pages:</strong> each tool gets its own file for easy updates later</li>
-              <li><strong>Expandable structure:</strong> new tools can be added without redesigning everything</li>
-            </ul>
-            <div class="callout">
-              When you add a new page later, you just drop the file in and add one more sidebar link. Nice and tidy.
-            </div>
+        <section class="grid" id="future-projects">
+          <div class="card span-12">
+            <h2>Future Projects</h2>
+            <div class="term"><span class="label">Fiber Color Code Page</span><div>A quick lookup page for standard fiber colors, tube colors, and ribbon color order.</div></div>
+            <div class="term"><span class="label">Connector Cleaning Guide</span><div>A simple page for cleaning steps, inspection reminders, and common mistakes.</div></div>
+            <div class="term"><span class="label">Splitter Reference Page</span><div>A fast chart for common splitter sizes and expected loss values.</div></div>
+            <div class="term"><span class="label">Test Setup Guide</span><div>A page for launch cable, receive cable, wavelength selection, and field setup reminders.</div></div>
           </div>
         </section>
 
