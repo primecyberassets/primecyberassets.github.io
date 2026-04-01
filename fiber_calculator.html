@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fiber Calculator</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" href="./icon/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="./styles.css">
+
+  <style>
+    :root {
+      --toolkit-text: #eaf2ff;
+      --toolkit-muted: #b5c5e6;
+      --toolkit-line: rgba(140, 175, 255, 0.22);
+      --toolkit-accent: #71b7ff;
+      --toolkit-accent-2: #86ffd6;
+      --toolkit-warn: #ffd27a;
+      --toolkit-shadow: 0 20px 45px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(113,183,255,0.12), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(134,255,214,0.10), transparent 25%),
+        linear-gradient(180deg, #08101d, #10192b 55%, #0b1220);
+      color: var(--toolkit-text);
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      padding: 22px 16px;
+      border-right: 1px solid var(--toolkit-line);
+      background: linear-gradient(180deg, rgba(8,16,29,0.98), rgba(14,24,41,0.96));
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      padding: 18px;
+      border: 1px solid var(--toolkit-line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--toolkit-shadow);
+      margin-bottom: 18px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--toolkit-accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      font-size: 0.78rem;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--toolkit-muted);
+      margin-top: 8px;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .nav-group + .nav-group {
+      margin-top: 18px;
+    }
+
+    .nav-title {
+      color: var(--toolkit-accent-2);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0 10px 8px;
+    }
+
+    .side-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      color: var(--toolkit-text);
+      text-decoration: none;
+      background: rgba(255,255,255,0.03);
+      transition: 0.2s ease;
+    }
+
+    .nav-link:hover {
+      border-color: var(--toolkit-line);
+      background: rgba(113,183,255,0.10);
+      transform: translateX(2px);
+    }
+
+    .nav-link.active {
+      border-color: rgba(113,183,255,0.35);
+      background: linear-gradient(145deg, rgba(113,183,255,0.18), rgba(134,255,214,0.08));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .nav-link strong {
+      display: block;
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+
+    .nav-link span {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--toolkit-muted);
+    }
+
+    .status-pill {
+      margin-top: 18px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,210,122,0.09);
+      border: 1px solid rgba(255,210,122,0.18);
+      color: var(--toolkit-warn);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .main-content {
+      min-width: 0;
+      padding: 28px 14px 40px;
+    }
+
+    .page {
+      width: min(980px, 100%);
+      margin: 0 auto;
+    }
+
+    .header {
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .header img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: var(--toolkit-shadow);
+    }
+
+    @media (max-width: 900px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--toolkit-line);
+      }
+
+      .side-nav {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .main-content {
+        padding: 18px 12px 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <small>Prime Cyber Assets</small>
+        <strong>Fiber Tool Kit</strong>
+        <span>A growing field hub for fiber reference pages, calculators, and quick helpers.</span>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Main</div>
+        <nav class="side-nav">
+          <a class="nav-link" href="fiber_toolkit.html">
+            <strong>Home</strong>
+            <span>Overview of tools and future pages</span>
+          </a>
+          <a class="nav-link" href="otdrcheatsheet.html">
+            <strong>OTDR Cheat Sheet</strong>
+            <span>Definitions, events, and field reference</span>
+          </a>
+          <a class="nav-link active" href="fiber_calculator.html">
+            <strong>Fiber Calculator</strong>
+            <span>Lengths, conversions, and utility math</span>
+          </a>
+          <a class="nav-link" href="fiber_loss_calculator.html">
+            <strong>Fiber Loss Calculator</strong>
+            <span>Estimated end-to-end link loss</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-title">Future Tools</div>
+        <nav class="side-nav">
+          <a class="nav-link" href="fiber_toolkit.html#future-tools">
+            <strong>More Coming</strong>
+            <span>Room for future fiber pages and helpers</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="status-pill">
+        This page is part of the Fiber Tool Kit. Keep future calculator tools linked here so everything stays easy to navigate.
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="page">
+
+        <!-- Header image -->
+        <div class="header">
+          <img src="./header.png" alt="Fiber Optic Calculator" onerror="this.style.display='none'">
+        </div>
+
+        <!-- FORM SCREEN -->
+        <main id="screenForm" class="screen">
+          <div class="field">
+            <div class="field-label">Calculator</div>
+            <div class="select-wrap">
+              <select id="calcType">
+                <option value="SMF" selected>SMF - Loose Tube (Single Fiber)</option>
+                <option value="RIBN">RIBN - Ribbon</option>
+              </select>
+              <div class="chev">▼</div>
+            </div>
+          </div>
+
+          <div id="ribbonSizeWrap" class="field hidden">
+            <div class="field-label purple">Ribbon Size</div>
+            <div class="select-wrap purple-outline">
+              <select id="ribbonSize">
+                <option value="12" selected>12F Ribbon</option>
+                <option value="24">24F Ribbon</option>
+              </select>
+              <div class="chev">▼</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="input-wrap">
+              <input id="startFiber" type="number" inputmode="numeric" placeholder="Start Fiber #">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="input-wrap">
+              <input id="targetFiber" type="number" inputmode="numeric" placeholder="Target Fiber #">
+            </div>
+          </div>
+
+          <button id="btnCalc" class="btn-primary">Calculate</button>
+
+          <div id="err" class="error hidden"></div>
+
+          <section class="card">
+            <h2>Instructions</h2>
+            <p>Start Fiber # = the first fiber number in your count.</p>
+            <p>Target Fiber # = the fiber you are splicing.</p>
+            <p>After you calculate: you’ll see the 12 fibers for that tube, with your target highlighted.</p>
+            <p class="small">
+              Tube stripes: fibers 145–288 = black stripe<br>
+              • fibers 289–432 = red stripe.
+            </p>
+          </section>
+        </main>
+
+        <!-- SMF RESULT SCREEN -->
+        <main id="screenSmf" class="screen hidden">
+          <div class="smf-layout">
+            <div class="tube-panel">
+              <div id="tubeBlock" class="tube-block">
+                <div id="tubeStripe" class="tube-stripe hidden"></div>
+              </div>
+              <div id="tubeMeta" class="tube-meta"></div>
+            </div>
+
+            <div class="fiber-list" id="fiberList"></div>
+          </div>
+
+          <button id="btnBackSmf" class="btn-primary">Back</button>
+        </main>
+
+        <!-- RIBBON RESULT SCREEN -->
+        <main id="screenRibbon" class="screen hidden">
+          <section class="card">
+            <h2>Ribbon Result</h2>
+            <p><span class="label">Ribbon Size:</span> <span id="rbSizeText"></span></p>
+            <p><span class="label">Ribbon #:</span> <span id="rbNumText"></span></p>
+            <p><span class="label">Fiber in Ribbon:</span> <span id="rbFiberText"></span></p>
+            <p><span class="label">Relative fiber in count:</span> <span id="rbRelText"></span></p>
+          </section>
+
+          <button id="btnBackRibbon" class="btn-primary">Back</button>
+        </main>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // bump these numbers when you change files
+    const V = "105";
+    const css = document.querySelector('link[rel="stylesheet"]');
+    if (css && css.getAttribute("href")) {
+      css.setAttribute("href", css.getAttribute("href").split("?")[0] + "?v=" + V);
+    }
+  </script>
+
+  <script src="./app.js?v=7" defer></script>
+
+  <!-- Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js");
+      });
+    }
+  </script>
+</body>
+</html>
