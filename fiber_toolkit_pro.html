@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Fiber Tool Kit</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    :root{
+      --bg:#000;
+      --text:#f2f6ff;
+      --muted:#b8c7dd;
+      --cyan:#66fcf1;
+      --pink:#ff4fd8;
+      --line:rgba(102,252,241,0.18);
+      --card:rgba(255,255,255,0.04);
+      --card2:rgba(255,255,255,0.06);
+      --shadow:0 20px 45px rgba(0,0,0,0.35);
+      --radius:18px;
+      --good:#8bffb2;
+      --bad:#ff9f9f;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
+        radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
+        linear-gradient(to bottom,#07080c,#000);
+      min-height:100vh;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px 50px;
+    }
+
+    .hero,
+    .card,
+    .tool-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero{
+      padding:24px;
+      margin-bottom:22px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:.78rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--cyan);
+      background:rgba(102,252,241,.10);
+      border:1px solid rgba(102,252,241,.24);
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:12px;
+    }
+
+    h1,h2,h3{margin:0 0 10px}
+    h1{font-size:clamp(2rem,4vw,3.2rem); line-height:1.05}
+    h2{font-size:1.4rem; color:var(--cyan)}
+    h3{font-size:1.02rem; color:var(--pink)}
+
+    p{color:var(--muted); line-height:1.65}
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .card{
+      padding:20px;
+    }
+
+    .field{
+      margin-bottom:14px;
+    }
+
+    .label{
+      display:block;
+      margin-bottom:8px;
+      color:var(--cyan);
+      font-size:.88rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+
+    input{
+      width:100%;
+      padding:14px 14px;
+      border-radius:12px;
+      border:1px solid rgba(102,252,241,.18);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      font-size:1rem;
+      outline:none;
+    }
+
+    .btn-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .btn{
+      display:inline-block;
+      border:none;
+      border-radius:10px;
+      padding:12px 16px;
+      font-weight:800;
+      text-decoration:none;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-main{
+      background:#ff90e8;
+      color:#000;
+    }
+
+    .btn-alt{
+      background:rgba(102,252,241,.12);
+      border:1px solid rgba(102,252,241,.35);
+      color:var(--cyan);
+    }
+
+    .btn-dark{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff;
+    }
+
+    .message{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:12px;
+      display:none;
+      font-weight:700;
+    }
+
+    .message.show{display:block}
+    .message.good{
+      background:rgba(139,255,178,.10);
+      border:1px solid rgba(139,255,178,.25);
+      color:var(--good);
+    }
+    .message.bad{
+      background:rgba(255,159,159,.10);
+      border:1px solid rgba(255,159,159,.25);
+      color:var(--bad);
+    }
+
+    .hidden{display:none !important}
+
+    .premium-shell{
+      margin-top:22px;
+    }
+
+    .tool-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .tool-card{
+      padding:18px;
+      background:var(--card2);
+    }
+
+    .tool-link{
+      display:inline-block;
+      margin-top:12px;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:800;
+      background:rgba(102,252,241,.12);
+      border:1px solid rgba(102,252,241,.35);
+      color:var(--cyan);
+    }
+
+    .status-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .status-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(102,252,241,.25);
+      background:rgba(102,252,241,.10);
+      color:var(--cyan);
+      font-size:.85rem;
+      font-weight:700;
+    }
+
+    .small-note{
+      color:#9fb0c7;
+      font-size:.9rem;
+      margin-top:8px;
+    }
+
+    @media (max-width: 900px){
+      .grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Premium Access</span>
+      <h1>Premium Fiber Tool Kit</h1>
+      <p>
+        This version is for approved paid users and testers. Sign in below to open the premium toolkit.
+      </p>
+    </section>
+
+    <section id="authSection" class="grid">
+      <div class="card">
+        <h2>Sign In</h2>
+
+        <div class="field">
+          <label class="label" for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" />
+        </div>
+
+        <div class="field">
+          <label class="label" for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter password" />
+        </div>
+
+        <div class="btn-row">
+          <button id="signInBtn" class="btn btn-main" type="button">Sign In</button>
+          <button id="signUpBtn" class="btn btn-alt" type="button">Create Account</button>
+          <button id="resetBtn" class="btn btn-dark" type="button">Reset Password</button>
+        </div>
+
+        <div id="authMessage" class="message"></div>
+
+        <div class="small-note">
+          First version note: only approved emails will be allowed into the premium toolkit.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>How access works</h2>
+        <p>
+          Buyers and testers sign in with email and password. This page checks whether the signed-in email is on your approved list before showing the premium tools.
+        </p>
+        <p>
+          Later, we can upgrade this from a simple email allow-list to a stronger Firebase role system.
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn-alt" href="fiber_toolkit_preview.html">Back to Preview</a>
+          <a class="btn btn-dark" href="products.html">Back to Shop</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="premiumSection" class="premium-shell hidden">
+      <div class="card">
+        <div class="status-row">
+          <div>
+            <h2>Premium Toolkit Unlocked</h2>
+            <p id="userStatus" style="margin:0;">Signed in.</p>
+          </div>
+          <div class="btn-row" style="margin-top:0;">
+            <span class="status-pill">Approved Access</span>
+            <button id="signOutBtn" class="btn btn-dark" type="button">Sign Out</button>
+          </div>
+        </div>
+
+        <div class="tool-grid">
+          <article class="tool-card">
+            <h3>OTDR Cheat Sheet</h3>
+            <p>Definitions, event icons, splitter loss, dead zones, troubleshooting, and field notes.</p>
+            <a class="tool-link" href="otdrcheatsheet.html">Open OTDR Cheat Sheet</a>
+          </article>
+
+          <article class="tool-card">
+            <h3>Fiber Calculator</h3>
+            <p>Loose tube, ribbon, and flex ribbon math for field lookup and counting help.</p>
+            <a class="tool-link" href="fiber_calculator.html">Open Fiber Calculator</a>
+          </article>
+
+          <article class="tool-card">
+            <h3>Fiber Loss Calculator</h3>
+            <p>Estimated link loss using fiber length, splices, connectors, splitters, and margin.</p>
+            <a class="tool-link" href="fiber_loss.html">Open Fiber Loss Calculator</a>
+          </article>
+
+          <article class="tool-card">
+            <h3>Fiber Color Code</h3>
+            <p>Quick 12-color lookup reference for fiber count and field checks.</p>
+            <a class="tool-link" href="fiber_color_code.html">Open Fiber Color Code</a>
+          </article>
+
+          <article class="tool-card">
+            <h3>CAT5 & Power Patterns</h3>
+            <p>T568A, T568B, RJ45 notes, and 7-conductor layout direction references.</p>
+            <a class="tool-link" href="cat_power_pattern.html">Open CAT5 & Power Patterns</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      sendPasswordResetEmail,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+
+    // =========================
+    // 1. PASTE YOUR FIREBASE CONFIG HERE
+    // =========================
+    const firebaseConfig = {
+      apiKey: "PASTE_YOURS_HERE",
+      authDomain: "PASTE_YOURS_HERE",
+      projectId: "PASTE_YOURS_HERE",
+      storageBucket: "PASTE_YOURS_HERE",
+      messagingSenderId: "PASTE_YOURS_HERE",
+      appId: "PASTE_YOURS_HERE"
+    };
+
+    // =========================
+    // 2. APPROVED EMAILS LIST
+    // Add your email and tester emails here
+    // =========================
+    const approvedEmails = [
+      "your@email.com",
+      "tester1@email.com",
+      "tester2@email.com"
+    ];
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const authSection = document.getElementById("authSection");
+    const premiumSection = document.getElementById("premiumSection");
+    const authMessage = document.getElementById("authMessage");
+    const userStatus = document.getElementById("userStatus");
+
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    const signInBtn = document.getElementById("signInBtn");
+    const signUpBtn = document.getElementById("signUpBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const signOutBtn = document.getElementById("signOutBtn");
+
+    function showMessage(text, type = "bad") {
+      authMessage.textContent = text;
+      authMessage.className = `message show ${type}`;
+    }
+
+    function clearMessage() {
+      authMessage.textContent = "";
+      authMessage.className = "message";
+    }
+
+    function isApproved(email) {
+      if (!email) return false;
+      return approvedEmails.map(e => e.toLowerCase()).includes(email.toLowerCase());
+    }
+
+    function showPremium(user) {
+      authSection.classList.add("hidden");
+      premiumSection.classList.remove("hidden");
+      userStatus.textContent = `Signed in as ${user.email}`;
+    }
+
+    function showAuth() {
+      premiumSection.classList.add("hidden");
+      authSection.classList.remove("hidden");
+    }
+
+    signInBtn.addEventListener("click", async () => {
+      clearMessage();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        showMessage("Enter both email and password.");
+        return;
+      }
+
+      try {
+        const cred = await signInWithEmailAndPassword(auth, email, password);
+        const user = cred.user;
+
+        if (!isApproved(user.email)) {
+          await signOut(auth);
+          showMessage("This account exists, but it is not approved for premium access yet.");
+          return;
+        }
+
+        showPremium(user);
+      } catch (err) {
+        showMessage(err.message || "Sign-in failed.");
+      }
+    });
+
+    signUpBtn.addEventListener("click", async () => {
+      clearMessage();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        showMessage("Enter both email and password.");
+        return;
+      }
+
+      if (password.length < 6) {
+        showMessage("Password must be at least 6 characters.");
+        return;
+      }
+
+      try {
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        await signOut(auth);
+
+        if (isApproved(cred.user.email)) {
+          showMessage("Account created. You can now sign in.", "good");
+        } else {
+          showMessage("Account created, but this email is not approved for premium access yet.", "good");
+        }
+      } catch (err) {
+        showMessage(err.message || "Account creation failed.");
+      }
+    });
+
+    resetBtn.addEventListener("click", async () => {
+      clearMessage();
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        showMessage("Enter your email first.");
+        return;
+      }
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showMessage("Password reset email sent.", "good");
+      } catch (err) {
+        showMessage(err.message || "Could not send reset email.");
+      }
+    });
+
+    signOutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      showAuth();
+      showMessage("Signed out.", "good");
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user && isApproved(user.email)) {
+        showPremium(user);
+      } else {
+        showAuth();
+      }
+    });
+  </script>
+</body>
+</html>
