@@ -19,6 +19,11 @@
       --bad: #ff9c9c;
       --shadow: 0 20px 45px rgba(0,0,0,0.35);
       --radius: 20px;
+      --sidebar-width: 280px;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     * { box-sizing: border-box; }
@@ -36,7 +41,7 @@
 
     .app-shell {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: var(--sidebar-width) 1fr;
       min-height: 100vh;
     }
 
@@ -49,6 +54,7 @@
       border-right: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(8,16,29,0.98), rgba(14,24,41,0.96));
       backdrop-filter: blur(10px);
+      overflow-y: auto;
     }
 
     .brand {
@@ -149,7 +155,7 @@
     .wrap {
       width: min(1200px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 28px 0 60px;
+      padding: 28px 0 80px;
     }
 
     .hero {
@@ -197,6 +203,49 @@
       margin-bottom: 18px;
     }
 
+    .jump-card {
+      margin-top: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .jump-title {
+      margin: 0 0 12px;
+      color: var(--accent-2);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .jump-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .jump-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+      font-size: 0.92rem;
+      transition: 0.2s ease;
+    }
+
+    .jump-link:hover {
+      background: rgba(113,183,255,0.12);
+      border-color: rgba(113,183,255,0.35);
+      transform: translateY(-1px);
+    }
+
     .top-grid,
     .grid,
     .mini-grid {
@@ -215,6 +264,10 @@
       padding: 18px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
+    }
+
+    .section-anchor {
+      scroll-margin-top: 22px;
     }
 
     .span-12 { grid-column: span 12; }
@@ -329,6 +382,40 @@
       text-align: center;
     }
 
+    .back-to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 52px;
+      height: 52px;
+      padding: 0 16px;
+      border: 1px solid rgba(113,183,255,0.35);
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      background: linear-gradient(145deg, rgba(17,29,50,0.96), rgba(10,18,33,0.96));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: 0.2s ease;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: linear-gradient(145deg, rgba(30,49,80,0.98), rgba(12,22,39,0.98));
+    }
+
     @media (max-width: 900px) {
       .app-shell {
         grid-template-columns: 1fr;
@@ -345,18 +432,23 @@
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       }
 
+      .jump-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+
       .span-8, .span-7, .span-6, .span-5, .span-4 { grid-column: span 12; }
       .hero { padding: 22px; }
     }
   </style>
 </head>
-<body>
+<body id="top">
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
         <small>Prime Cyber Assets</small>
         <strong>Fiber Tool Kit</strong>
-        <span>A growing field hub for fiber reference pages, calculators, and quick helpers.</span>
+        <span>Field-ready reference pages, calculators, and quick helpers.</span>
       </div>
 
       <div class="nav-group">
@@ -364,7 +456,7 @@
         <nav class="side-nav">
           <a class="nav-link" href="fiber_toolkit.html">
             <strong>Home</strong>
-            <span>Overview of tools and future pages</span>
+            <span>Toolkit overview and current pages</span>
           </a>
           <a class="nav-link active" href="otdrcheatsheet.html">
             <strong>OTDR Cheat Sheet</strong>
@@ -374,25 +466,19 @@
             <strong>Fiber Calculator</strong>
             <span>Lengths, conversions, and utility math</span>
           </a>
-          <a class="nav-link" href="fiber_loss_calculator.html">
+          <a class="nav-link" href="fiber_loss.html">
             <strong>Fiber Loss Calculator</strong>
             <span>Estimated end-to-end link loss</span>
           </a>
-        </nav>
-      </div>
-
-      <div class="nav-group">
-        <div class="nav-title">Future Tools</div>
-        <nav class="side-nav">
-          <a class="nav-link" href="fiber_tool_kit.html#future-tools">
-            <strong>More Coming</strong>
-            <span>Room for future fiber pages and helpers</span>
+          <a class="nav-link" href="fiber_color_code.html">
+            <strong>Fiber Color Code</strong>
+            <span>Standard color order and quick lookup</span>
           </a>
         </nav>
       </div>
 
       <div class="status-pill">
-        This page is part of the Fiber Tool Kit. Add new pages to the homepage sidebar later so the whole site stays easy to navigate.
+        Built for quick field use: scroll, jump, check values, and get back to work.
       </div>
     </aside>
 
@@ -402,7 +488,7 @@
           <div class="eyebrow">Field Cheat Sheet</div>
           <h1>VIAVI OTDR Quick Reference</h1>
           <p class="subtitle">
-            A clean, unlisted-style cheat sheet for reading OTDR traces, recognizing common event icons,
+            A clean cheat sheet for reading OTDR traces, recognizing common event icons,
             checking typical loss and reflection values, and remembering the definitions that matter when the screen starts talking in fiber hieroglyphics.
           </p>
           <div class="chips">
@@ -414,7 +500,21 @@
           </div>
         </section>
 
-        <section class="top-grid">
+        <section class="jump-card" aria-label="Quick jump navigation">
+          <p class="jump-title">Jump to section</p>
+          <div class="jump-links">
+            <a class="jump-link" href="#basics">Basics</a>
+            <a class="jump-link" href="#events">Event Icons</a>
+            <a class="jump-link" href="#definitions">Definitions</a>
+            <a class="jump-link" href="#values">Loss Values</a>
+            <a class="jump-link" href="#components">Splitters</a>
+            <a class="jump-link" href="#deadzones">Dead Zones</a>
+            <a class="jump-link" href="#troubleshooting">Troubleshooting</a>
+            <a class="jump-link" href="#notes">Notes</a>
+          </div>
+        </section>
+
+        <section class="top-grid section-anchor" id="basics">
           <div class="card span-7">
             <h2>What an OTDR is actually doing</h2>
             <p>
@@ -440,11 +540,11 @@
           </div>
         </section>
 
-        <section class="grid">
+        <section class="grid section-anchor" id="events">
           <div class="card span-12">
             <h2>VIAVI Smart Event Images and Meanings</h2>
             <p style="color: var(--muted); margin-top: 0;">
-              Here is the visual legend version, so the icons are not just names floating in space. These are simplified field-style drawings of the VIAVI Smart Icons from your sheet, paired with what each one means on the trace.
+              Simplified field-style drawings of common VIAVI smart icons paired with what they usually mean on the trace.
             </p>
             <div class="mini-grid">
               <div class="card" style="padding:14px; background: var(--panel-2);">
@@ -496,7 +596,7 @@
               </div>
 
               <div class="card" style="padding:14px; background: var(--panel-2);">
-                <div class="iconbox"><svg viewBox="0 0 120 60"><line x1="8" y1="30" x2="30" y2="30" stroke="currentColor" stroke-width="4"/><rect x="30" y="18" width="26" height="24" fill="none" stroke="currentColor" stroke-width="4"/><line x1="62" y1="30" x2="76" y2="30" stroke="currentColor" stroke-width="4"/><rect x="76" y="14" width="26" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="4"/><path d="M84 14 l8 8 l14 -14" fill="none" stroke="currentColor" stroke-width="4"/></svg></div>
+                <div class="iconbox"><svg viewBox="0 0 120 60"><line x1="8" y1="30" x2="30" y2="30" stroke="currentColor" stroke-width="4"/><rect x="30" y="18" width="26" height="24" fill="none" stroke="currentColor" stroke-width="4"/><line x1="62" y1="30" x2="76" y2="30" stroke="currentColor" stroke-width="4"/><rect x="76" y="14" width="26" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="4"/></svg></div>
                 <div class="label">MUX / DMUX</div>
                 <div>Multiplexer or demultiplexer component. Causes insertion loss. Newer APC-connected units can look almost non-reflective.</div>
               </div>
@@ -516,7 +616,7 @@
           </div>
         </section>
 
-        <section class="grid">
+        <section class="grid section-anchor" id="definitions">
           <div class="card span-6">
             <h2>Core Definitions</h2>
             <div class="term"><span class="label">Event</span><div>Any measurable feature on the OTDR trace, such as a splice, connector, bend, splitter, break, or fiber end.</div></div>
@@ -546,7 +646,7 @@
           </div>
         </section>
 
-        <section class="grid">
+        <section class="grid section-anchor" id="values">
           <div class="card span-6">
             <h2>Typical Attenuation / Loss Values</h2>
             <div class="table-wrap">
@@ -587,7 +687,7 @@
           </div>
         </section>
 
-        <section class="grid">
+        <section class="grid section-anchor" id="components">
           <div class="card span-7">
             <h2>Typical Splitter and Component Loss</h2>
             <div class="table-wrap">
@@ -625,7 +725,7 @@
           </div>
         </section>
 
-        <section class="grid">
+        <section class="grid section-anchor" id="deadzones">
           <div class="card span-4">
             <h2>Dead Zone Basics</h2>
             <ul>
@@ -656,7 +756,7 @@
           </div>
         </section>
 
-        <section class="grid">
+        <section class="grid section-anchor" id="troubleshooting">
           <div class="card span-8">
             <h2>Troubleshooting quick guide</h2>
             <div class="mini-grid">
@@ -691,7 +791,7 @@
           </div>
         </section>
 
-        <section class="grid">
+        <section class="grid section-anchor" id="notes">
           <div class="card span-12">
             <h2>Notes section</h2>
             <p style="min-height:120px; color: var(--muted); border: 1px dashed rgba(255,255,255,0.18); border-radius: 16px; padding: 16px; margin: 0;">
@@ -701,10 +801,24 @@
         </section>
 
         <div class="footer">
-          Built as an unlisted-style quick reference page for a VIAVI OTDR workflow.
+          Built as a quick field reference page for a VIAVI OTDR workflow.
         </div>
       </div>
     </main>
   </div>
+
+  <a class="back-to-top" href="#top" id="backToTop" aria-label="Back to top">Top</a>
+
+  <script>
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 320) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+  </script>
 </body>
 </html>
