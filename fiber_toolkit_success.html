@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Purchase Successful - Prime Cyber Assets</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    :root{
+      --cyan:#66fcf1;
+      --pink:#ff4fd8;
+      --bg:#000;
+      --text:#f2f6ff;
+      --muted:#b8c7dd;
+      --line:rgba(102,252,241,0.18);
+      --card:rgba(255,255,255,0.04);
+      --shadow:0 20px 45px rgba(0,0,0,0.35);
+    }
 
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
+        radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
+        linear-gradient(to bottom,#07080c,#000);
+      min-height:100vh;
+    }
+
+    .wrap{
+      max-width:760px;
+      margin:0 auto;
+      padding:60px 18px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:0.78rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--cyan);
+      background:rgba(102,252,241,0.10);
+      border:1px solid rgba(102,252,241,0.24);
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:14px;
+    }
+
+    h1{
+      margin:0 0 12px;
+      color:var(--cyan);
+      font-size:clamp(2rem,4vw,3rem);
+    }
+
+    p{
+      color:var(--muted);
+      line-height:1.65;
+      margin:0 0 14px;
+    }
+
+    .button-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 16px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:800;
+      transition:0.2s;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-main{
+      background:#ff90e8;
+      color:#000;
+    }
+
+    .btn-alt{
+      background:rgba(102,252,241,0.12);
+      border:1px solid rgba(102,252,241,0.35);
+      color:var(--cyan);
+    }
+
+    .note{
+      margin-top:16px;
+      font-size:0.92rem;
+      color:#9fb0c7;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <span class="eyebrow">Payment Complete</span>
+      <h1>Purchase Successful</h1>
+      <p>Thanks for purchasing <strong>Premium Fiber Tool Kit</strong>.</p>
+      <p>Your checkout went through successfully. Use the button below to continue to the toolkit or head back to the shop.</p>
+
+      <div class="button-row">
+        <a class="btn btn-main" href="fiber_toolkit.html">Open Fiber Tool Kit</a>
+        <a class="btn btn-alt" href="products.html">Back to Shop</a>
+      </div>
+
+      <div class="note">
+        Later, if you want tighter access control, this page can point to a premium delivery page instead of the public toolkit.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
