@@ -2,25 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fiber Calculator</title>
-
-  <!-- PWA -->
-  <link rel="manifest" href="./manifest.webmanifest">
-  <meta name="theme-color" content="#ffffff">
-  <link rel="apple-touch-icon" href="./icon/apple-touch-icon.png">
-
-  <link rel="stylesheet" href="./styles.css">
-
   <style>
     :root {
-      --toolkit-text: #eaf2ff;
-      --toolkit-muted: #b5c5e6;
-      --toolkit-line: rgba(140, 175, 255, 0.22);
-      --toolkit-accent: #71b7ff;
-      --toolkit-accent-2: #86ffd6;
-      --toolkit-warn: #ffd27a;
-      --toolkit-shadow: 0 20px 45px rgba(0,0,0,0.35);
+      --bg: #0b1220;
+      --panel: rgba(18, 28, 48, 0.88);
+      --panel-2: rgba(25, 38, 63, 0.92);
+      --text: #eaf2ff;
+      --muted: #b5c5e6;
+      --line: rgba(140, 175, 255, 0.22);
+      --accent: #71b7ff;
+      --accent-2: #86ffd6;
+      --warn: #ffd27a;
+      --good: #9cffab;
+      --bad: #ff9c9c;
+      --shadow: 0 20px 45px rgba(0,0,0,0.35);
+      --radius: 22px;
+
+      --blue: #1565C0;
+      --orange: #F57C00;
+      --green: #2E7D32;
+      --brown: #5D4037;
+      --slate: #616161;
+      --white: #F5F5F5;
+      --red: #C62828;
+      --black: #111111;
+      --yellow: #FDD835;
+      --violet: #6A1B9A;
+      --rose: #D81B60;
+      --aqua: #00ACC1;
     }
 
     * { box-sizing: border-box; }
@@ -32,7 +43,8 @@
         radial-gradient(circle at top right, rgba(113,183,255,0.12), transparent 28%),
         radial-gradient(circle at bottom left, rgba(134,255,214,0.10), transparent 25%),
         linear-gradient(180deg, #08101d, #10192b 55%, #0b1220);
-      color: var(--toolkit-text);
+      color: var(--text);
+      line-height: 1.55;
     }
 
     .app-shell {
@@ -47,23 +59,23 @@
       align-self: start;
       height: 100vh;
       padding: 22px 16px;
-      border-right: 1px solid var(--toolkit-line);
+      border-right: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(8,16,29,0.98), rgba(14,24,41,0.96));
       backdrop-filter: blur(10px);
     }
 
     .brand {
       padding: 18px;
-      border: 1px solid var(--toolkit-line);
+      border: 1px solid var(--line);
       border-radius: 22px;
       background: rgba(255,255,255,0.03);
-      box-shadow: var(--toolkit-shadow);
+      box-shadow: var(--shadow);
       margin-bottom: 18px;
     }
 
     .brand small {
       display: block;
-      color: var(--toolkit-accent-2);
+      color: var(--accent-2);
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 8px;
@@ -78,18 +90,15 @@
 
     .brand span {
       display: block;
-      color: var(--toolkit-muted);
+      color: var(--muted);
       margin-top: 8px;
       font-size: 0.92rem;
-      line-height: 1.45;
     }
 
-    .nav-group + .nav-group {
-      margin-top: 18px;
-    }
+    .nav-group + .nav-group { margin-top: 18px; }
 
     .nav-title {
-      color: var(--toolkit-accent-2);
+      color: var(--accent-2);
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
@@ -106,14 +115,14 @@
       padding: 12px 14px;
       border-radius: 14px;
       border: 1px solid transparent;
-      color: var(--toolkit-text);
+      color: var(--text);
       text-decoration: none;
       background: rgba(255,255,255,0.03);
       transition: 0.2s ease;
     }
 
     .nav-link:hover {
-      border-color: var(--toolkit-line);
+      border-color: var(--line);
       background: rgba(113,183,255,0.10);
       transform: translateX(2px);
     }
@@ -133,7 +142,7 @@
     .nav-link span {
       display: block;
       font-size: 0.84rem;
-      color: var(--toolkit-muted);
+      color: var(--muted);
     }
 
     .status-pill {
@@ -142,56 +151,293 @@
       border-radius: 14px;
       background: rgba(255,210,122,0.09);
       border: 1px solid rgba(255,210,122,0.18);
-      color: var(--toolkit-warn);
+      color: var(--warn);
       font-size: 0.88rem;
-      line-height: 1.45;
     }
 
-    .main-content {
-      min-width: 0;
-      padding: 28px 14px 40px;
-    }
+    .main-content { min-width: 0; }
 
-    .page {
-      width: min(980px, 100%);
+    .wrap {
+      width: min(1100px, calc(100% - 28px));
       margin: 0 auto;
+      padding: 28px 0 60px;
     }
 
-    .header {
-      margin-bottom: 18px;
+    .hero,
+    .panel,
+    .card,
+    .fiber-row,
+    .tube-block,
+    .result-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 28px;
+      background: linear-gradient(145deg, rgba(20,33,56,0.95), rgba(9,18,34,0.95));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -70px -70px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(113,183,255,0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      background: rgba(134,255,214,0.10);
+      border: 1px solid rgba(134,255,214,0.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3 { margin: 0 0 10px; }
+    h1 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.05; }
+    h2 { font-size: clamp(1.1rem, 2vw, 1.55rem); }
+    h3 { font-size: 1rem; color: var(--accent-2); }
+    p { color: var(--muted); }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 820px;
+      font-size: 1.03rem;
+      margin-bottom: 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-7 { grid-column: span 7; }
+    .span-6 { grid-column: span 6; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+
+    .panel, .card, .result-card { padding: 18px; }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent-2);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .input-wrap,
+    .select-wrap {
+      position: relative;
+    }
+
+    select,
+    input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 44px;
+      cursor: pointer;
+    }
+
+    .chev {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      color: #07111f;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .error {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(255,156,156,0.12);
+      border: 1px solid rgba(255,156,156,0.22);
+      color: #ffd0d0;
+      font-weight: 700;
+    }
+
+    .hidden { display: none !important; }
+
+    .small { font-size: 0.92rem; }
+
+    .smf-layout {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 280px 1fr;
+      align-items: start;
+    }
+
+    .tube-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .tube-block {
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+
+    .tube-stripe {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12%;
+      border-radius: 20px;
+    }
+
+    .tube-meta,
+    .fiber-list,
+    .result-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .fiber-row {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 56px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .fiber-row.selected {
+      outline: 3px solid rgba(255,255,255,0.9);
+      box-shadow: 0 0 0 4px rgba(113,183,255,0.35);
+    }
+
+    .fiber-num {
+      font-weight: 900;
+      min-width: 48px;
+    }
+
+    .fiber-name {
+      font-weight: 800;
+    }
+
+    .fiber-tag {
+      margin-left: auto;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.18);
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .result-item:first-child { border-top: 0; padding-top: 0; }
+
+    .result-item .k {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .result-item .v {
+      color: var(--text);
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .info-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .info-list li { color: var(--muted); }
+    .info-list li + li { margin-top: 8px; }
+
+    .footer {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.92rem;
       text-align: center;
     }
 
-    .header img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: var(--toolkit-shadow);
-    }
-
-    @media (max-width: 900px) {
-      .app-shell {
-        grid-template-columns: 1fr;
-      }
-
+    @media (max-width: 980px) {
+      .app-shell { grid-template-columns: 1fr; }
       .sidebar {
         position: relative;
         height: auto;
         border-right: 0;
-        border-bottom: 1px solid var(--toolkit-line);
+        border-bottom: 1px solid var(--line);
       }
-
       .side-nav {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       }
-
-      .main-content {
-        padding: 18px 12px 30px;
-      }
+      .smf-layout { grid-template-columns: 1fr; }
+      .tube-block { min-height: 220px; }
+      .span-8, .span-7, .span-6, .span-5, .span-4 { grid-column: span 12; }
     }
   </style>
 </head>
-
 <body>
   <div class="app-shell">
     <aside class="sidebar">
@@ -214,7 +460,7 @@
           </a>
           <a class="nav-link active" href="fiber_calculator.html">
             <strong>Fiber Calculator</strong>
-            <span>Lengths, conversions, and utility math</span>
+            <span>Loose tube, ribbon, and flex ribbon math</span>
           </a>
           <a class="nav-link" href="fiber_loss_calculator.html">
             <strong>Fiber Loss Calculator</strong>
@@ -234,121 +480,376 @@
       </div>
 
       <div class="status-pill">
-        This page is part of the Fiber Tool Kit. Keep future calculator tools linked here so everything stays easy to navigate.
+        Web version based on your calculator app flow: mode picker, start fiber, target fiber, and result screens.
       </div>
     </aside>
 
     <main class="main-content">
-      <div class="page">
+      <div class="wrap">
+        <section class="hero">
+          <div class="eyebrow">Field Calculator</div>
+          <h1>Fiber Calculator</h1>
+          <p class="subtitle">
+            A toolkit page modeled after your calculator app, with Loose Tube, Ribbon, and Flex Ribbon modes. Pick a mode, enter the start fiber and target fiber, and the page calculates the matching tube, ribbon, and fiber position.
+          </p>
+        </section>
 
-        <!-- Header image -->
-        <div class="header">
-          <img src="./header.png" alt="Fiber Optic Calculator" onerror="this.style.display='none'">
-        </div>
+        <main id="screenForm" class="grid">
+          <section class="panel span-7">
+            <h2>Calculator</h2>
 
-        <!-- FORM SCREEN -->
-        <main id="screenForm" class="screen">
-          <div class="field">
-            <div class="field-label">Calculator</div>
-            <div class="select-wrap">
-              <select id="calcType">
-                <option value="SMF" selected>SMF - Loose Tube (Single Fiber)</option>
-                <option value="RIBN">RIBN - Ribbon</option>
-              </select>
-              <div class="chev">▼</div>
-            </div>
-          </div>
-
-          <div id="ribbonSizeWrap" class="field hidden">
-            <div class="field-label purple">Ribbon Size</div>
-            <div class="select-wrap purple-outline">
-              <select id="ribbonSize">
-                <option value="12" selected>12F Ribbon</option>
-                <option value="24">24F Ribbon</option>
-              </select>
-              <div class="chev">▼</div>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="input-wrap">
-              <input id="startFiber" type="number" inputmode="numeric" placeholder="Start Fiber #">
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="input-wrap">
-              <input id="targetFiber" type="number" inputmode="numeric" placeholder="Target Fiber #">
-            </div>
-          </div>
-
-          <button id="btnCalc" class="btn-primary">Calculate</button>
-
-          <div id="err" class="error hidden"></div>
-
-          <section class="card">
-            <h2>Instructions</h2>
-            <p>Start Fiber # = the first fiber number in your count.</p>
-            <p>Target Fiber # = the fiber you are splicing.</p>
-            <p>After you calculate: you’ll see the 12 fibers for that tube, with your target highlighted.</p>
-            <p class="small">
-              Tube stripes: fibers 145–288 = black stripe<br>
-              • fibers 289–432 = red stripe.
-            </p>
-          </section>
-        </main>
-
-        <!-- SMF RESULT SCREEN -->
-        <main id="screenSmf" class="screen hidden">
-          <div class="smf-layout">
-            <div class="tube-panel">
-              <div id="tubeBlock" class="tube-block">
-                <div id="tubeStripe" class="tube-stripe hidden"></div>
+            <div class="field">
+              <label class="field-label" for="calcType">Mode</label>
+              <div class="select-wrap">
+                <select id="calcType">
+                  <option value="SMF" selected>SMF - Loose Tube (Single Fiber)</option>
+                  <option value="RIBN">RIBN - Ribbon</option>
+                  <option value="FLEX">FLEX - Rollable / Flex Ribbon</option>
+                </select>
+                <div class="chev">▼</div>
               </div>
-              <div id="tubeMeta" class="tube-meta"></div>
             </div>
 
-            <div class="fiber-list" id="fiberList"></div>
-          </div>
+            <div id="ribbonSizeWrap" class="field hidden">
+              <label class="field-label" for="ribbonSize">Ribbon Size</label>
+              <div class="select-wrap">
+                <select id="ribbonSize">
+                  <option value="12" selected>12F Ribbon</option>
+                  <option value="24">24F Ribbon</option>
+                </select>
+                <div class="chev">▼</div>
+              </div>
+            </div>
 
-          <button id="btnBackSmf" class="btn-primary">Back</button>
-        </main>
+            <div id="cableMaxWrap" class="field hidden">
+              <label class="field-label" for="cableMax">Cable Fiber Count</label>
+              <div class="select-wrap">
+                <select id="cableMax">
+                  <option value="432">432F Cable</option>
+                  <option value="1728" selected>1728F Cable</option>
+                  <option value="3456">3456F Cable</option>
+                  <option value="6912">6912F Cable</option>
+                </select>
+                <div class="chev">▼</div>
+              </div>
+            </div>
 
-        <!-- RIBBON RESULT SCREEN -->
-        <main id="screenRibbon" class="screen hidden">
-          <section class="card">
-            <h2>Ribbon Result</h2>
-            <p><span class="label">Ribbon Size:</span> <span id="rbSizeText"></span></p>
-            <p><span class="label">Ribbon #:</span> <span id="rbNumText"></span></p>
-            <p><span class="label">Fiber in Ribbon:</span> <span id="rbFiberText"></span></p>
-            <p><span class="label">Relative fiber in count:</span> <span id="rbRelText"></span></p>
+            <div class="field">
+              <label class="field-label" for="startFiber">Start Fiber #</label>
+              <div class="input-wrap">
+                <input id="startFiber" type="number" inputmode="numeric" placeholder="Enter first fiber number">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="targetFiber">Target Fiber #</label>
+              <div class="input-wrap">
+                <input id="targetFiber" type="number" inputmode="numeric" placeholder="Enter splice fiber number">
+              </div>
+            </div>
+
+            <button id="btnCalc" class="btn-primary">Calculate</button>
+            <div id="err" class="error hidden"></div>
           </section>
 
-          <button id="btnBackRibbon" class="btn-primary">Back</button>
+          <section class="card span-5">
+            <h2>Instructions</h2>
+            <ul class="info-list">
+              <li>Start Fiber # = the first fiber number in your count.</li>
+              <li>Target Fiber # = the fiber you are splicing.</li>
+              <li>SMF shows the 12 fibers for the tube and highlights the target.</li>
+              <li>Ribbon shows Ribbon #, fiber in ribbon, and ribbon color name.</li>
+              <li>Flex adds cable size and calculates the rolled ribbon location.</li>
+              <li>Tube stripes: 145–288 = black stripe, 289–432 = red stripe.</li>
+            </ul>
+          </section>
         </main>
 
+        <main id="screenSmf" class="hidden">
+          <div class="grid">
+            <section class="panel span-12">
+              <h2>Loose Tube Result</h2>
+              <div class="smf-layout">
+                <div class="tube-panel">
+                  <div id="tubeBlock" class="tube-block">
+                    <div id="tubeStripe" class="tube-stripe hidden"></div>
+                  </div>
+                  <div id="tubeMeta" class="result-card result-list"></div>
+                </div>
+                <div class="fiber-list" id="fiberList"></div>
+              </div>
+            </section>
+            <section class="span-12">
+              <button id="btnBackSmf" class="btn-primary">Back</button>
+            </section>
+          </div>
+        </main>
+
+        <main id="screenRibbon" class="hidden">
+          <div class="grid">
+            <section class="panel span-6">
+              <h2>Ribbon Result</h2>
+              <div id="rbSummary" class="result-card result-list"></div>
+            </section>
+            <section class="panel span-6">
+              <h2>Ribbon Fiber Colors</h2>
+              <div id="rbFiberList" class="fiber-list"></div>
+            </section>
+            <section class="span-12">
+              <button id="btnBackRibbon" class="btn-primary">Back</button>
+            </section>
+          </div>
+        </main>
+
+        <main id="screenFlex" class="hidden">
+          <div class="grid">
+            <section class="panel span-6">
+              <h2>Flex Ribbon Result</h2>
+              <div id="fxSummary" class="result-card result-list"></div>
+            </section>
+            <section class="panel span-6">
+              <h2>Ribbon Fiber Colors</h2>
+              <div id="fxFiberList" class="fiber-list"></div>
+            </section>
+            <section class="span-12">
+              <button id="btnBackFlex" class="btn-primary">Back</button>
+            </section>
+          </div>
+        </main>
+
+        <div class="footer">Fiber calculator page for the Fiber Tool Kit.</div>
       </div>
     </main>
   </div>
 
   <script>
-    // bump these numbers when you change files
-    const V = "105";
-    const css = document.querySelector('link[rel="stylesheet"]');
-    if (css && css.getAttribute("href")) {
-      css.setAttribute("href", css.getAttribute("href").split("?")[0] + "?v=" + V);
+    const Standard12 = [
+      { name: 'Blue', color: '#1565C0', textOn: '#FFFFFF' },
+      { name: 'Orange', color: '#F57C00', textOn: '#111111' },
+      { name: 'Green', color: '#2E7D32', textOn: '#FFFFFF' },
+      { name: 'Brown', color: '#5D4037', textOn: '#FFFFFF' },
+      { name: 'Slate', color: '#616161', textOn: '#FFFFFF' },
+      { name: 'White', color: '#F5F5F5', textOn: '#111111' },
+      { name: 'Red', color: '#C62828', textOn: '#FFFFFF' },
+      { name: 'Black', color: '#111111', textOn: '#FFFFFF' },
+      { name: 'Yellow', color: '#FDD835', textOn: '#111111' },
+      { name: 'Violet', color: '#6A1B9A', textOn: '#FFFFFF' },
+      { name: 'Rose', color: '#D81B60', textOn: '#FFFFFF' },
+      { name: 'Aqua', color: '#00ACC1', textOn: '#111111' }
+    ];
+
+    const calcType = document.getElementById('calcType');
+    const ribbonSizeWrap = document.getElementById('ribbonSizeWrap');
+    const cableMaxWrap = document.getElementById('cableMaxWrap');
+    const ribbonSize = document.getElementById('ribbonSize');
+    const cableMax = document.getElementById('cableMax');
+    const startFiber = document.getElementById('startFiber');
+    const targetFiber = document.getElementById('targetFiber');
+    const err = document.getElementById('err');
+
+    const screenForm = document.getElementById('screenForm');
+    const screenSmf = document.getElementById('screenSmf');
+    const screenRibbon = document.getElementById('screenRibbon');
+    const screenFlex = document.getElementById('screenFlex');
+
+    const btnCalc = document.getElementById('btnCalc');
+    const btnBackSmf = document.getElementById('btnBackSmf');
+    const btnBackRibbon = document.getElementById('btnBackRibbon');
+    const btnBackFlex = document.getElementById('btnBackFlex');
+
+    const tubeBlock = document.getElementById('tubeBlock');
+    const tubeStripe = document.getElementById('tubeStripe');
+    const tubeMeta = document.getElementById('tubeMeta');
+    const fiberList = document.getElementById('fiberList');
+    const rbSummary = document.getElementById('rbSummary');
+    const rbFiberList = document.getElementById('rbFiberList');
+    const fxSummary = document.getElementById('fxSummary');
+    const fxFiberList = document.getElementById('fxFiberList');
+
+    function ribbonColorNameFor(ribbonNumber) {
+      const baseIdx = Math.max(0, (ribbonNumber - 1) % 12);
+      const baseName = Standard12[baseIdx].name;
+      const group = Math.max(0, Math.floor((ribbonNumber - 1) / 12));
+      const prefix = group === 0 ? '' : group === 1 ? 'D-' : group === 2 ? 'DD-' : `${group}D-`;
+      return prefix + baseName;
     }
-  </script>
 
-  <script src="./app.js?v=7" defer></script>
+    function fiberColorForRibbonPosition(pos) {
+      return Standard12[Math.max(0, (pos - 1) % 12)];
+    }
 
-  <!-- Service Worker -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js");
+    function showError(message) {
+      err.textContent = message;
+      err.classList.remove('hidden');
+    }
+
+    function clearError() {
+      err.textContent = '';
+      err.classList.add('hidden');
+    }
+
+    function showScreen(which) {
+      screenForm.classList.add('hidden');
+      screenSmf.classList.add('hidden');
+      screenRibbon.classList.add('hidden');
+      screenFlex.classList.add('hidden');
+      which.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateModeUI() {
+      const mode = calcType.value;
+      ribbonSizeWrap.classList.toggle('hidden', mode === 'SMF');
+      cableMaxWrap.classList.toggle('hidden', mode !== 'FLEX');
+    }
+
+    function resultRow(key, value) {
+      return `<div class="result-item"><div class="k">${key}</div><div class="v">${value}</div></div>`;
+    }
+
+    function makeFiberRow(absNum, fiber, selected) {
+      return `<div class="fiber-row ${selected ? 'selected' : ''}" style="background:${fiber.color}; color:${fiber.textOn};">
+        <div class="fiber-num">${absNum}</div>
+        <div class="fiber-name">${fiber.name}</div>
+        ${selected ? '<div class="fiber-tag">Target</div>' : ''}
+      </div>`;
+    }
+
+    function renderSmf(start, target) {
+      const relative = (target - start) + 1;
+      const tubeNumber = Math.floor((relative - 1) / 12) + 1;
+      if (tubeNumber > 36) {
+        showError(`SMF Loose Tube supports up to 432 fibers. Your entry calculates tube ${tubeNumber}.`);
+        return;
+      }
+
+      const fiberInTube = ((relative - 1) % 12) + 1;
+      const tubeBase = Standard12[(tubeNumber - 1) % 12];
+      const fiberColor = Standard12[fiberInTube - 1];
+
+      let stripeColor = null;
+      if (tubeNumber > 12 && tubeNumber <= 24) {
+        stripeColor = tubeBase.name === 'Black' ? '#FDD835' : '#111111';
+      } else if (tubeNumber > 24) {
+        stripeColor = tubeBase.name === 'Red' ? '#FDD835' : '#C62828';
+      }
+
+      tubeBlock.style.background = tubeBase.color;
+      tubeStripe.classList.toggle('hidden', !stripeColor);
+      if (stripeColor) tubeStripe.style.background = stripeColor;
+
+      tubeMeta.innerHTML = [
+        resultRow('Start Fiber', start),
+        resultRow('Target Fiber', target),
+        resultRow('Relative Fiber', relative),
+        resultRow('Tube #', tubeNumber),
+        resultRow('Fiber in Tube', fiberInTube),
+        resultRow('Tube Color', tubeBase.name),
+        resultRow('Fiber Color', fiberColor.name)
+      ].join('');
+
+      const tubeStartAbsolute = start + ((tubeNumber - 1) * 12);
+      fiberList.innerHTML = '';
+      Standard12.forEach((fiber, idx) => {
+        const absoluteFiberNumber = tubeStartAbsolute + idx;
+        const selected = (idx + 1) === fiberInTube;
+        fiberList.insertAdjacentHTML('beforeend', makeFiberRow(absoluteFiberNumber, fiber, selected));
       });
+
+      showScreen(screenSmf);
     }
+
+    function renderRibbon(start, target) {
+      const size = parseInt(ribbonSize.value, 10);
+      const relative = (target - start) + 1;
+      if (relative > 864) {
+        showError('Ribbon supports up to 864 fibers from the Start Fiber #.');
+        return;
+      }
+
+      const ribbonNumber = Math.floor((relative - 1) / size) + 1;
+      const fiberInRibbon = ((relative - 1) % size) + 1;
+      const ribbonColor = ribbonColorNameFor(ribbonNumber);
+      const fiberColor = fiberColorForRibbonPosition(fiberInRibbon);
+
+      rbSummary.innerHTML = [
+        resultRow('Ribbon Size', `${size}F`),
+        resultRow('Ribbon #', `${ribbonNumber} (${ribbonColor})`),
+        resultRow('Fiber in Ribbon', fiberInRibbon),
+        resultRow('Fiber Color', fiberColor.name),
+        resultRow('Relative Fiber', relative)
+      ].join('');
+
+      const ribbonStartAbsolute = start + ((ribbonNumber - 1) * size);
+      rbFiberList.innerHTML = '';
+      for (let pos = 1; pos <= size; pos++) {
+        const fiber = fiberColorForRibbonPosition(pos);
+        const absoluteFiberNumber = ribbonStartAbsolute + (pos - 1);
+        rbFiberList.insertAdjacentHTML('beforeend', makeFiberRow(absoluteFiberNumber, fiber, pos === fiberInRibbon));
+      }
+
+      showScreen(screenRibbon);
+    }
+
+    function renderFlex(start, target) {
+      const size = parseInt(ribbonSize.value, 10);
+      const max = parseInt(cableMax.value, 10);
+      const relative = (target - start) + 1;
+      if (relative > max) {
+        showError(`Flex/Rollable supports up to ${max} fibers from the Start Fiber #.`);
+        return;
+      }
+
+      const ribbonNumber = Math.floor((relative - 1) / size) + 1;
+      const fiberInRibbon = ((relative - 1) % size) + 1;
+      const ribbonColor = ribbonColorNameFor(ribbonNumber);
+      const fiberColor = fiberColorForRibbonPosition(fiberInRibbon);
+
+      fxSummary.innerHTML = [
+        resultRow('Cable Fiber Count', `${max}F`),
+        resultRow('Ribbon Size', `${size}F`),
+        resultRow('Ribbon #', `${ribbonNumber} (${ribbonColor})`),
+        resultRow('Fiber in Ribbon', fiberInRibbon),
+        resultRow('Fiber Color', fiberColor.name),
+        resultRow('Relative Fiber', relative)
+      ].join('');
+
+      const ribbonStartAbsolute = start + ((ribbonNumber - 1) * size);
+      fxFiberList.innerHTML = '';
+      for (let pos = 1; pos <= size; pos++) {
+        const fiber = fiberColorForRibbonPosition(pos);
+        const absoluteFiberNumber = ribbonStartAbsolute + (pos - 1);
+        fxFiberList.insertAdjacentHTML('beforeend', makeFiberRow(absoluteFiberNumber, fiber, pos === fiberInRibbon));
+      }
+
+      showScreen(screenFlex);
+    }
+
+    calcType.addEventListener('change', updateModeUI);
+    btnBackSmf.addEventListener('click', () => showScreen(screenForm));
+    btnBackRibbon.addEventListener('click', () => showScreen(screenForm));
+    btnBackFlex.addEventListener('click', () => showScreen(screenForm));
+
+    btnCalc.addEventListener('click', () => {
+      clearError();
+      const start = parseInt(startFiber.value, 10);
+      const target = parseInt(targetFiber.value, 10);
+      if (Number.isNaN(start) || Number.isNaN(target)) {
+        showError('Enter valid numbers in both boxes.');
+        return;
+      }
+      if (target < start) {
+        showError('Target fiber must be greater than or equal to start fiber.');
+        return;
+      }
+
+      const mode = calcType.value;
+      if (mode === 'SMF') renderSmf(start, target);
+      else if (mode === 'RIBN') renderRibbon(start, target);
+      else renderFlex(start, target);
+    });
+
+    updateModeUI();
   </script>
 </body>
 </html>
