@@ -210,43 +210,45 @@
     }
 
     .jump-card {
-      margin-top: 22px;
-      padding: 18px;
-    }
+  margin-top: 22px;
+  padding: 18px;
+}
 
-    .jump-title {
-      color: var(--accent-2);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 12px;
-    }
+.jump-title {
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
 
-    .jump-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+.jump-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-    .jump-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      text-decoration: none;
-      color: var(--text);
-      background: rgba(255,255,255,0.03);
-      font-size: 0.92rem;
-      transition: 0.2s ease;
-    }
+.jump-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--text);
+  background: rgba(255,255,255,0.03);
+  font-size: 0.92rem;
+  transition: 0.2s ease;
+  text-align: center;
+}
 
-    .jump-link:hover {
-      background: rgba(113,183,255,0.12);
-      border-color: rgba(113,183,255,0.35);
-      transform: translateY(-1px);
-    }
+.jump-link:hover {
+  background: rgba(113,183,255,0.12);
+  border-color: rgba(113,183,255,0.35);
+  transform: translateY(-1px);
+}
 
     .grid,
     .grid-2,
@@ -549,11 +551,6 @@
       .equipment-box,
       .lookup-box {
         border-radius: 18px;
-      }
-
-      .jump-links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
       }
 
       .pattern-strip,
