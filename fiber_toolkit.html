@@ -130,16 +130,6 @@
       color: var(--muted);
     }
 
-    .status-pill {
-      margin-top: 18px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: rgba(255,210,122,0.09);
-      border: 1px solid rgba(255,210,122,0.18);
-      color: var(--warn);
-      font-size: 0.88rem;
-    }
-
     .main-content {
       min-width: 0;
     }
@@ -202,18 +192,10 @@
       margin-bottom: 0;
     }
 
-    .grid,
     .tool-grid {
       display: grid;
       gap: 18px;
       margin-top: 22px;
-    }
-
-    .grid {
-      grid-template-columns: repeat(12, 1fr);
-    }
-
-    .tool-grid {
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
@@ -262,7 +244,6 @@
 
     .tool-card p,
     .card p,
-    .card li,
     .tool-card li {
       color: var(--muted);
     }
@@ -284,34 +265,6 @@
       background: rgba(113,183,255,0.18);
       transform: translateY(-1px);
     }
-
-    .term {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 12px;
-      margin-top: 12px;
-    }
-
-    .term:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-      margin-top: 0;
-    }
-
-    .label {
-      display: inline-block;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    ul {
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
-
-    li + li { margin-top: 8px; }
-
-    .span-12 { grid-column: span 12; }
 
     .footer {
       margin-top: 24px;
@@ -337,7 +290,6 @@
       }
 
       .hero { padding: 24px; }
-      .span-12 { grid-column: span 12; }
     }
   </style>
 </head>
@@ -347,7 +299,7 @@
       <div class="brand">
         <small>Prime Cyber Assets</small>
         <strong>Fiber Tool Kit</strong>
-        <span>Quick access to your fiber pages with room to grow later.</span>
+        <span>Quick access to field-ready fiber tools, references, and wiring patterns.</span>
       </div>
 
       <div class="nav-group">
@@ -355,23 +307,27 @@
         <nav class="side-nav">
           <a class="nav-link active" href="fiber_toolkit.html">
             <strong>Home</strong>
-            <span>Main toolkit page</span>
+            <span>Overview of all tools offered</span>
           </a>
           <a class="nav-link" href="otdrcheatsheet.html">
             <strong>OTDR Cheat Sheet</strong>
-            <span>Trace help and reference</span>
+            <span>Definitions, events, and field reference</span>
           </a>
           <a class="nav-link" href="fiber_calculator.html">
             <strong>Fiber Calculator</strong>
-            <span>Fiber count and ribbon math</span>
+            <span>Loose tube, ribbon, and flex ribbon math</span>
           </a>
           <a class="nav-link" href="fiber_loss.html">
             <strong>Fiber Loss Calculator</strong>
-            <span>Estimated link loss</span>
+            <span>Estimated end-to-end link loss</span>
           </a>
           <a class="nav-link" href="fiber_color_code.html">
             <strong>Fiber Color Code</strong>
-            <span>Color order quick reference</span>
+            <span>12-color order and quick lookup</span>
+          </a>
+          <a class="nav-link" href="cat_power_pattern.html">
+            <strong>CAT5 & Power Patterns</strong>
+            <span>RJ45 and 7-conductor reference</span>
           </a>
         </nav>
       </div>
@@ -383,7 +339,7 @@
           <div class="eyebrow">Fiber Tool Kit</div>
           <h1>Fiber Tool Kit</h1>
           <p class="subtitle">
-            Your main home page for fiber tools and references. Pick a page from below or use the sidebar to move around the toolkit.
+            Your main hub for fiber references, calculators, color codes, and field wiring patterns. Use the cards below or the sidebar to move through the toolkit fast.
           </p>
         </section>
 
@@ -395,7 +351,7 @@
                 <h3>OTDR Cheat Sheet</h3>
                 <span class="badge">Ready</span>
               </div>
-              <p>Quick reference for OTDR events, definitions, and common field reminders.</p>
+              <p>Quick reference for OTDR events, definitions, attenuation values, reflectance, and field reminders.</p>
               <a class="tool-link" href="otdrcheatsheet.html">Open OTDR Cheat Sheet</a>
             </article>
 
@@ -404,7 +360,7 @@
                 <h3>Fiber Calculator</h3>
                 <span class="badge">Ready</span>
               </div>
-              <p>Loose tube, ribbon, and flex ribbon calculations based on your calculator workflow.</p>
+              <p>Loose tube, ribbon, and flex ribbon calculations based on your field calculator workflow.</p>
               <a class="tool-link" href="fiber_calculator.html">Open Fiber Calculator</a>
             </article>
 
@@ -413,7 +369,7 @@
                 <h3>Fiber Loss Calculator</h3>
                 <span class="badge">Ready</span>
               </div>
-              <p>Estimate total link loss using fiber length, connectors, splices, splitters, and margin.</p>
+              <p>Estimate total link loss using fiber length, connectors, splices, splitters, and safety margin.</p>
               <a class="tool-link" href="fiber_loss.html">Open Fiber Loss Calculator</a>
             </article>
 
@@ -422,18 +378,18 @@
                 <h3>Fiber Color Code</h3>
                 <span class="badge">Ready</span>
               </div>
-              <p>Quick lookup for the standard 12-color order and fiber color reminders in the field.</p>
+              <p>Quick lookup for the standard 12-color order and field-friendly color reminders.</p>
               <a class="tool-link" href="fiber_color_code.html">Open Fiber Color Code</a>
             </article>
-          </div>
-        </section>
 
-        <section class="grid" id="future-projects">
-          <div class="card span-12">
-            <h2>Future Projects</h2>
-            <div class="term"><span class="label">Fiber Color Code Page</span><div>A quick lookup page for standard fiber colors, tube colors, and ribbon color order.</div></div>
-            <div class="term"><span class="label">Connector Cleaning Guide</span><div>A simple page for cleaning steps, inspection reminders, and common mistakes.</div></div>
-            <div class="term"><span class="label">Test Setup Guide</span><div>A page for launch cable, receive cable, wavelength selection, and field setup reminders.</div></div>
+            <article class="tool-card">
+              <div class="tool-top">
+                <h3>CAT5 & Power Patterns</h3>
+                <span class="badge">Ready</span>
+              </div>
+              <p>Reference page for RJ45 T568A and T568B plus 7-conductor power cable direction and pin patterns.</p>
+              <a class="tool-link" href="cat_power_pattern.html">Open CAT5 & Power Patterns</a>
+            </article>
           </div>
         </section>
 
