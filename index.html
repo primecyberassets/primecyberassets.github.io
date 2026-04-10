@@ -1,7 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prime Cyber Assets</title>
+  <meta
+    name="description"
+    content="Prime Cyber Assets builds practical apps, fiber tools, games, and premium digital products with a cyber-tech aesthetic."
+  />
 
   <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -9,327 +15,633 @@
     :root{
       --cyan:#66fcf1;
       --pink:#ff4fd8;
-      --bg:#000;
-      --text:#ccc;
+      --bg:#05070b;
+      --bg2:#000000;
+      --text:#d7dde5;
+      --muted:#9aa6b2;
+      --white:#ffffff;
 
-      --shell: rgba(10,10,15,0.62);
-      --shell-border: rgba(255,255,255,0.07);
+      --shell: rgba(10, 12, 18, 0.72);
+      --shell-border: rgba(255,255,255,0.08);
 
-      --row: rgba(255,255,255,0.04);
-      --row-hover: rgba(255,255,255,0.07);
+      --panel: rgba(255,255,255,0.05);
+      --panel-hover: rgba(255,255,255,0.08);
+      --panel-border: rgba(255,255,255,0.08);
+
+      --shadow-lg: 0 18px 60px rgba(0,0,0,0.45);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.28);
+
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+
+      --max-width: 1280px;
+      --transition: 0.22s ease;
     }
 
-    *{ box-sizing:border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    body{
-      margin:0;
-      min-height:100vh;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
       font-family: Arial, sans-serif;
-      color:#fff;
-
-      background-color: var(--bg);
+      color: var(--white);
+      background-color: var(--bg2);
       background-image:
-        radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
-        radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
-        radial-gradient(circle at 50% 82%, rgba(0,150,255,0.07), transparent 52%),
-        linear-gradient(to bottom, #07080c 0%, #000 55%, #000 100%);
-
-      animation: fadeIn 0.8s ease-out;
-      padding: 0;
+        radial-gradient(circle at 15% 18%, rgba(0,255,255,0.10), transparent 30%),
+        radial-gradient(circle at 82% 20%, rgba(255,0,255,0.10), transparent 32%),
+        radial-gradient(circle at 50% 80%, rgba(0,140,255,0.10), transparent 34%),
+        linear-gradient(180deg, #090b11 0%, #040507 48%, #000000 100%);
+      line-height: 1.6;
     }
 
-    @keyframes fadeIn {
-      from { opacity:0; transform: translateY(8px); }
-      to { opacity:1; transform: translateY(0); }
+    a {
+      color: var(--cyan);
+      text-decoration: none;
     }
 
-    /* ⭐ HERO INTRO: centered, wider, and NOT glued under the banner */
-    .intro{
-      text-align:center;
-      max-width: 1150px;            /* wider */
-      margin: 24px auto 64px auto;  /* more space below = better hero separation */
+    a:hover {
+      color: var(--white);
     }
 
-    .intro strong{ color: var(--cyan); }
-
-    .intro p{
-      margin: 0 0 16px 0;
-      font-size: 1.12rem;
-      line-height: 1.8;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    /* subtle hero divider so the page flows into content */
-    .intro::after{
-      content:"";
-      display:block;
-      width:140px;
-      height:2px;
-      margin: 34px auto 0 auto;
-      background: linear-gradient(90deg, transparent, var(--cyan), var(--pink), transparent);
-      opacity: 0.65;
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 16px;
+      background: var(--cyan);
+      color: #000;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      z-index: 9999;
+      transition: top var(--transition);
     }
 
-    /* FULL-WIDTH SHELL */
-    .shell{
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .page-wrap {
       width: 100%;
       min-height: 100vh;
+      padding: 22px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1500px;
+      min-height: calc(100vh - 44px);
+      margin: 0 auto;
       display: flex;
       overflow: hidden;
-      border-radius: 0;
-
+      border: 1px solid var(--shell-border);
+      border-radius: 28px;
       background: var(--shell);
-      backdrop-filter: blur(10px);
-
-      border-top: 1px solid var(--shell-border);
-      border-bottom: 1px solid var(--shell-border);
-
-      box-shadow:
-        0 10px 50px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(102,252,241,0.03) inset;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-lg);
     }
 
-    .sidebar{
-      width: 260px;
-      min-width: 260px;
-      padding: 22px 16px;
-      display:flex;
-      flex-direction:column;
+    .sidebar {
+      width: 270px;
+      min-width: 270px;
+      padding: 24px 18px;
       border-right: 1px solid rgba(102,252,241,0.12);
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.01)
+      );
     }
 
-    .sidebar-title{
-      font-weight: 800;
-      letter-spacing: 0.9px;
+    .sidebar-inner {
+      position: sticky;
+      top: 20px;
+    }
+
+    .sidebar-title {
+      margin: 4px 8px 18px;
       font-size: 0.92rem;
-      margin: 6px 8px 14px 8px;
-      color: rgba(255,255,255,0.82);
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .sidebar-title span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 14px;
+      border-radius: 14px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.05);
+      color: rgba(235,245,255,0.95);
+      font-weight: 700;
+      transition:
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+    }
+
+    .nav-links a:hover {
+      transform: translateX(3px);
+      background: var(--panel-hover);
+      border-color: rgba(102,252,241,0.22);
+      box-shadow: 0 0 0 1px rgba(102,252,241,0.08) inset;
+    }
+
+    .nav-links a.active {
+      background: linear-gradient(
+        135deg,
+        rgba(102,252,241,0.16),
+        rgba(255,79,216,0.12)
+      );
+      border-color: rgba(102,252,241,0.35);
+      color: var(--white);
+      box-shadow:
+        0 0 0 1px rgba(102,252,241,0.10) inset,
+        0 0 18px rgba(102,252,241,0.10);
+    }
+
+    .sidebar-note {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    .content {
+      flex: 1;
+      padding: 34px 38px 46px;
+    }
+
+    .content-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .page-header {
+      width: 100%;
+      max-width: 920px;
+      margin: 6px auto 22px;
+      filter:
+        drop-shadow(0 0 10px rgba(0,255,255,0.26))
+        drop-shadow(0 0 20px rgba(255,0,255,0.18));
+    }
+
+    .hero {
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto 42px;
+      padding: 10px 0 4px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(102,252,241,0.20);
+      background: rgba(102,252,241,0.06);
+      color: var(--cyan);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
     }
 
-    .sidebar-title span{ color: var(--cyan); }
-
-    .nav-links{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
 
-    .nav-links a{
-      display:flex;
-      align-items:center;
-      padding: 12px;
-      border-radius: 12px;
-      background: var(--row);
-      border: 1px solid rgba(255,255,255,0.05);
-      color: rgba(230,255,255,0.92);
-      text-decoration:none;
-      font-weight:700;
-      font-size:1.02rem;
-      transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
-    }
-
-    .nav-links a:hover{
-      background: var(--row-hover);
-      transform: translateX(2px);
-      color:#fff;
-    }
-
-    .content{
-      flex:1;
-      padding: 28px 40px;
-    }
-
-    .content-inner{
-  width: 100%;
-  max-width: 1400px;   /* ✅ centers the whole content area */
-  margin: 0 auto;      /* ✅ pulls everything off the left edge */
-}
-
-    /* ✅ keep body sections from hugging the left edge */
-.content h3,
-.content p{
-  max-width: 1100px;     /* readable line length */
-  margin-left: auto;     /* centers the block */
-  margin-right: auto;    /* centers the block */
-  text-align: left;      /* but text stays left-aligned */
-}
-
-/* ✅ keep headings centered (optional, looks good with your hero) */
-.content h2{
-  text-align: center;
-}
-    
-    /* ✅ banner centered with more “hero” top spacing */
-    .page-header{
-      display:block;
-      width:100%;
-      max-width: 920px;
-      margin: 32px auto 8px auto;   /* more space above, tighter below */
-      filter:
-        drop-shadow(0 0 10px rgba(0,255,255,0.28))
-        drop-shadow(0 0 18px rgba(255,0,255,0.18));
-    }
-
-    /* ✅ remove extra top gap since the intro already creates spacing */
-    .content h2{
-      color: var(--pink);
-      margin-top: 0;
-      margin-bottom: 8px;
-      text-align:center;
-    }
-
-    .content h2::after{
-      content:"";
-      display:block;
-      width:64px;
-      height:3px;
-      margin:12px auto 0 auto;
-      background: linear-gradient(90deg, var(--cyan), var(--pink));
-      border-radius: 3px;
-    }
-
-    .content h3{
+    .hero h1 .accent {
       color: var(--cyan);
-      margin-top: 1.5rem;
     }
 
-    .content p{
+    .hero p {
+      margin: 0 auto;
+      max-width: 840px;
       color: var(--text);
-      line-height: 1.75;
-      font-size: 1.08rem;
-      max-width: 1100px; /* slightly wider */
+      font-size: 1.1rem;
+      line-height: 1.85;
     }
 
-    @media (max-width: 900px){
-      .shell{ flex-direction: column; }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
 
-      .sidebar{
-        width:100%;
-        border-right:none;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 170px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition),
+        background var(--transition);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #041012;
+      background: linear-gradient(135deg, var(--cyan), #97fff7);
+      box-shadow: 0 10px 26px rgba(102,252,241,0.18);
+    }
+
+    .btn-primary:hover {
+      color: #000;
+      box-shadow: 0 14px 30px rgba(102,252,241,0.24);
+    }
+
+    .btn-secondary {
+      color: var(--white);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.10);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,79,216,0.28);
+    }
+
+    .hero-divider {
+      width: 170px;
+      height: 3px;
+      margin: 34px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--cyan),
+        var(--pink),
+        transparent
+      );
+      opacity: 0.9;
+    }
+
+    .section {
+      margin-top: 42px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      text-align: center;
+      color: var(--pink);
+      font-size: clamp(1.55rem, 2.5vw, 2rem);
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 3px;
+      margin: 12px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .card {
+      padding: 22px 22px 20px;
+      border-radius: 18px;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.03)
+      );
+      border: 1px solid var(--panel-border);
+      box-shadow: var(--shadow-md);
+      transition:
+        transform var(--transition),
+        border-color var(--transition),
+        background var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(102,252,241,0.20);
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.04)
+      );
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--cyan);
+      font-size: 1.12rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .mission-panel,
+    .contact-panel {
+      max-width: 920px;
+      margin: 24px auto 0;
+      padding: 24px;
+      border-radius: 20px;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.03)
+      );
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mission-panel p,
+    .contact-panel p {
+      margin: 0;
+      color: var(--text);
+      font-size: 1.04rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .contact-panel p + p {
+      margin-top: 14px;
+    }
+
+    .footer {
+      margin-top: 44px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1024px) {
+      .shell {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        border-right: none;
         border-bottom: 1px solid rgba(102,252,241,0.12);
       }
 
-      .nav-links{
+      .sidebar-inner {
+        position: static;
+      }
+
+      .nav-links {
         flex-direction: row;
-        justify-content: center;
         flex-wrap: wrap;
       }
 
-      .content{
-        padding: 22px 18px;
+      .nav-links li {
+        flex: 1 1 220px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-wrap {
+        padding: 12px;
       }
 
-      .page-header{
-        max-width: 560px;
-        margin: 18px auto 10px auto;
+      .shell {
+        min-height: calc(100vh - 24px);
+        border-radius: 22px;
       }
 
-      .intro{
-        max-width: 680px;
-        margin: 18px auto 42px auto;
+      .content {
+        padding: 24px 18px 30px;
       }
 
-      .content p{
-        max-width: none;
+      .page-header {
+        max-width: 600px;
+        margin-bottom: 18px;
+      }
+
+      .hero {
+        margin-bottom: 34px;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mission-panel,
+      .contact-panel {
+        padding: 20px;
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="shell">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <div class="sidebar">
-      <div class="sidebar-title"><span>PCA</span> Navigation</div>
+  <div class="page-wrap">
+    <div class="shell">
+      <aside class="sidebar" aria-label="Site Navigation">
+        <div class="sidebar-inner">
+          <div class="sidebar-title"><span>PCA</span> Navigation</div>
 
-      <ul class="nav-links">
-        <!-- ✅ Move "active" to the page you're on -->
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="apps.html">Apps</a></li>
-        <li><a href="products.html">Shop</a></li>
-        <li>
-          <a href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
-             target="_blank" rel="noopener noreferrer">
-            YouTube Videos
-          </a>
-        </li>
-      </ul>
-    </div>
+          <ul class="nav-links">
+            <li><a class="active" href="index.html" aria-current="page">Home</a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a href="products.html">Shop</a></li>
+            <li>
+              <a
+                href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                YouTube Videos
+              </a>
+            </li>
+          </ul>
 
-    <div class="content">
-      <div class="content-inner">
-
-        <img class="page-header" src="web_header.png" alt="Prime Cyber Assets"
-             loading="eager" decoding="async"
-             onerror="this.style.display='none'" />
-
-        <!-- ✅ HERO INTRO (centered, wider, spaced from banner) -->
-        <div class="intro">
-          <p>
-            <strong>Prime Cyber Assets (PCA)</strong> is a digital development studio focused on building
-            high-quality apps, games, and digital assets that blend technology, design, and practical utility.
-          </p>
-
-          <p>
-            Founded on a cyber-tech aesthetic and innovation-driven mindset, PCA develops tools and experiences
-            that empower users — from fiber infrastructure reference tools and productivity applications
-            to immersive game systems and premium digital assets.
-          </p>
+          <div class="sidebar-note">
+            Practical digital tools, creative products, and systems built with a cyber-tech edge.
+          </div>
         </div>
+      </aside>
 
-        <h2>What We Do</h2>
+      <main class="content" id="main-content">
+        <div class="content-inner">
+          <img
+            class="page-header"
+            src="web_header.png"
+            alt="Prime Cyber Assets"
+            loading="eager"
+            decoding="async"
+            onerror="this.style.display='none'"
+          />
 
-        <h3>📱 App Development</h3>
-        <p>
-          We design and build purpose-driven mobile and web applications with clean UI, stable performance,
-          and thoughtful user experience. Our work includes specialty trade tools, workflow utilities,
-          and structured digital systems designed for real-world professionals.
-        </p>
+          <section class="hero">
+            <div class="eyebrow">Prime Cyber Assets</div>
 
-        <h3>🔌 Fiber Training &amp; Technical Tools</h3>
-        <p>
-          Built from hands-on experience in fiber infrastructure and technical environments,
-          PCA creates tools and reference systems that improve clarity, consistency,
-          and efficiency for technicians and installers.
-        </p>
+            <h1>
+              Digital products built for
+              <span class="accent">real-world use</span>
+            </h1>
 
-        <h3>🎮 Game Development</h3>
-        <p>
-          PCA develops original interactive gaming experiences with a focus on progression systems,
-          player economy balance, and long-term replay value — combining clean system design
-          with stylized visual identity.
-        </p>
+            <p>
+              Prime Cyber Assets develops practical apps, fiber reference tools,
+              digital products, and creative systems designed to blend clean design,
+              useful function, and long-term brand value.
+            </p>
 
-        <h3>🎨 Digital Assets &amp; Creative Products</h3>
-        <p>
-          We create and sell premium digital assets including icon packs, logo bundles,
-          and downloadable creative resources for creators, entrepreneurs, and digital builders.
-        </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="products.html">Explore Shop</a>
+              <a class="btn btn-secondary" href="apps.html">View Apps</a>
+            </div>
 
-        <h2>Our Approach</h2>
-        <p>
-          We operate with a systems-driven approach focused on solving root problems rather than layering fixes.
-          Every product is built with scalability, ownership, and long-term sustainability in mind.
-        </p>
+            <div class="hero-divider" aria-hidden="true"></div>
+          </section>
 
-        <h2>Our Mission</h2>
-        <p>
-          To build profitable, scalable digital products that combine strong branding, clean engineering,
-          and creative independence — while maintaining full ownership and control over distribution.
-        </p>
+          <section class="section" aria-labelledby="what-we-do">
+            <h2 class="section-title" id="what-we-do">What We Do</h2>
 
-        <h2 id="contact">Contact</h2>
-        <p>
-          <strong>Email:</strong>
-          <a href="mailto:primecyberassets@gmail.com">primecyberassets@gmail.com</a>
-        </p>
+            <div class="feature-grid">
+              <article class="card">
+                <h3>📱 App Development</h3>
+                <p>
+                  We build practical mobile and web applications with clean UI,
+                  stable performance, and focused user experience. Our tools are
+                  designed to solve real problems, not just decorate a screen.
+                </p>
+              </article>
 
-      </div>
+              <article class="card">
+                <h3>🔌 Fiber Training &amp; Technical Tools</h3>
+                <p>
+                  Built from hands-on field knowledge, our fiber tools and
+                  technical references are made to improve speed, consistency,
+                  and clarity for technicians, installers, and trade-focused users.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3>🎮 Game Development</h3>
+                <p>
+                  We create original gaming projects with a focus on progression,
+                  replay value, system balance, and strong visual identity,
+                  built to grow beyond a one-session experience.
+                </p>
+              </article>
+
+              <article class="card">
+                <h3>🎨 Digital Assets &amp; Creative Products</h3>
+                <p>
+                  We design premium icon packs, downloadable resources, and other
+                  creative assets for builders, creators, and entrepreneurs who
+                  want polished tools with a distinct style.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="section" aria-labelledby="approach">
+            <h2 class="section-title" id="approach">Our Approach</h2>
+            <div class="mission-panel">
+              <p>
+                We focus on building systems that solve root problems instead of
+                patching symptoms. Every product is shaped around usability,
+                scalability, ownership, and long-term growth.
+              </p>
+            </div>
+          </section>
+
+          <section class="section" aria-labelledby="mission">
+            <h2 class="section-title" id="mission">Our Mission</h2>
+            <div class="mission-panel">
+              <p>
+                To create profitable, scalable digital products that combine
+                strong branding, clean engineering, and creative independence
+                while maintaining full ownership and control over distribution.
+              </p>
+            </div>
+          </section>
+
+          <section class="section" id="contact" aria-labelledby="contact-title">
+            <h2 class="section-title" id="contact-title">Contact</h2>
+            <div class="contact-panel">
+              <p>
+                Have a question, business inquiry, or collaboration idea?
+              </p>
+              <p>
+                <strong>Email:</strong>
+                <a href="mailto:primecyberassets@gmail.com">
+                  primecyberassets@gmail.com
+                </a>
+              </p>
+            </div>
+          </section>
+
+          <footer class="footer">
+            © Prime Cyber Assets. Built with independent systems, sharp edges, and neon voltage.
+          </footer>
+        </div>
+      </main>
     </div>
-
   </div>
 </body>
 </html>
