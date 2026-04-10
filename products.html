@@ -1,355 +1,753 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop - Prime Cyber Assets</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop - Prime Cyber Assets</title>
+  <meta
+    name="description"
+    content="Shop premium digital products from Prime Cyber Assets, including icon bundles, creative assets, and technical tools."
+  />
 
-<link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-<style>
+  <style>
+    :root{
+      --cyan:#66fcf1;
+      --pink:#ff4fd8;
+      --bg:#05070b;
+      --bg2:#000000;
+      --text:#d7dde5;
+      --muted:#9aa6b2;
+      --white:#ffffff;
 
-:root{
---cyan:#66fcf1;
---pink:#ff4fd8;
---bg:#000;
---text:#ccc;
+      --shell: rgba(10, 12, 18, 0.72);
+      --shell-border: rgba(255,255,255,0.08);
 
---shell: rgba(10,10,15,0.62);
---row: rgba(255,255,255,0.04);
---row-hover: rgba(255,255,255,0.07);
---card: rgba(255,255,255,0.04);
-}
+      --panel: rgba(255,255,255,0.05);
+      --panel-hover: rgba(255,255,255,0.08);
+      --panel-border: rgba(255,255,255,0.08);
 
-*{box-sizing:border-box;}
+      --shadow-lg: 0 18px 60px rgba(0,0,0,0.45);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.28);
 
-body{
-margin:0;
-font-family:Arial,sans-serif;
-color:#fff;
+      --max-width: 1280px;
+      --transition: 0.22s ease;
+    }
 
-background-color:var(--bg);
-background-image:
-radial-gradient(circle at 18% 18%, rgba(0,255,255,0.10), transparent 42%),
-radial-gradient(circle at 82% 28%, rgba(255,0,255,0.08), transparent 45%),
-linear-gradient(to bottom,#07080c,#000);
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.shell{
-display:flex;
-min-height:100vh;
-background:var(--shell);
-backdrop-filter:blur(10px);
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.sidebar{
-width:260px;
-padding:22px 16px;
-border-right:1px solid rgba(102,252,241,0.15);
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: var(--white);
+      background-color: var(--bg2);
+      background-image:
+        radial-gradient(circle at 15% 18%, rgba(0,255,255,0.10), transparent 30%),
+        radial-gradient(circle at 82% 20%, rgba(255,0,255,0.10), transparent 32%),
+        radial-gradient(circle at 50% 80%, rgba(0,140,255,0.10), transparent 34%),
+        linear-gradient(180deg, #090b11 0%, #040507 48%, #000000 100%);
+      line-height: 1.6;
+    }
 
-.sidebar-title{
-font-weight:800;
-margin-bottom:16px;
-}
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
 
-.nav-links{
-list-style:none;
-padding:0;
-margin:0;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
+    a:hover {
+      color: var(--white);
+    }
 
-.nav-links a{
-display:block;
-padding:12px;
-border-radius:10px;
-background:var(--row);
-color:#fff;
-text-decoration:none;
-font-weight:bold;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-.nav-links a.active{
-background:rgba(102,252,241,0.15);
-}
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 16px;
+      background: var(--cyan);
+      color: #000;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      z-index: 9999;
+      transition: top var(--transition);
+    }
 
-.content{
-flex:1;
-padding:30px 40px;
-}
+    .skip-link:focus {
+      top: 16px;
+    }
 
-.grid{
-margin-top:20px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
-}
+    .page-wrap {
+      width: 100%;
+      min-height: 100vh;
+      padding: 22px;
+    }
 
-.card{
-background:var(--card);
-border:1px solid rgba(102,252,241,0.18);
-border-radius:14px;
-padding:14px;
-transition:0.2s;
-}
+    .shell {
+      width: 100%;
+      max-width: 1500px;
+      min-height: calc(100vh - 44px);
+      margin: 0 auto;
+      display: flex;
+      overflow: hidden;
+      border: 1px solid var(--shell-border);
+      border-radius: 28px;
+      background: var(--shell);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-lg);
+    }
 
-.card:hover{
-border-color:rgba(255,79,216,0.5);
-transform:translateY(-3px);
-}
+    .sidebar {
+      width: 270px;
+      min-width: 270px;
+      padding: 24px 18px;
+      border-right: 1px solid rgba(102,252,241,0.12);
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.01)
+      );
+    }
 
-.thumb{
-width:100%;
-aspect-ratio:1/1;
-border-radius:12px;
-overflow:hidden;
-margin-bottom:10px;
-}
+    .sidebar-inner {
+      position: sticky;
+      top: 20px;
+    }
 
-.thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
+    .sidebar-title {
+      margin: 4px 8px 18px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
 
-.badge{
-display:inline-block;
-padding:4px 8px;
-font-size:0.75rem;
-border-radius:6px;
-background:rgba(102,252,241,0.15);
-border:1px solid rgba(102,252,241,0.4);
-color:var(--cyan);
-margin-bottom:6px;
-}
+    .sidebar-title span {
+      color: var(--cyan);
+    }
 
-.price{
-font-weight:bold;
-margin-bottom:6px;
-}
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.btn-row{
-display:flex;
-gap:10px;
-margin-top:10px;
-flex-wrap:wrap;
-}
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 14px;
+      border-radius: 14px;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.05);
+      color: rgba(235,245,255,0.95);
+      font-weight: 700;
+      transition:
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+    }
 
-.btn{
-padding:10px 14px;
-border-radius:8px;
-font-weight:bold;
-text-decoration:none;
-transition:0.2s;
-display:inline-block;
-}
+    .nav-links a:hover {
+      transform: translateX(3px);
+      background: var(--panel-hover);
+      border-color: rgba(102,252,241,0.22);
+      box-shadow: 0 0 0 1px rgba(102,252,241,0.08) inset;
+    }
 
-.btn:hover{
-transform:translateY(-2px);
-}
+    .nav-links a.active {
+      background: linear-gradient(
+        135deg,
+        rgba(102,252,241,0.16),
+        rgba(255,79,216,0.12)
+      );
+      border-color: rgba(102,252,241,0.35);
+      color: var(--white);
+      box-shadow:
+        0 0 0 1px rgba(102,252,241,0.10) inset,
+        0 0 18px rgba(102,252,241,0.10);
+    }
 
-.btn-buy{
-background:#ff90e8;
-color:#000;
-}
+    .sidebar-note {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
 
-.btn-preview{
-background:rgba(102,252,241,0.15);
-border:1px solid rgba(102,252,241,0.4);
-color:#66fcf1;
-}
+    .content {
+      flex: 1;
+      padding: 34px 38px 46px;
+    }
 
-.btn-disabled{
-background:rgba(255,255,255,0.10);
-border:1px solid rgba(255,255,255,0.15);
-color:#aaa;
-cursor:not-allowed;
-pointer-events:none;
-}
+    .content-inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
 
-.license-link{
-margin-top:6px;
-font-size:0.85rem;
-}
+    .hero {
+      max-width: 960px;
+      margin: 0 0 34px 0;
+    }
 
-.note{
-margin-top:6px;
-font-size:0.82rem;
-color:#9fb0c7;
-}
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(102,252,241,0.20);
+      background: rgba(102,252,241,0.06);
+      color: var(--cyan);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
 
-@media (max-width: 900px){
-.shell{
-flex-direction:column;
-}
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
 
-.sidebar{
-width:100%;
-border-right:none;
-border-bottom:1px solid rgba(102,252,241,0.15);
-}
+    .hero h1 .accent {
+      color: var(--cyan);
+    }
 
-.content{
-padding:24px 18px;
-}
-}
+    .hero p {
+      margin: 0;
+      max-width: 860px;
+      color: var(--text);
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
 
-</style>
+    .hero-divider {
+      width: 170px;
+      height: 3px;
+      margin: 26px 0 0;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--cyan),
+        var(--pink),
+        transparent
+      );
+      opacity: 0.9;
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      color: var(--pink);
+      font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 3px;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+    }
+
+    .section-copy {
+      margin: 0 0 20px;
+      max-width: 860px;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.03)
+      );
+      border: 1px solid var(--panel-border);
+      box-shadow: var(--shadow-md);
+      transition:
+        transform var(--transition),
+        border-color var(--transition),
+        background var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(102,252,241,0.20);
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.04)
+      );
+    }
+
+    .thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(102,252,241,0.18);
+      background: rgba(102,252,241,0.08);
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .price {
+      margin: 2px 0 8px;
+      color: var(--white);
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--pink);
+      font-size: 1.24rem;
+      line-height: 1.25;
+    }
+
+    .card p {
+      margin: 0 0 16px;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 130px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        opacity var(--transition),
+        border-color var(--transition),
+        background var(--transition);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-buy {
+      background: linear-gradient(135deg, var(--pink), #ff90e8);
+      color: #0d0610;
+      box-shadow: 0 10px 26px rgba(255,79,216,0.18);
+    }
+
+    .btn-buy:hover {
+      color: #000;
+      box-shadow: 0 14px 30px rgba(255,79,216,0.24);
+    }
+
+    .btn-preview {
+      background: rgba(102,252,241,0.10);
+      border: 1px solid rgba(102,252,241,0.30);
+      color: var(--cyan);
+    }
+
+    .btn-preview:hover {
+      color: var(--white);
+      border-color: rgba(102,252,241,0.45);
+      background: rgba(102,252,241,0.14);
+    }
+
+    .btn-disabled {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #a7afb9;
+      cursor: not-allowed;
+      pointer-events: none;
+      box-shadow: none;
+    }
+
+    .license-link {
+      margin-top: 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .license-link a {
+      color: var(--cyan);
+    }
+
+    .license-link a:hover {
+      color: var(--pink);
+    }
+
+    .note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 44px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1024px) {
+      .shell {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(102,252,241,0.12);
+      }
+
+      .sidebar-inner {
+        position: static;
+      }
+
+      .nav-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .nav-links li {
+        flex: 1 1 220px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-wrap {
+        padding: 12px;
+      }
+
+      .shell {
+        min-height: calc(100vh - 24px);
+        border-radius: 22px;
+      }
+
+      .content {
+        padding: 24px 18px 30px;
+      }
+
+      .hero p,
+      .section-copy,
+      .card p {
+        font-size: 0.98rem;
+      }
+
+      .card-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-<div class="shell">
+  <div class="page-wrap">
+    <div class="shell">
+      <aside class="sidebar" aria-label="Site Navigation">
+        <div class="sidebar-inner">
+          <div class="sidebar-title"><span>PCA</span> Navigation</div>
 
-<div class="sidebar">
-<div class="sidebar-title">PCA Navigation</div>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a class="active" href="products.html" aria-current="page">Shop</a></li>
+            <li>
+              <a
+                href="https://www.youtube.com/channel/UCgkh0TKMMD60hQOL5Q9k2mg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                YouTube Videos
+              </a>
+            </li>
+          </ul>
 
-<ul class="nav-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="apps.html">Apps</a></li>
-<li><a class="active" href="products.html">Shop</a></li>
-</ul>
-</div>
+          <div class="sidebar-note">
+            Premium digital assets, technical tools, and creative products with a cyber-tech edge.
+          </div>
+        </div>
+      </aside>
 
-<div class="content">
+      <main class="content" id="main-content">
+        <div class="content-inner">
+          <section class="hero">
+            <div class="eyebrow">Prime Cyber Assets Shop</div>
+            <h1>
+              Digital products built to look sharp and
+              <span class="accent">work hard</span>
+            </h1>
+            <p>
+              Browse premium icon bundles, technical toolkits, and downloadable digital products
+              created for builders, creators, and professionals who want useful assets with a clean,
+              modern edge.
+            </p>
+            <div class="hero-divider" aria-hidden="true"></div>
+          </section>
 
-<h1 style="color:#66fcf1;">Shop Digital Products</h1>
+          <section class="section" aria-labelledby="shop-products">
+            <h2 class="section-title" id="shop-products">Digital Products</h2>
+            <p class="section-copy">
+              Commercial-use assets, technical references, and product bundles available through secure checkout.
+            </p>
 
-<div class="grid">
+            <div class="grid">
 
-<!-- FIBER TOOL KIT -->
-<div class="card">
-<div class="thumb">
-<img src="assets/fiber_toolkit_image.png" alt="Fiber Tool Kit">
-</div>
+              <article class="card">
+                <div class="thumb">
+                  <img src="assets/fiber_toolkit_image.png" alt="Fiber Tool Kit" />
+                </div>
 
-<div class="badge">Field Toolkit Access</div>
-<div class="price">Price Coming Soon</div>
+                <div class="card-top">
+                  <span class="badge">Coming Soon</span>
+                </div>
 
-<h3 style="color:#ff4fd8;">Fiber Tool Kit Pro</h3>
-<p>Field-ready fiber references, calculators, CAT5 patterns, power pinouts, and mobile-friendly toolkit access.</p>
+                <div class="price">Pricing Announced Soon</div>
+                <h3>Fiber Tool Kit Pro</h3>
+                <p>
+                  Field-ready fiber references, calculators, CAT5 patterns, power pinouts,
+                  and mobile-friendly toolkit access built for fast use in technical environments.
+                </p>
 
-<div class="btn-row">
-<a class="btn btn-buy"
-href="https://buy.stripe.com/fZu14h4gh9L79wX49qaIM09"
-target="_blank" rel="noopener noreferrer">
-Buy Now
-</a>
-<a class="btn btn-preview" href="fiber_toolkit_preview.html">
-Preview
-</a>
-</div>
+                <div class="btn-row">
+                  <span class="btn btn-disabled">Coming Soon</span>
+                  <a class="btn btn-preview" href="fiber_toolkit_preview.html">Preview</a>
+                </div>
 
-<div class="note">Stripe checkout link will be added when the product is ready.</div>
-</div>
+                <div class="note">
+                  Preview the toolkit now. Checkout can be enabled once the product is fully ready.
+                </div>
+              </article>
 
-<!-- FINANCE -->
-<div class="card">
-<div class="thumb">
-<img src="assets/bundle-icon-fin.png" alt="Finance Icons">
-</div>
+              <article class="card">
+                <div class="thumb">
+                  <img src="assets/bundle-icon-fin.png" alt="Finance Icons" />
+                </div>
 
-<div class="badge">Commercial Use Included</div>
-<div class="price">$9</div>
+                <div class="card-top">
+                  <span class="badge">Commercial Use Included</span>
+                </div>
 
-<h3 style="color:#ff4fd8;">Premium Finance App Icons</h3>
-<p>Finance icons for fintech dashboards and apps.</p>
+                <div class="price">$9</div>
+                <h3>Premium Finance App Icons</h3>
+                <p>
+                  A polished finance icon pack designed for fintech dashboards, money tools,
+                  budgeting apps, and branded digital products.
+                </p>
 
-<div class="btn-row">
-<a class="btn btn-buy"
-href="https://buy.stripe.com/bJe6oB4ghe1ncJ97lCaIM07"
-target="_blank" rel="noopener noreferrer">
-Buy Now
-</a>
-</div>
+                <div class="btn-row">
+                  <a
+                    class="btn btn-buy"
+                    href="https://buy.stripe.com/bJe6oB4ghe1ncJ97lCaIM07"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Buy Now
+                  </a>
+                </div>
 
-<div class="license-link">
-<a href="product-license.html">License Details</a>
-</div>
-</div>
+                <div class="license-link">
+                  <a href="product-license.html">License Details</a>
+                </div>
+              </article>
 
-<!-- FITNESS -->
-<div class="card">
-<div class="thumb">
-<img src="assets/bundle-icon-fit.png" alt="Fitness Icons">
-</div>
+              <article class="card">
+                <div class="thumb">
+                  <img src="assets/bundle-icon-fit.png" alt="Fitness Icons" />
+                </div>
 
-<div class="badge">Commercial Use Included</div>
-<div class="price">$9</div>
+                <div class="card-top">
+                  <span class="badge">Commercial Use Included</span>
+                </div>
 
-<h3 style="color:#ff4fd8;">Premium Fitness App Icon Bundle</h3>
-<p>High-quality fitness icons for apps and branding.</p>
+                <div class="price">$9</div>
+                <h3>Premium Fitness App Icon Bundle</h3>
+                <p>
+                  High-quality fitness icons for workout apps, coaching brands, health dashboards,
+                  and energetic product visuals.
+                </p>
 
-<div class="btn-row">
-<a class="btn btn-buy"
-href="https://buy.stripe.com/6oU7sF0018H3cJ9bBSaIM08"
-target="_blank" rel="noopener noreferrer">
-Buy Now
-</a>
-</div>
+                <div class="btn-row">
+                  <a
+                    class="btn btn-buy"
+                    href="https://buy.stripe.com/6oU7sF0018H3cJ9bBSaIM08"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Buy Now
+                  </a>
+                </div>
 
-<div class="license-link">
-<a href="product-license.html">License Details</a>
-</div>
-</div>
+                <div class="license-link">
+                  <a href="product-license.html">License Details</a>
+                </div>
+              </article>
 
-<!-- PRODUCTIVITY -->
-<div class="card">
-<div class="thumb">
-<img src="assets/bundle-icon-pro.png" alt="Productivity Icons">
-</div>
+              <article class="card">
+                <div class="thumb">
+                  <img src="assets/bundle-icon-pro.png" alt="Productivity Icons" />
+                </div>
 
-<div class="badge">Commercial Use Included</div>
-<div class="price">$5</div>
+                <div class="card-top">
+                  <span class="badge">Commercial Use Included</span>
+                </div>
 
-<h3 style="color:#ff4fd8;">Premium Productivity Icon Bundle</h3>
-<p>Neon productivity icons for dashboards and task systems.</p>
+                <div class="price">$5</div>
+                <h3>Premium Productivity Icon Bundle</h3>
+                <p>
+                  Neon-styled productivity icons for dashboards, workflow systems,
+                  scheduling tools, and modern task-driven interfaces.
+                </p>
 
-<div class="btn-row">
-<a class="btn btn-buy"
-href="https://buy.stripe.com/bJe7sF9AB8H3aB15duaIM05"
-target="_blank" rel="noopener noreferrer">
-Buy Now
-</a>
-</div>
+                <div class="btn-row">
+                  <a
+                    class="btn btn-buy"
+                    href="https://buy.stripe.com/bJe7sF9AB8H3aB15duaIM05"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Buy Now
+                  </a>
+                </div>
 
-<div class="license-link">
-<a href="product-license.html">License Details</a>
-</div>
-</div>
+                <div class="license-link">
+                  <a href="product-license.html">License Details</a>
+                </div>
+              </article>
 
-<!-- UTILITY -->
-<div class="card">
-<div class="thumb">
-<img src="assets/bundle-icon-uti.png" alt="Utility Icons">
-</div>
+              <article class="card">
+                <div class="thumb">
+                  <img src="assets/bundle-icon-uti.png" alt="Utility Icons" />
+                </div>
 
-<div class="badge">Commercial Use Included</div>
-<div class="price">$5</div>
+                <div class="card-top">
+                  <span class="badge">Commercial Use Included</span>
+                </div>
 
-<h3 style="color:#ff4fd8;">Premium Utility Icon Bundle</h3>
-<p>System icons for apps, settings, notifications, and core tools.</p>
+                <div class="price">$5</div>
+                <h3>Premium Utility Icon Bundle</h3>
+                <p>
+                  Clean utility and system icons for settings, notifications,
+                  tools, controls, and core app interface elements.
+                </p>
 
-<div class="btn-row">
-<a class="btn btn-buy"
-href="https://buy.stripe.com/00w14hdQRbTf10raxOaIM06"
-target="_blank" rel="noopener noreferrer">
-Buy Now
-</a>
-</div>
+                <div class="btn-row">
+                  <a
+                    class="btn btn-buy"
+                    href="https://buy.stripe.com/00w14hdQRbTf10raxOaIM06"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Buy Now
+                  </a>
+                </div>
 
-<div class="license-link">
-<a href="product-license.html">License Details</a>
-</div>
-</div>
+                <div class="license-link">
+                  <a href="product-license.html">License Details</a>
+                </div>
+              </article>
 
-</div>
+            </div>
+          </section>
 
-</div>
-</div>
-
+          <footer class="footer">
+            © Prime Cyber Assets. Digital products with clean edges and a little neon bite.
+          </footer>
+        </div>
+      </main>
+    </div>
+  </div>
 </body>
 </html>
